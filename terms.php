@@ -1,5 +1,5 @@
 <?php
 
-skibidi terms
+$skibidi_terms = 1;
 
 ?>
