@@ -4,7 +4,7 @@ include __DIR__ . '/db.php';
 function login($username, $password) {
     global $db;
 
-    $sql = "SELECT * FROM /* DATABASE NAME HERE */ WHERE username = :username";
+    $sql = "SELECT * FROM users WHERE username = :username";
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':username', $username, PDO::PARAM_STR);
 
@@ -16,13 +16,14 @@ function login($username, $password) {
     }
 
     return false;
+
 }
 
 function logout() {
     session_start();
     session_unset();
     session_destroy();
-    #header('Location: ---LOCATION HERE--- ');
+    header('Location: dashboard.php ');
     exit();
 }
 

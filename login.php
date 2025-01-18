@@ -1,3 +1,40 @@
+<?php 
+
+include __DIR__ . '/model/login_model.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    if (empty($username) || empty($password)) {
+
+        die('Username or password is empty');
+        
+    }
+
+    $user = login($username, $password);
+
+    if ($user) {
+
+        if (session_status() == PHP_SESSION_NONE) {
+
+            session_start();
+
+        }
+
+        $_SESSION['user'] = $user;
+        header('Location: dashboard.php');
+        exit();
+        
+    } else {
+
+        $error = 'Invalid username or password.';
+
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,23 +70,27 @@
         <div class="login-wrapper">
             <div class="header">
 
-                <h1>Login</h1>
+                <h1>Welcome Back!</h1>
 
-                <h4>Don't Have an Account? <a href="login.php">Register</a></h4>
+                <h4>Don't Have an Account? <a href="register.php">Register</a></h4>
 
             </div>
 
             <div class = "login">
 
-                <form action="register.php" method="post">
+                <form action="login.php" method="POST">
 
                     <input type="text" name="username" placeholder="User Name" required>
 
-                    <input type="text" name="password" placeholder="Password" required>
+                    <input type="password" name="password" placeholder="Password" required>
+
+                    <button type="submit">Login</button>
 
                 </form>
 
-                <button type="submit">Register</button>
+                <?php if (isset($error)): ?>
+                    <p style="color: red;"><?php echo $error; ?></p>
+                <?php endif; ?>
 
             </div>
 
