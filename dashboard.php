@@ -1,5 +1,6 @@
 <?php
-
+    session_start();
+    include __DIR__ . '/includes/gyatt.php';
 ?>
 
 <!DOCTYPE html>
@@ -8,13 +9,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Class Quest</title>
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 </head>
 <body>
 
     <nav>
         
-        <div class="logo"></div>
+        <div class="logo">
+            <img src="images/logo.png" alt="">
+        </div>
 
         <div class="add-btn"><div>
 
