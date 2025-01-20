@@ -8,6 +8,7 @@
     <meta property="og:title" content="Class Quest">
     <meta property="og:description" content="Find the motivation to get your work done.">
     <meta property="og:image" content="images/login-wall-1.jpg">
+    <link rel="apple-touch-icon" href="images/apple-ico.png">
 </head>
 <body>
     
