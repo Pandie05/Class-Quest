@@ -1,5 +1,41 @@
 <?php 
+
     include __DIR__ . '/includes/gyatt.php';
+    include __DIR__ . '/model/db.php';
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        
+        // check if username is already made
+        $sql = "SELECT COUNT(*) FROM users WHERE username = :username";
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+
+        if ($stmt->fetchColumn() > 0) {
+
+            die('Username already exists');
+
+        }
+
+        // insert into users
+        $sql = "INSERT INTO users (email, username, password) VALUES (:email, :username, :password)";
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        header('Location: login.php');
+        exit();
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +83,7 @@
 
             <div class = "login">
 
-                <form action="login.php" method="POST">
+                <form action="register.php" method="POST">
 
                     <input type="text" name="email" placeholder="Email" required>
 
