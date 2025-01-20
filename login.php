@@ -3,6 +3,7 @@
 session_start();
 
 include __DIR__ . '/model/login_model.php';
+include __DIR__ . '/includes/gyatt.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
