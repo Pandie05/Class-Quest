@@ -2,7 +2,7 @@
 :root {
     --primary-color: #C28EF5;
     --secondary-color: #8A799F;
-    --tertiary-color: #2f224a;
+    --tertiary-color: #7845de50;
     --text: #fff;
     --text-dim: #8d8b97;
 }
@@ -14,6 +14,72 @@ body, html {
     margin: 0;
     padding: 0;
     display: flex;
+}
+
+/* Nav styling */
+nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100px;
+    height: 100vh;
+    padding: 25px;
+    border-right: solid 2px var(--tertiary-color);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logo img {
+    margin-top: 20px;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.icon-links {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 1rem;
+    gap: 50px;
+}
+
+.add-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: dashed 2px var(--tertiary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-top: 1rem;
+    cursor: pointer;
+    margin-bottom: 3rem;
+    transition: 0.2s;
+}
+
+.add-btn:hover {
+    border: dashed 2px var(--primary-color);
+}
+
+.add-svg {
+    color: var(--secondary-color);
+    width: 30px;
+    height: 30px;
+}
+
+.home-btn svg, .logout-btn svg, .dash-btn svg, .pet-btn svg {
+    color: var(--secondary-color);
+    width: 45px;
+    height: 45px;
+    transition: 0.2s;
+}
+
+.home-btn:hover svg, .logout-btn:hover svg, .dash-btn:hover svg, .pet-btn:hover svg {
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.logout-btn {
+    margin-top: 150px;
 }
