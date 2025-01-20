@@ -1,40 +1,36 @@
 <?php 
 
-    include __DIR__ . '/includes/gyatt.php';
-    include __DIR__ . '/model/db.php';
+include __DIR__ . '/includes/gyatt.php';
+include __DIR__ . '/model/db.php';
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $email = $_POST['email'];
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        
-        // check if username is already made
-        $sql = "SELECT COUNT(*) FROM users WHERE username = :username";
-        $stmt = $db->prepare($sql);
+    $email = $_POST['email'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-        $stmt->execute();
+    // Check if email or username already exists
+    $stmt = $db->prepare("SELECT COUNT(*) FROM users WHERE email = :email OR username = :username");
+    $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+    $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+    $stmt->execute();
+    $count = $stmt->fetchColumn();
 
-        if ($stmt->fetchColumn() > 0) {
-
-            die('Username already exists');
-
-        }
-
-        // insert into users
+    if ($count > 0) {
+        $error = 'Email or username already exists.';
+    } else {
+        // Insert into users
         $sql = "INSERT INTO users (email, username, password) VALUES (:email, :username, :password)";
         $stmt = $db->prepare($sql);
-
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
         $stmt->bindParam(':password', $password, PDO::PARAM_STR);
-
         $stmt->execute();
 
         header('Location: login.php');
         exit();
     }
+}
 
 ?>
 
@@ -68,8 +64,6 @@
         </div>
     </div>
 
-        
-
         <div class="login-wrapper">
 
         <div class="login-center">
@@ -99,6 +93,10 @@
                     </button>
 
                 </form>
+
+                <?php if (isset($error)): ?>
+                    <p class="log-err" style="color: red;"><?php echo $error; ?></p>
+                <?php endif; ?>
 
                 <div class="terms">
                     <input type="checkbox" class="ui-checkbox"> I agree to the <a href="#" id="terms-link">Terms of Service</a>
