@@ -11,19 +11,20 @@ function login($username, $password) {
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user && password_verify($password, $user['password'])) {
+    if ($user && $user['password'] === $password) {
+        session_start();
+        $_SESSION['user'] = $user;
         return $user;
     }
 
     return false;
-
 }
 
 function logout() {
     session_start();
-    session_unset();
+    header('Location: dashboard.php');
     session_destroy();
-    header('Location: dashboard.php ');
+    header('Location: dashboard.php');
     exit();
 }
 

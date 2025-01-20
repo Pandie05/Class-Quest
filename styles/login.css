@@ -1,22 +1,13 @@
-/*
+/* Variables */
+:root {
+    --primary-color: #C28EF5;
+    --secondary-color: #8A799F;
+    --tertiary-color: #2f224a;
+    --text: #fff;
+    --text-dim: #8d8b97;
+}
 
-Description:
-This CSS file styles the login page
-
-Styles:
-- body, html: Sets the background color, font, margin, padding, and centers the content.
-- .wrapper: Defines the layout and padding for the main container.
-- .slide-show: Styles the image slideshow container.
-- .slide-show img: Styles individual images within the slideshow.
-- .slide-show img:first-child: Ensures the first image is visible by default.
-- .logo: Positions the logo within the slideshow.
-- .indicators: Styles the container for slideshow navigation dots.
-- .dot: Styles individual navigation dots.
-- .dot.active: Styles the active navigation dot.
-- .catch-p: Positions and styles the catchphrase text.
-- .catch-p p: Additional styling for the catchphrase text.
-
-*/
+/* Global Styles */
 body, html {
     background-color: #0D0922;
     font-family: 'Poppins', sans-serif;
@@ -27,18 +18,20 @@ body, html {
     align-items: center;
     height: 100vh;
     width: 100vw;
-    overflow: hidden;
+    overflow: hidden; /* Disable scrolling */
 }
 
+/* Wrapper */
 .wrapper {
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: row;
     padding: 30px 25px;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Include padding in the width */
 }
 
+/* Slide Show */
 .slide-show {
     width: 45%;
     height: 100%;
@@ -57,7 +50,7 @@ body, html {
     top: 0;
     left: 0;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out; 
     border-radius: 20px;
 }
 
@@ -65,15 +58,17 @@ body, html {
     opacity: 1;
 }
 
+/* Logo */
 .logo {
     position: absolute;
-    top: 50px;
-    left: 50px;
+    top: 50px; /* 50px from the top */
+    left: 50px; /* 50px from the left */
     width: 100px;
     height: auto;
-    z-index: 10;
+    z-index: 10; /* Make sure the logo is on top of the images */
 }
 
+/* Indicators */
 .indicators {
     position: absolute;
     bottom: 10px;
@@ -87,21 +82,22 @@ body, html {
     width: 50px;
     margin: 10px 5px;
     background-color: #717171;
-    border-radius: 10px;
-    display: inline-block;
-    transition: background-color 0.6s ease;
+    border-radius: 10px; 
+    display: inline-block; /* Make the dots appear in a row */
+    transition: background-color 0.6s ease; /* Smooth transition */
 }
 
 .dot.active {
     background-color: #bbb;
 }
 
+/* Catch Phrase / quote */
 .catch-p {
     position: absolute;
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    color: #fff;
+    color: var(--text);
     font-size: 1.7rem;
     font-weight: 500;
     width: 400px;
@@ -109,18 +105,124 @@ body, html {
 
 .catch-p p {
     margin-top: -150px;
-    padding: 0;
+    padding: 0; 
     text-align: center;
 }
 
-/* login wrapper */
+/* Login Wrapper */
 .login-wrapper {
     width: 55%;
     height: 100%;
     display: flex;
-    align-items: center;
     position: relative;
     overflow: hidden;
     position: flex;
     flex-direction: column;
+    text-align: left;
+}
+
+.login-center {
+    margin-top: 50px;
+    margin-left: 20%;
+}
+
+/* Header */
+.header {
+    color: var(--text);
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 64px;
+    font-weight: 300;
+    margin-bottom: 0;
+}
+
+.header h4 {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-bottom: 50px;
+}
+
+.header h4 a {
+    margin-left: 10px;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.header h4 a:hover {
+    color: var(--secondary-color);
+}
+
+/* Login Form */
+.login form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.login form input {
+    padding-left: 10px;
+    width: 440px;
+    height: 45px;
+    border: 2px solid var(--primary-color);
+    border-radius: 15px;
+    background-color: #1E1A3C;
+    color: var(--text);
+    margin-bottom: 30px;
+}
+
+.login form button {
+    width: 60px;
+    height: 0px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 410px;
+    margin-top: 20px;
+}
+
+.login form button:hover {
+    transform: scale(1.1); 
+}
+
+/* Password Input */
+.password-input {
+    position: relative;
+}
+
+.password-input svg {
+    position: absolute;
+    right: 10px;
+    top: 25px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    margin-right: 46%;
+}
+
+/* Back to Home */
+.back-to-home {
+    left: 50px;
+    position: absolute;
+    color: var(--text-dim);
+    font-size: 14px;
+    bottom: 40px;
+}
+
+.back-to-home a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.back-to-home a:hover {
+    color: var(--secondary-color);
 }

@@ -2,7 +2,7 @@
 
 $dueDate = "2025-01-20";
 
-//test for assignment creation xp (change to datetime for more accura)
+//test for assignment creation xp (change to datetime for more accuracy)
 function creation_xp($dueDate){
 
     $currentDate = new DateTime();
