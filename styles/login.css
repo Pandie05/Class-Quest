@@ -1,3 +1,22 @@
+/*
+
+Description:
+This CSS file styles the login page
+
+Styles:
+- body, html: Sets the background color, font, margin, padding, and centers the content.
+- .wrapper: Defines the layout and padding for the main container.
+- .slide-show: Styles the image slideshow container.
+- .slide-show img: Styles individual images within the slideshow.
+- .slide-show img:first-child: Ensures the first image is visible by default.
+- .logo: Positions the logo within the slideshow.
+- .indicators: Styles the container for slideshow navigation dots.
+- .dot: Styles individual navigation dots.
+- .dot.active: Styles the active navigation dot.
+- .catch-p: Positions and styles the catchphrase text.
+- .catch-p p: Additional styling for the catchphrase text.
+
+*/
 body, html {
     background-color: #0D0922;
     font-family: 'Poppins', sans-serif;
@@ -92,4 +111,16 @@ body, html {
     margin-top: -150px;
     padding: 0;
     text-align: center;
+}
+
+/* login wrapper */
+.login-wrapper {
+    width: 55%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    position: flex;
+    flex-direction: column;
 }
