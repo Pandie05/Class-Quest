@@ -21,4 +21,8 @@ function creation_xp($dueDate){
 
 echo "Days until due: " . creation_xp($dueDate);
 
-?>
+function getAssignments() {
+
+    $skibidi = 1;
+
+}
