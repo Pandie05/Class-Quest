@@ -23,6 +23,14 @@ echo "Days until due: " . creation_xp($dueDate);
 
 function getAssignments() {
 
-    $skibidi = 1;
+    global $db;
+
+    $sql = "SELECT * FROM assignments";
+
+    $stmt = $db->prepare($sql);
+
+    $stmt->execute();
+
+    return $stmt->fetchAll();
 
 }

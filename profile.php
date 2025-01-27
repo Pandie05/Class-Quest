@@ -1,0 +1,2 @@
+<?php 
+$skibidi = 1;
