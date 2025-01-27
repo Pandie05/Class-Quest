@@ -1,25 +1,6 @@
 <?php
+include __DIR__ . '../../model/db.php';
 
-$dueDate = "2025-01-20";
-
-//test for assignment creation xp (change to datetime for more accuracy)
-function creation_xp($dueDate){
-
-    $currentDate = new DateTime();
-    
-    $dueDateTime = new DateTime($dueDate);
-
-    $interval = $currentDate->diff($dueDateTime);
-    
-    if ($dueDateTime > $currentDate) {
-        return $interval->days; 
-    } else {
-        return 0; 
-    }
-    
-}
-
-echo "Days until due: " . creation_xp($dueDate);
 
 function getAssignments() {
 
@@ -34,3 +15,30 @@ function getAssignments() {
     return $stmt->fetchAll();
 
 }
+
+function getAssignment($id) {
+
+    global $db;
+
+    $sql = "SELECT * FROM assignments WHERE id = :id";
+
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+    $stmt->execute();
+
+    return $stmt->fetch();
+
+}
+
+/*
+Midterm / Final: 20
+Exam: 16
+Test: 7
+Quiz: 5
+Homework: 3.5
+*/
+
+echo "assignment is due: " . getAssignment(1)['duedate'];
+
