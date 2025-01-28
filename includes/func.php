@@ -33,12 +33,43 @@ function getAssignment($id) {
 }
 
 /*
-Midterm / Final: 20
+Final: 25
+Midterm: 20
 Exam: 16
 Test: 7
 Quiz: 5
 Homework: 3.5
 */
 
-echo "assignment is due: " . getAssignment(1)['duedate'];
+function xp ($duedate, $type) {
 
+    $typeValues = [
+        'Midterm' => 25,
+        'Final' => 20,
+        'Exam' => 16,
+        'Test' => 8,
+        'Quiz' => 5,
+        'Homework' => 3.5
+    ];
+
+    if (array_key_exists($type, $typeValues)) {
+        return $duedate * $typeValues[$type];
+    } else {
+        return 0; 
+    }
+
+}
+
+function getxp($assignments) {
+
+    $xp = 0;
+
+    foreach ($assignments as $assignment) {
+        $xp += xp($assignment['duedate'], $assignment['assigntype']);
+    }
+
+    return $xp;
+
+}
+
+echo xp(10, 'Midterm');
