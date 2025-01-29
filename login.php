@@ -1,7 +1,5 @@
 <?php 
 
-session_start();
-
 include __DIR__ . '/model/login_model.php';
 include __DIR__ . '/includes/gyatt.php';
 
@@ -26,6 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $_SESSION['user'] = $user;
+
+        /* $_SESSION['pet'] = getPet($user['id']); */
+        
         header('Location: dashboard.php');
         exit();
         

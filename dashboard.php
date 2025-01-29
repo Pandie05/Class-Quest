@@ -1,6 +1,25 @@
 <?php
-    session_start();
     include __DIR__ . '/includes/gyatt.php';
+    include __DIR__ . '/includes/func.php';
+    include __DIR__ . '/model/db.php';
+
+    session_start();
+
+    if (!isset($_SESSION['user'])) {
+        header('Location: login.php');
+        exit();
+    }
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $title = $_POST['title'];
+        $classname = $_POST['classname'];
+        $duedate = $_POST['duedate'];
+        $assigntype = $_POST['assigntype'];
+        $xp = xp($duedate, $assigntype);
+
+        /* addAssignment($title, $classname, $duedate, $assigntype, $xp); */
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -54,19 +73,26 @@
 
         </div>
 
-        <div class="assignments">
+        <div class="assignment-board">
 
             <?php 
 
-            
+                $assignments = getAssignments();
+
+                foreach ($assignments as $assignment) {
+                    echo '<div class="assignment">';
+                    echo '<h2>' . $assignment['title'] . '</h2>';
+                    echo '<p>' . $assignment['classname'] . '</p>';
+                    echo '<p>' . $assignment['duedate'] . '</p>';
+                    echo '<p>' . $assignment['assigntype'] . '</p>';
+                    echo '<p>' . $assignment['xp'] . '</p>';
+                    echo '</div>';
+                }
 
             ?>
 
         </div>
         
-        
-
-        
 
     <div>
 
@@ -75,6 +101,37 @@
     
     
     <div>
+
+    <!-- HIDDEN ADD ASSIGNMENT FORM (for popup) -->
+
+    <div>
+
+        <div class="add-assignment-form">
+
+            <form action="dashboard.php" method="POST">
+
+                <input type="text" name="title" placeholder="Title" required>
+
+                <input type="text" name="classname" placeholder="Class Name" required>
+
+                <input type="date" name="duedate" required>
+
+                <select name="assigntype" required>
+                    <option value="final">Final</option>
+                    <option value="midterm">Midterm</option>
+                    <option value="exam">Exam</option>
+                    <option value="test">Test</option>
+                    <option value="quiz">Quiz</option>
+                    <option value="homework">Homework</option>
+                </select>
+
+                <button type="submit">Add Assignment</button>
+
+            </form>
+
+        </div>
+
+    </div>
     
 </body>
 </html>
