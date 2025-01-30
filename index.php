@@ -24,8 +24,8 @@
     <div>
 
     <div class="img-container">
-        <img src="images/figma-dash.png" alt="">
-        <img src="images/figma-pop-up.png" alt="">
+        <img src="" alt="">
+        <img src="" alt="">
     </div>
 
     <footer><footer>

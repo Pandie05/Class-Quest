@@ -111,18 +111,22 @@ body, html {
 
 /* Login Wrapper */
 .login-wrapper {
-    width: 55%;
+    width: 100%;
     height: 100%;
+    max-width: 840px;
     display: flex;
     position: relative;
     overflow: hidden;
     flex-direction: column;
     text-align: left;
-    user-select: none; /* Disable text selection */
+    user-select: none;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
 }
 
 .login-center {
-    margin-top: 50px;
+    margin-top: 5%;
     margin-left: 20%;
 }
 
@@ -162,12 +166,15 @@ body, html {
 .login form {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    margin: 0 auto;
+    margin-left: 0px;
+    max-width: 440px;
 }
 
 .login form input {
+    display: block;
     padding-left: 10px;
-    width: 440px;
+    width: 100%;
     height: 45px;
     border: 2px solid var(--primary-color);
     border-radius: 15px;
@@ -175,6 +182,7 @@ body, html {
     color: var(--text);
     margin-bottom: 30px;
     user-select: none;
+    justify-content: space-between;
 }
 
 .login form button {
@@ -206,7 +214,6 @@ body, html {
     top: 25px;
     transform: translateY(-50%);
     cursor: pointer;
-    margin-right: 46%;
 }
 
 /* Back to Home */
@@ -246,6 +253,30 @@ body, html {
 .terms a:hover {
     color: var(--secondary-color);
 }
+
+@media screen and (max-height: 715px){
+    .login form input {
+        height: 30px;
+    }
+    
+    .password-input svg {
+        top: 18px;
+    }
+
+    .header h1 {
+        font-size: 30px;
+    }
+
+    .header h4 {
+        font-size: 10px;
+        margin-bottom: 30px;
+    }
+
+    .slide-show {
+        width: 65%;
+    }
+}
+
 
 @media screen and (max-width: 768px) {
     /* Global Styles */
@@ -294,13 +325,6 @@ body, html {
 
     .catch-p p {
         margin-top: -100px;
-    }
-
-    /* Login Wrapper */
-    .login-wrapper {
-        width: 100%;
-        height: auto;
-        margin-top: -30px;
     }
 
     .login-center {
