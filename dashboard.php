@@ -30,7 +30,6 @@
     <title>Class Quest</title>
     <link rel="stylesheet" href="styles/dashboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
 </head>
 <body>
 
@@ -101,37 +100,31 @@
     
     
     <div>
+    </div>
 
     <!-- HIDDEN ADD ASSIGNMENT FORM (for popup) -->
 
-    <div>
 
-        <div class="add-assignment-form">
-
-            <form action="dashboard.php" method="POST">
-
-                <input type="text" name="title" placeholder="Title" required>
-
-                <input type="text" name="classname" placeholder="Class Name" required>
-
-                <input type="date" name="duedate" required>
-
-                <select name="assigntype" required>
-                    <option value="final">Final</option>
-                    <option value="midterm">Midterm</option>
-                    <option value="exam">Exam</option>
-                    <option value="test">Test</option>
-                    <option value="quiz">Quiz</option>
-                    <option value="homework">Homework</option>
-                </select>
-
+    <div class="add-assignment-form">
+        <form action="dashboard.php" method="POST">
+            <input type="text" name="title" placeholder="Title" required>
+            <input type="text" name="classname" placeholder="Class Name" required>
+            <input type="date" name="duedate" required>
+            <select name="assigntype" required>
+                <option value="final">Final</option>
+                <option value="midterm">Midterm</option>
+                <option value="exam">Exam</option>
+                <option value="test">Test</option>
+                <option value="quiz">Quiz</option>
+                <option value="homework" selected>Homework</option>
+            </select>
+            <div class="button-group">
                 <button type="submit">Add Assignment</button>
-
-            </form>
-
-        </div>
-
+                <button id="cancel-btn" type="button">Cancel</button>
+            </div>
+        </form>
     </div>
-    
+
+    <script src="scripts/dashboard.js"></script>
 </body>
 </html>
