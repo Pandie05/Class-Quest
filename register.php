@@ -45,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
+    <img src="images/bg.png" alt="" class="background-image">
     <div class="wrapper">
 
     <div class="logo">

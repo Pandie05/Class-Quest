@@ -32,6 +32,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <img src="images/bg.png" alt="" class="background-image">
 
     <nav>
         
@@ -59,16 +60,67 @@
 
     </nav>
 
-    <div>
-        <h1></h1>
-            
-        <h1></h1>
+    <div class="dashboard-wrapper">
 
-        <div class="pet-board">
+        <div class="left-panel">
 
-            <div class="pet-cont"></div>
+            <div class="breds">
+                <h1>
+                    <?php 
+                        $user = $_SESSION['user'];
+                        echo "Hi! <span>" . $user['username'] . "</span>";
+                    ?>
+                </h1>
 
-            <div class="pet-stats"></div>
+                <div class="seperator-line"></div>
+                    
+                <h1> 
+                    <?php
+                        $date = date('l, F j, Y');
+                        $dateParts = explode(', ', $date);
+                        $dayOfWeek = $dateParts[0];
+                        $formattedDate = '<span>' . $dateParts[1] . ', ' . $dateParts[2] . '</span>';
+                        echo $dayOfWeek . ', ' . $formattedDate;
+                    ?>
+                </h1>
+            </div>
+
+            <div class="pet-board">
+
+            <div class="pet-cont stacked-images">
+                <img class="pet-bg" src="images/pet-bg.jpg" alt="">
+                <img class="pet-gif" src="images/mewtwo.gif" alt="Pet GIF">
+            </div>
+
+                <div class="pet-stats">
+                    <div class="bars">
+                        <?php
+                            $bars = [
+                                ['id' => 'hp', 'max' => 100, 'current' => 75, 'min' => 0],
+                                ['id' => 'xp', 'max' => 200, 'current' => 130, 'min' => 0],
+                                ['id' => 'pwr', 'max' => 50, 'current' => 50, 'min' => 0]
+                            ];
+
+                            foreach ($bars as $bar) {
+                                echo '<div class="bar" id="' . $bar['id'] . '" data-max="' . $bar['max'] . '" data-current="' . $bar['current'] . '" data-min="' . $bar['min'] . '">';
+                                echo '<span class="bar-label">' . $bar['current'] . '/' . $bar['max'] . '</span>';
+                                echo '</div>';
+                            }
+                        ?>
+                    </div>
+                    <div class="labels">
+                        <?php
+                            foreach ($bars as $bar) {
+                                echo '<div><span class="label-s">' . $bar['id']  . '</span><span>' . $bar['current'] . '</span></div>';
+                            }
+                        ?>
+                    </div>
+                    <div class="info">
+                        
+                    </div>
+                </div>
+
+            </div>
 
         </div>
 

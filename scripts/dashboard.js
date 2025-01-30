@@ -23,3 +23,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+document.querySelectorAll('.bar').forEach(bar => {
+    const current = parseFloat(bar.getAttribute('data-current'));
+    const max = parseFloat(bar.getAttribute('data-max'));
+    const min = parseFloat(bar.getAttribute('data-min'));
+    
+    const percentage = ((current - min) / (max - min) * 100) + '%';
+    bar.style.setProperty('--percentage', percentage);
+});
