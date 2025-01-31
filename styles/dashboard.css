@@ -8,26 +8,21 @@
     --add-fill: #261C4A;
     --borders: #C28EF5;
     --borders-dim: rgba(138, 121, 159, 0.507);
-}
-
-.background-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
+    --background-image: url('../images/bg.png');
 }
 
 /* Global Styles */
 body, html {
     background-color: #0D0922;
+    background-image: var(--background-image);
+    background-size: cover;
+    background-position: center;
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 /* Nav styling */
@@ -258,10 +253,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     align-items: center;
     width: 100dvw;
     height: 100dvh;
-    padding: 2rem;
+    padding: 0rem;
     z-index: 1;
-    margin-left: 100px;
+    margin-left: 110px;
 }
+
+
 
 .left-panel {
     display: flex;
@@ -421,3 +418,151 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     justify-content: space-between;
     margin: 0 0 10px 0;
 }
+
+/* Mobile Media Queries */
+@media screen and (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+
+    }
+
+
+    /* Dashboard Layout */
+    .dashboard-wrapper {
+        flex-direction: column;
+        margin-left: 60px;
+        height: auto;
+        padding: 1rem;
+        overflow-x: hidden;
+    }
+
+    .left-panel {
+        max-width: 100%;
+        padding: 20px;
+        height: auto;
+        margin-top: -10px;
+        margin-left: 10px;
+        overflow-x: hidden;
+    }
+
+    /* Assignment Form */
+    .add-assignment-form {
+        width: 90%;
+        height: auto;
+        padding: 1.5rem;
+        max-height: 90vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .add-assignment-form form {
+        gap: 1rem;
+        overflow-x: hidden;
+    }
+
+    .add-assignment-form input,
+    .add-assignment-form select {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+        overflow-x: hidden;
+    }
+
+    .button-group {
+        margin-top: 30px;
+    }
+
+    .add-assignment-form button {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    /* Pet Board */
+    .pet-board {
+        max-width: calc(100% - 80px);
+        height: auto;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        overflow-x: hidden;
+    }
+
+    .pet-cont {
+        height: 300px;
+        overflow-x: hidden;
+    }
+
+    .pet-cont .pet-gif {
+        height: 60%;
+        margin-right: 0;
+    }
+
+    .pet-stats {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .labels {
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 5px 0;
+    }
+
+    /* Separator Line */
+    .seperator-line {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .breds {
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    /* Breadcrumbs */
+    .breds h1 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Small Mobile Devices */
+@media screen and (max-width: 480px) {
+    .add-assignment-form {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    .pet-cont {
+        height: 250px;
+    }
+
+    .pet-cont .pet-gif {
+        height: 50%;
+    }
+
+    .button-group {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .breds h1 {
+        font-size: 1rem;
+    }
+}
+
+/* Handle rotation */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+    .dashboard-wrapper {
+        height: auto;
+        min-height: 100dvh;
+    }
+
+    .pet-cont {
+        height: 200px;
+    }
+
+    .add-assignment-form {
+        position: fixed;
+        max-height: 80vh;
+    }
+}
+
