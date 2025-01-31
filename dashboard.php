@@ -31,12 +31,17 @@
     <link rel="stylesheet" href="styles/dashboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body>
+
+<?php
+    $theme = 'water';
+?>
+
+<body class="theme-<?php echo $theme; ?>">
 
     <nav>
         
         <div class="logo">
-            <img src="images/logo-purple.png" alt="">
+            <img src="images/logo.png" alt="">
         </div>
 
         <div class="icon-links">
@@ -87,7 +92,6 @@
             <div class="pet-board">
 
             <div class="pet-cont stacked-images">
-                <img class="pet-bg" src="images/pet-bg.jpg" alt="">
                 <img class="pet-gif" src="images/mewtwo.gif" alt="Pet GIF">
             </div>
 
