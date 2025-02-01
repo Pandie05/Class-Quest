@@ -12,6 +12,10 @@
     --petbg-image: url('../images/pet-bg.jpg');
     --filter-color: invert(30%) sepia(100%) saturate(500%) hue-rotate(250deg) brightness(100%) contrast(100%);
     --background-color: #111111;
+    --pet: url('../images/mew.gif');
+    --petE1: url('../images/mewtwo.gif');
+    --petE2: url('../images/megamewtwo.gif');
+    --petE3: url('../images/megamewtwox.gif');
 }
 
 /* Fire Theme */
@@ -28,6 +32,10 @@
     --petbg-image: url('../images/pet-bg-fire.jpg');
     --filter-color: invert(30%) sepia(100%) saturate(500%) hue-rotate(-10deg) brightness(60%) contrast(400%);
     --background-color: #111111;
+    --pet: url('../images/charmander.gif');
+    --petE1: url('../images/charmeleon.gif');
+    --petE2: url('../images/charizard.gif');
+    --petE3: url('../images/mega-charizard.gif');
 }
 
 /* Water Theme */
@@ -44,6 +52,10 @@
     --background-image: url('../images/bg-water.png');
     --filter-color: invert(60%) sepia(100%) saturate(500%) hue-rotate(190deg) brightness(100%) contrast(100%);
     --background-color: #111111;
+    --pet: url('../images/squirtle.gif');
+    --petE1: url('../images/wartortle.gif');
+    --petE2: url('../images/blastoise.gif');
+    --petE3: url('../images/mega-blastoise.gif');
 }
 
 /* Grass Theme */
@@ -60,6 +72,10 @@
     --background-image: url('../images/bg-grass.png');
     --filter-color: invert(70%) sepia(100%) saturate(500%) hue-rotate(90deg) brightness(100%) contrast(100%);
     --background-color: #111111;
+    --pet: url('../images/bulbasaur.gif');
+    --petE1: url('../images/ivysaur.gif');
+    --petE2: url('../images/venasaur.gif');
+    --petE3: url('../images/mega-venasaur.gif');
 }
 
 /* Base Styles */
@@ -232,10 +248,12 @@ nav {
 }
 
 .pet-cont .pet-gif {
-    height: 70%;
-    width: auto;
-    margin: auto;
-    margin-right: 25px;
+    height: 80%;
+    width: 80%;
+    margin: 0 25px 0 0;
+    background: var(--petE3) no-repeat center/contain;
+    image-rendering: pixelated;
+    scale: 1.2;
 }
 
 /* Pet Stats */

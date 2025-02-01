@@ -33,7 +33,7 @@
 </head>
 
 <?php
-    $theme = 'water';
+    $theme = 'grass';
 ?>
 
 <body class="theme-<?php echo $theme; ?>">
@@ -89,7 +89,7 @@
             <div class="pet-board">
 
             <div class="pet-cont stacked-images">
-                <img class="pet-gif" src="images/mewtwo.gif" alt="Pet GIF">
+                <div class="pet-gif"></div>
             </div>
 
                 <div class="pet-stats">
