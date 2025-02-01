@@ -33,7 +33,7 @@
 </head>
 
 <?php
-    $theme = 'default';
+    $theme = 'water';
 ?>
 
 <body class="theme-<?php echo $theme; ?>">
@@ -145,10 +145,20 @@
 
                     foreach ($assignments as $assignment) {
                         echo '<div class="assignment">';
-                        echo '<input type="checkbox" class="assignment-checkbox" data-id="' . $assignment['id'] . '" ' . ($assignment['done'] ? 'checked' : '') . '>';
-                        echo '<div class="assignment-title"><label>' . $assignment['classname'] . '</label><h2>' . $assignment['title'] . '</h2></div>';
+                        echo '<input type="checkbox" class="assignment-checkbox" 
+                        data-id="' . $assignment['id'] . '" ' . ($assignment['done'] ? 'checked' : '') . '>';
+
+                        echo '<div class="assignment-date"><label>' . $assignment['classname'] . '</label><p>' . $assignment['title'] . '</p></div>';
+                        
                         echo '<div class="assignment-date"><label>Date</label><p>' . date('F j, Y', strtotime($assignment['duedate'])) . '</p></div>';
-                        echo '<div class="assignment-xp"><label>XP</label><p>' . $assignment['xp'] . '</p></div>';
+
+                        echo '<div class="assignment-xp"><label>' . ucfirst($assignment['assigntype']) . '</label><p>' . $assignment['xp'] . ' xp</p></div>';
+
+                        echo '<div class="assignment-actions">';
+                        echo '<a href="edit_assignment.php?id=' . $assignment['id'] . '" class="edit-link">Edit</a>';
+
+                        echo '<button class="delete-btn" data-id="' . $assignment['id'] . '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M8.106 2.553A1 1 0 0 1 9 2h6a1 1 0 0 1 .894.553L17.618 6H20a1 1 0 1 1 0 2h-1v11a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V8H4a1 1 0 0 1 0-2h2.382zM14.382 4l1 2H8.618l1-2zM11 11a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0zm4 0a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0z" clip-rule="evenodd"/></svg></button>';
+                        echo '</div>';
                         echo '</div>';
                     }
                 ?>

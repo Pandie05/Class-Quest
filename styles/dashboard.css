@@ -616,17 +616,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     flex: 1;
     text-align: left;
     color: var(--text-dim);
-    
 }
 
 .assignment-title label,
 .assignment-date label,
 .assignment-xp label {
-    display: block;
     margin-bottom: 2px; /* Adjust this value as needed */
 }
 
-.assignment-title h2,
+.assignment-title p,
 .assignment-date p,
 .assignment-xp p {
     margin-top: 2px; /* Adjust this value as needed */
@@ -735,4 +733,103 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .search-sort button:hover {
     transform: translateY(-2px);
+}
+
+.assignment-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.assignment-actions button {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.assignment-actions button svg {
+    width: 20px;
+    height: 20px;
+    color: var(--secondary-color);
+    transition: 0.4s;
+}
+
+.assignment-actions button svg:hover {
+    color: #ff0000c7;
+}
+
+.assignment-actions a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 1rem;
+    transition: 0.4s;
+}
+
+.assignment-actions a:hover {
+    color: var(--primary-color);
+}
+
+.assignment input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border: 2px solid #ffffff;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    margin-right: 20px;
+    position: relative;
+}
+
+.assignment input[type="checkbox"]:checked {
+    animation: jiggle 0.5s;
+    background-color: var(--tertiary-color);
+    border-color: var(--primary-color);
+}
+
+/* Add checkmark using pseudo-element */
+.assignment input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 6px;
+    height: 11px;
+    border: solid var(--primary-color);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    animation: checkmark 0.2s ease-in-out;
+}
+
+/* Animation for the checkmark appearance */
+@keyframes checkmark {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) scale(0.8);
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(45deg) scale(1);
+    }
+}
+
+/* Existing jiggle animation */
+@keyframes jiggle {
+    0% { transform: scale(1); }
+    25% { transform: scale(0.95); }
+    50% { transform: scale(1.05); }
+    75% { transform: scale(0.95); }
+    100% { transform: scale(1); }
 }
