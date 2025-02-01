@@ -4,7 +4,7 @@
     --secondary-color: #8A799F;
     --tertiary-color: #7845de50;
     --text: #fff;
-    --text-dim: #622e80cc;
+    --text-dim: #8b64a1cc;
     --add-fill: #261C4A;
     --borders: #C28EF5;
     --borders-dim: rgba(138, 121, 159, 0.507);
@@ -22,7 +22,7 @@
     --secondary-color: #CC4F32;
     --tertiary-color: #ff452250;
     --text: #fff;
-    --text-dim: #803c2ecc;
+    --text-dim: #a56255cc;
     --add-fill: #4A1F1A;
     --borders: #FF6B4A;
     --borders-dim: rgba(204, 79, 50, 0.507);
@@ -59,7 +59,7 @@
     --secondary-color: #32CC6F;
     --tertiary-color: #22ff4550;
     --text: #fff;
-    --text-dim: #3c802ecc;
+    --text-dim: #5ea150cc;
     --add-fill: #1A4A2F;
     --borders: #4AFF91;
     --borders-dim: rgba(50, 204, 111, 0.507);
@@ -77,7 +77,7 @@
     --secondary-color: #46818b; /* Changed to teal */
     --tertiary-color: #64b7c250; /* Changed to teal with transparency */
     --text: #fff;
-    --text-dim: #4b646bcc;
+    --text-dim: #6d8d96cc;
     --add-fill: #2f494f; /* Changed to teal */
     --borders: #64C2C2; /* Changed to teal */
     --borders-dim: rgba(70, 123, 139, 0.507); /* Changed to teal with transparency */
@@ -95,7 +95,7 @@
     --secondary-color: #B71C1C;
     --tertiary-color: #d32f2f50;
     --text: #fff;
-    --text-dim: #8b0000cc;
+    --text-dim: #ff7777b9;
     --add-fill: #4A1F1A;
     --borders: #D32F2F;
     --borders-dim: rgba(183, 28, 28, 0.507);
@@ -108,11 +108,46 @@
     --pet-contrast: 1.5;
 }
 
+/* celebi Theme */
+.theme-celebi {
+    --primary-color: #FFB6C1;
+    --secondary-color: #FF69B4;
+    --tertiary-color: #ffb6c150;
+    --text: #000000;
+    --text-dim: #b565a7cc;
+    --add-fill: #ffe4e1;
+    --borders: #FFB6C1;
+    --borders-dim: rgba(255, 155, 170, 0.897);
+    --background-image: url('../images/bg-pink.png');
+    --petbg-image: url('../images/pet-bg-pink.jpg');
+    --filter-color: invert(70%) sepia(100%) saturate(500%) hue-rotate(300deg) brightness(100%) contrast(100%);
+    --background-color: #fff0f5;
+    --pet: url('../images/celebi.gif');
+    --pet-scale: 0.6;
+}
+
+/* umbreon Theme */
+.theme-umbreon {
+    --primary-color: #0D47A1;
+    --secondary-color: #1565C0;
+    --tertiary-color: #0d47a150;
+    --text: #ffffff;
+    --text-dim: #90caf9cc;
+    --add-fill: #0d47a1;
+    --borders: #2d74dd;
+    --borders-dim: rgba(47, 118, 224, 0.507);
+    --background-image: url('../images/bg-umbreon.png');
+    --petbg-image: url('../images/pet-bg-umbreon.jpg');
+    --filter-color: invert(60%) sepia(100%) saturate(500%) hue-rotate(190deg) brightness(100%) contrast(100%);
+    --background-color: #181818;
+    --pet: url('../images/umbreon.gif');
+    --pet-scale: 1;
+}
+
 .pet-cont .pet-gif {
     height: 80%;
     width: 80%;
     margin: 0 25px 0 0;
-    margin-left: var(--pet-ml);
     background: var(--pet) no-repeat center/contain;
     image-rendering: pixelated;
     scale: var(--pet-scale);

@@ -33,8 +33,9 @@
 </head>
 
 <?php
-    $theme = 'scizor';
-    // themes: absol, blaziken, venasaur, thundurus, pangoru, snorlax, scizor
+    $theme = 'celebi';
+    /* themes: absol, blaziken, venasaur, thundurus, pangoru, snorlax, scizor, 
+    celebi, umbreon */
 ?>
 
 
