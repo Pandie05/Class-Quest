@@ -324,6 +324,7 @@ nav {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
+    
 }
 
 .add-assignment-form.show {
@@ -336,6 +337,7 @@ nav {
     flex-direction: column;
     gap: 1.3rem;
     width: 100%;
+    backdrop-filter: blur(30px); /* Added blur effect */
 }
 
 .add-assignment-form input,
@@ -605,6 +607,34 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 20px;
     border-radius: 15px;
     transition: 0.2s;
+    gap: 20px;
+}
+
+.assignment label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    flex: 1;
+    text-align: left;
+    color: var(--text-dim);
+    
+}
+
+.assignment-title label,
+.assignment-date label,
+.assignment-xp label {
+    display: block;
+    margin-bottom: 2px; /* Adjust this value as needed */
+}
+
+.assignment-title h2,
+.assignment-date p,
+.assignment-xp p {
+    margin-top: 2px; /* Adjust this value as needed */
+}
+
+.assignment div {
+    flex: 2;
+    text-align: left;
 }
 
 /* Custom Scrollbar */
@@ -672,7 +702,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23C28EF5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 15px center;
     padding-right: 40px;
@@ -701,4 +731,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: var(--text);
     border: solid 1px var(--borders);
     width: 10%;
+}
+
+.search-sort button:hover {
+    transform: translateY(-2px);
 }

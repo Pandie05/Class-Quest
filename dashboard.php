@@ -145,11 +145,9 @@
 
                     foreach ($assignments as $assignment) {
                         echo '<div class="assignment">';
-                        echo '<h2>' . $assignment['title'] . '</h2>';
-                        echo '<p>' . $assignment['classname'] . '</p>';
-                        echo '<p>' . $assignment['duedate'] . '</p>';
-                        echo '<p>' . $assignment['assigntype'] . '</p>';
-                        echo '<p>' . $assignment['xp'] . '</p>';
+                        echo '<div class="assignment-title"><label>' . $assignment['classname'] . '</label><h2>' . $assignment['title'] . '</h2></div>';
+                        echo '<div class="assignment-date"><label>Date</label><p>' . date('F j, Y', strtotime($assignment['duedate'])) . '</p></div>';
+                        echo '<div class="assignment-xp"><label>XP</label><p>' . $assignment['xp'] . '</p></div>';
                         echo '</div>';
                     }
                 ?>
