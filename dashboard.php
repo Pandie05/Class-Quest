@@ -17,7 +17,7 @@
         $assigntype = $_POST['assigntype'];
         $xp = xp($duedate, $assigntype);
 
-        /* addAssignment($title, $classname, $duedate, $assigntype, $xp); */
+        addAssignment($title, $classname, $duedate, $assigntype, $xp);
     }
 
 ?>
@@ -33,7 +33,7 @@
 </head>
 
 <?php
-    $theme = 'water';
+    $theme = 'grass';
 ?>
 
 <body class="theme-<?php echo $theme; ?>">
@@ -132,11 +132,11 @@
 
                 foreach ($assignments as $assignment) {
                     echo '<div class="assignment">';
-                    echo '<h2>' . $assignment['title'] . '</h2>';
-                    echo '<p>' . $assignment['classname'] . '</p>';
-                    echo '<p>' . $assignment['duedate'] . '</p>';
-                    echo '<p>' . $assignment['assigntype'] . '</p>';
-                    echo '<p>' . $assignment['xp'] . '</p>';
+                    echo '<h3>' . htmlspecialchars($assignment['title']) . '</h3>';
+                    echo '<p>Class: ' . htmlspecialchars($assignment['classname']) . '</p>';
+                    echo '<p>Due Date: ' . htmlspecialchars($assignment['duedate']) . '</p>';
+                    echo '<p>Type: ' . htmlspecialchars($assignment['assigntype']) . '</p>';
+                    echo '<p>XP: ' . htmlspecialchars($assignment['xp']) . '</p>';
                     echo '</div>';
                 }
 
