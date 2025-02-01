@@ -145,6 +145,7 @@
 
                     foreach ($assignments as $assignment) {
                         echo '<div class="assignment">';
+                        echo '<input type="checkbox" class="assignment-checkbox" data-id="' . $assignment['id'] . '" ' . ($assignment['done'] ? 'checked' : '') . '>';
                         echo '<div class="assignment-title"><label>' . $assignment['classname'] . '</label><h2>' . $assignment['title'] . '</h2></div>';
                         echo '<div class="assignment-date"><label>Date</label><p>' . date('F j, Y', strtotime($assignment['duedate'])) . '</p></div>';
                         echo '<div class="assignment-xp"><label>XP</label><p>' . $assignment['xp'] . '</p></div>';
@@ -187,5 +188,34 @@
     </div>
 
     <script src="scripts/dashboard.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('.assignment-checkbox');
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const assignmentId = this.getAttribute('data-id');
+                    const done = this.checked ? 1 : 0;
+
+                    fetch('update_assignment.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ id: assignmentId, done: done })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log('Assignment updated successfully');
+                        } else {
+                            console.error('Failed to update assignment');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+                });
+            });
+        });
+    </script>
 </body>
 </html>
