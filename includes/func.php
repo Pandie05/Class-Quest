@@ -49,18 +49,34 @@ function getAssignment($id) {
 
 function addAssignment($title, $classname, $duedate, $assigntype, $xp) {
     global $db;
+
     
-    $sql = "INSERT INTO assignments (userID, title, classname, duedate, assigntype, xp) VALUES (:userID, :title, :classname, :duedate, :assigntype, :xp)";
-    
+    $sql = "SELECT COUNT(*) FROM assignments WHERE userID = :userID AND title = :title AND classname = :classname AND duedate = :duedate AND assigntype = :assigntype";
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':userID', $_SESSION['user_id'], PDO::PARAM_INT);
     $stmt->bindParam(':title', $title, PDO::PARAM_STR);
     $stmt->bindParam(':classname', $classname, PDO::PARAM_STR);
     $stmt->bindParam(':duedate', $duedate, PDO::PARAM_STR);
     $stmt->bindParam(':assigntype', $assigntype, PDO::PARAM_STR);
-    $stmt->bindParam(':xp', $xp, PDO::PARAM_INT);
-    
-    return $stmt->execute();
+    $stmt->execute();
+    $count = $stmt->fetchColumn();
+
+    if ($count > 0) {
+       
+        return false;
+    } else {
+        
+        $sql = "INSERT INTO assignments (userID, title, classname, duedate, assigntype, xp) VALUES (:userID, :title, :classname, :duedate, :assigntype, :xp)";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':userID', $_SESSION['user_id'], PDO::PARAM_INT);
+        $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+        $stmt->bindParam(':classname', $classname, PDO::PARAM_STR);
+        $stmt->bindParam(':duedate', $duedate, PDO::PARAM_STR);
+        $stmt->bindParam(':assigntype', $assigntype, PDO::PARAM_STR);
+        $stmt->bindParam(':xp', $xp, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
 }
 
 function daysUntilDue($duedate) {
