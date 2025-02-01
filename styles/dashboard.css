@@ -1,5 +1,5 @@
-/* Theme Variables - Original Purple Theme */
-.theme-default {
+/* Theme Variables - thundurus Theme */
+.theme-thundurus {
     --primary-color: #C28EF5;
     --secondary-color: #8A799F;
     --tertiary-color: #7845de50;
@@ -12,14 +12,12 @@
     --petbg-image: url('../images/pet-bg.jpg');
     --filter-color: invert(30%) sepia(100%) saturate(500%) hue-rotate(250deg) brightness(100%) contrast(100%);
     --background-color: #111111;
-    --pet: url('../images/mew.gif');
-    --petE1: url('../images/mewtwo.gif');
-    --petE2: url('../images/megamewtwo.gif');
-    --petE3: url('../images/megamewtwox.gif');
+    --pet: url('../images/thundurus.gif');
+    --pet-scale: 1.2;
 }
 
-/* Fire Theme */
-.theme-fire {
+/* blaziken Theme */
+.theme-blaziken {
     --primary-color: #FF6B4A;
     --secondary-color: #CC4F32;
     --tertiary-color: #ff452250;
@@ -32,34 +30,31 @@
     --petbg-image: url('../images/pet-bg-fire.jpg');
     --filter-color: invert(30%) sepia(100%) saturate(500%) hue-rotate(-10deg) brightness(60%) contrast(400%);
     --background-color: #111111;
-    --pet: url('../images/charmander.gif');
-    --petE1: url('../images/charmeleon.gif');
-    --petE2: url('../images/charizard.gif');
-    --petE3: url('../images/mega-charizard.gif');
+    --pet: url('../images/mega-charizard.gif');
+    --pet-scale: 1.2;
 }
 
-/* Water Theme */
-.theme-water {
+/* absol Theme */
+.theme-absol {
     --primary-color: #4AA5FF;
     --secondary-color: #3280CC;
-    --tertiary-color: #2270ff50;
-    --text: #fff;
-    --text-dim: #2e5b80cc;
-    --add-fill: #1A314A;
+    --tertiary-color: #9ec0ff50;
+    --text: #000000;
+    --text-dim: #213f58cc;
+    --add-fill: #dcedff;
     --borders: #4AA5FF;
     --borders-dim: rgba(50, 128, 204, 0.507);
     --petbg-image: url('../images/pet-bg-water.jpg');
     --background-image: url('../images/bg-water.png');
     --filter-color: invert(60%) sepia(100%) saturate(500%) hue-rotate(190deg) brightness(100%) contrast(100%);
-    --background-color: #111111;
-    --pet: url('../images/squirtle.gif');
-    --petE1: url('../images/wartortle.gif');
-    --petE2: url('../images/blastoise.gif');
-    --petE3: url('../images/mega-blastoise.gif');
+    --background-color: #ececec;
+    --pet: url('../images/absol-mega.gif');
+    --pet-scale: 1;
+    --pet-ml: 85px;
 }
 
-/* Grass Theme */
-.theme-grass {
+/* venasaur Theme */
+.theme-venasaur {
     --primary-color: #4AFF91;
     --secondary-color: #32CC6F;
     --tertiary-color: #22ff4550;
@@ -72,10 +67,56 @@
     --background-image: url('../images/bg-grass.png');
     --filter-color: invert(70%) sepia(100%) saturate(500%) hue-rotate(90deg) brightness(100%) contrast(100%);
     --background-color: #111111;
-    --pet: url('../images/bulbasaur.gif');
-    --petE1: url('../images/ivysaur.gif');
-    --petE2: url('../images/venasaur.gif');
-    --petE3: url('../images/mega-venasaur.gif');
+    --pet: url('../images/mega-venasaur.gif');
+    --pet-scale: 1.2;
+}
+
+/* pangoru Theme */
+.theme-snorlax {
+    --primary-color: #64a4c2; /* Changed to teal */
+    --secondary-color: #46818b; /* Changed to teal */
+    --tertiary-color: #64b7c250; /* Changed to teal with transparency */
+    --text: #fff;
+    --text-dim: #4b646bcc;
+    --add-fill: #2f494f; /* Changed to teal */
+    --borders: #64C2C2; /* Changed to teal */
+    --borders-dim: rgba(70, 123, 139, 0.507); /* Changed to teal with transparency */
+    --petbg-image: url('../images/pet-bg-sleep.jpg');
+    --background-image: url('../images/bg-sleep.png');
+    --filter-color: invert(50%) sepia(100%) saturate(500%) hue-rotate(170deg) brightness(100%) contrast(100%);
+    --background-color: #111111;
+    --pet: url('../images/snorlax.gif');
+    --pet-scale: 1;
+}
+
+/* scizor Theme */
+.theme-scizor {
+    --primary-color: #D32F2F;
+    --secondary-color: #B71C1C;
+    --tertiary-color: #d32f2f50;
+    --text: #fff;
+    --text-dim: #8b0000cc;
+    --add-fill: #4A1F1A;
+    --borders: #D32F2F;
+    --borders-dim: rgba(183, 28, 28, 0.507);
+    --background-image: url('../images/bg-dark.png');
+    --petbg-image: url('../images/pet-bg-dark.jpg');
+    --filter-color: invert(30%) sepia(100%) saturate(500%) hue-rotate(-10deg) brightness(60%) contrast(1000%);
+    --background-color: #111111;
+    --pet: url('../images/scizor.gif');
+    --pet-scale: 1.2;
+    --pet-contrast: 1.5;
+}
+
+.pet-cont .pet-gif {
+    height: 80%;
+    width: 80%;
+    margin: 0 25px 0 0;
+    margin-left: var(--pet-ml);
+    background: var(--pet) no-repeat center/contain;
+    image-rendering: pixelated;
+    scale: var(--pet-scale);
+    filter: contrast(var(--pet-contrast));
 }
 
 /* Base Styles */
@@ -247,14 +288,7 @@ nav {
     position: absolute;
 }
 
-.pet-cont .pet-gif {
-    height: 80%;
-    width: 80%;
-    margin: 0 25px 0 0;
-    background: var(--petE3) no-repeat center/contain;
-    image-rendering: pixelated;
-    scale: 1.2;
-}
+
 
 /* Pet Stats */
 .pet-stats {
@@ -663,14 +697,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--text-dim);
+    background-color: var(--primary-color);
     border-radius: 10px;
     border: 3px solid transparent;
     background-clip: content-box;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: var(--text);
 }
 
 .search-sort {
@@ -686,7 +716,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .search-sort input {
     padding: 0.8rem;
-    background: var(--add-fill);
+    background: transparent;
     border: 1px solid var(--borders);
     border-radius: 15px;
     font-size: 1rem;
@@ -702,12 +732,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .search-sort input::placeholder {
-    color: var(--text-dim);
+    color: var(--text);
 }
 
 .search-sort select {
     padding: 0.8rem;
-    background: var(--add-fill);
+    background: transparent;
     border: 1px solid var(--borders);
     border-radius: 15px;
     width: 30%;
@@ -799,7 +829,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 20px;
     height: 20px;
     border-radius: 5px;
-    border: 2px solid #ffffff;
+    border: 2px solid var(--borders);
     appearance: none;
     -webkit-appearance: none;
     outline: none;
@@ -822,8 +852,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     top: 2px;
     width: 6px;
     height: 11px;
-    border: solid var(--primary-color);
-    border-width: 0 2px 2px 0;
+    border: solid var(--borders);
+    border-width: 0 3px 3px 0;
     transform: rotate(45deg);
     animation: checkmark 0.2s ease-in-out;
 }

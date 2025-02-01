@@ -33,8 +33,10 @@
 </head>
 
 <?php
-    $theme = 'grass';
+    $theme = 'scizor';
+    // themes: absol, blaziken, venasaur, thundurus, pangoru, snorlax, scizor
 ?>
+
 
 <body class="theme-<?php echo $theme; ?>">
 
