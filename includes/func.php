@@ -47,35 +47,34 @@ function getAssignment($id) {
     return $stmt->fetch();
 }
 
-/* function addAssignment($title, $classname, $duedate, $assigntype, $xp) {
-
+function addAssignment($title, $classname, $duedate, $assigntype, $xp) {
     global $db;
-
-    $sql = "INSERT INTO assignments (title, classname, duedate, assigntype, xp) VALUES (:title, :classname, :duedate, :assigntype :xp)";
-
+    
+    $sql = "INSERT INTO assignments (userID, title, classname, duedate, assigntype, xp) VALUES (:userID, :title, :classname, :duedate, :assigntype, :xp)";
+    
     $stmt = $db->prepare($sql);
-
+    $stmt->bindParam(':userID', $_SESSION['user_id'], PDO::PARAM_INT);
     $stmt->bindParam(':title', $title, PDO::PARAM_STR);
     $stmt->bindParam(':classname', $classname, PDO::PARAM_STR);
     $stmt->bindParam(':duedate', $duedate, PDO::PARAM_STR);
     $stmt->bindParam(':assigntype', $assigntype, PDO::PARAM_STR);
-    $stmt->bindParam(':xp', $xp, PDO::PARAM_STR);
+    $stmt->bindParam(':xp', $xp, PDO::PARAM_INT);
+    
+    return $stmt->execute();
+}
 
-    $stmt->execute();
+function daysUntilDue($duedate) {
 
-} */
+    $now = new DateTime();
+    $due = new DateTime($duedate);
+    
+    $diff = $now->diff($due);
+    
+    return $diff->days;
 
-/*
-Final: 25
-Midterm: 20
-Exam: 16
-Test: 7
-Quiz: 5
-Homework: 3.5
-*/
+}
 
-function xp ($duedate, $type) {
-
+function xp($duedate, $type) {
     $typeValues = [
         'final' => 20,
         'midterm' => 17,
@@ -85,17 +84,11 @@ function xp ($duedate, $type) {
         'homework' => 4.5
     ];
 
-}
+    $days = daysUntilDue($duedate);
 
-function getxp($assignments) {
-
-    $xp = 0;
-
-    foreach ($assignments as $assignment) {
-        $xp += xp($assignment['duedate'], $assignment['assigntype']);
+    if ($days < 0) {
+        return 0;
     }
 
-    return $xp;
-
+    return $typeValues[$type] * $days;
 }
-

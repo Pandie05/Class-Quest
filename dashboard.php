@@ -17,7 +17,7 @@
         $assigntype = $_POST['assigntype'];
         $xp = xp($duedate, $assigntype);
 
-        /* addAssignment($title, $classname, $duedate, $assigntype, $xp); */
+        addAssignment($title, $classname, $duedate, $assigntype, $xp);
     }
 
 ?>
@@ -33,7 +33,7 @@
 </head>
 
 <?php
-    $theme = 'water';
+    $theme = 'grass';
 ?>
 
 <body class="theme-<?php echo $theme; ?>">
@@ -126,6 +126,22 @@
 
         <div class="assignment-board">
 
+           <?php 
+
+                $assignments = getAssignments();
+
+                foreach ($assignments as $assignment) {
+                    echo '<div class="assignment">';
+                    echo '<h3>' . htmlspecialchars($assignment['title']) . '</h3>';
+                    echo '<p>Class: ' . htmlspecialchars($assignment['classname']) . '</p>';
+                    echo '<p>Due Date: ' . htmlspecialchars($assignment['duedate']) . '</p>';
+                    echo '<p>Type: ' . htmlspecialchars($assignment['assigntype']) . '</p>';
+                    echo '<p>XP: ' . htmlspecialchars($assignment['xp']) . '</p>';
+                    echo '</div>';
+                }
+
+            ?>
+          
             <div class="search-sort">
                 <input type="text" id="search" placeholder="Search assignments...">
                 <select id="sort">
@@ -137,6 +153,7 @@
                 </select>
                 <button id="search-btn">Search</button>
             </div>
+
 
             <div class="assignment-wrapper">
                 <?php 
