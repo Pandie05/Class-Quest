@@ -125,22 +125,6 @@
         </div>
 
         <div class="assignment-board">
-
-           <?php 
-
-                $assignments = getAssignments();
-
-                foreach ($assignments as $assignment) {
-                    echo '<div class="assignment">';
-                    echo '<h3>' . htmlspecialchars($assignment['title']) . '</h3>';
-                    echo '<p>Class: ' . htmlspecialchars($assignment['classname']) . '</p>';
-                    echo '<p>Due Date: ' . htmlspecialchars($assignment['duedate']) . '</p>';
-                    echo '<p>Type: ' . htmlspecialchars($assignment['assigntype']) . '</p>';
-                    echo '<p>XP: ' . htmlspecialchars($assignment['xp']) . '</p>';
-                    echo '</div>';
-                }
-
-            ?>
           
             <div class="search-sort">
                 <input type="text" id="search" placeholder="Search assignments...">
