@@ -126,23 +126,33 @@
 
         <div class="assignment-board">
 
-            <?php 
+            <div class="search-sort">
+                <input type="text" id="search" placeholder="Search assignments...">
+                <select id="sort">
+                    <option value="title">Title</option>
+                    <option value="classname">Class Name</option>
+                    <option value="duedate">Due Date</option>
+                    <option value="assigntype">Assignment Type</option>
+                    <option value="xp">XP</option>
+                </select>
+                <button id="search-btn">Search</button>
+            </div>
 
-                $assignments = getAssignments();
+            <div class="assignment-wrapper">
+                <?php 
+                    $assignments = getAssignments();
 
-                foreach ($assignments as $assignment) {
-                    echo '<div class="assignment">';
-                    echo '<h2>' . $assignment['title'] . '</h2>';
-                    echo '<p>' . $assignment['classname'] . '</p>';
-                    echo '<p>' . $assignment['duedate'] . '</p>';
-                    echo '<p>' . $assignment['assigntype'] . '</p>';
-                    echo '<p>' . $assignment['xp'] . '</p>';
-                    echo '</div>';
-                }
-
-            ?>
-
-        </div>
+                    foreach ($assignments as $assignment) {
+                        echo '<div class="assignment">';
+                        echo '<h2>' . $assignment['title'] . '</h2>';
+                        echo '<p>' . $assignment['classname'] . '</p>';
+                        echo '<p>' . $assignment['duedate'] . '</p>';
+                        echo '<p>' . $assignment['assigntype'] . '</p>';
+                        echo '<p>' . $assignment['xp'] . '</p>';
+                        echo '</div>';
+                    }
+                ?>
+            </div>
         
 
     <div>
