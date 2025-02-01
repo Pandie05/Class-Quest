@@ -19,33 +19,32 @@ function getPet($id) {
 }
 
 function getAssignments() {
-
     global $db;
-
-    $sql = "SELECT * FROM assignments";
-
+    
+    // Only get assignments for the logged-in user
+    $sql = "SELECT * FROM assignments WHERE userID = :userID";
+    
     $stmt = $db->prepare($sql);
-
+    $stmt->bindParam(':userID', $_SESSION['user_id'], PDO::PARAM_INT);
+    
     $stmt->execute();
-
+    
     return $stmt->fetchAll();
-
 }
 
 function getAssignment($id) {
-
     global $db;
-
-    $sql = "SELECT * FROM assignments WHERE id = :id";
-
+    
+    // Get specific assignment but only if it belongs to the logged-in user
+    $sql = "SELECT * FROM assignments WHERE ID = :id AND userID = :userID";
+    
     $stmt = $db->prepare($sql);
-
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-
+    $stmt->bindParam(':userID', $_SESSION['user_id'], PDO::PARAM_INT);
+    
     $stmt->execute();
-
+    
     return $stmt->fetch();
-
 }
 
 /* function addAssignment($title, $classname, $duedate, $assigntype, $xp) {
