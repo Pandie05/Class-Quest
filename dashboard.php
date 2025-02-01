@@ -33,7 +33,7 @@
 </head>
 
 <?php
-    $theme = 'grass';
+    $theme = 'default';
 ?>
 
 <body class="theme-<?php echo $theme; ?>">
