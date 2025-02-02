@@ -27,7 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':password', $password, PDO::PARAM_STR);
         $stmt->execute();
 
-        header('Location: profile.php');
+        // get that thang
+        $userID = $db->lastInsertId();
+
+        // send that thang to register_pet.php
+        header('Location: register_pet.php?userID=' . $userID);
         exit();
     }
 }
