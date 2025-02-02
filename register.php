@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':password', $password, PDO::PARAM_STR);
         $stmt->execute();
 
-        header('Location: login.php');
+        header('Location: profile.php');
         exit();
     }
 }
