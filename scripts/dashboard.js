@@ -32,3 +32,44 @@ document.querySelectorAll('.bar').forEach(bar => {
     const percentage = ((current - min) / (max - min) * 100) + '%';
     bar.style.setProperty('--percentage', percentage);
 });
+
+let assignmentToDelete = null;
+    const deleteModal = document.getElementById('delete-confirm');
+    const cancelDelete = document.getElementById('cancel-delete');
+    const confirmDelete = document.getElementById('confirm-delete');
+    const loadingOverlay = document.getElementById('loading-overlay');
+
+    function showDeleteConfirm(assignmentId) {
+        assignmentToDelete = assignmentId;
+        deleteModal.style.display = 'block';
+    }
+
+    cancelDelete.addEventListener('click', () => {
+        deleteModal.style.display = 'none';
+        assignmentToDelete = null;
+    });
+
+    confirmDelete.addEventListener('click', () => {
+        if (assignmentToDelete) {
+            loadingOverlay.style.display = 'flex';
+            fetch('delete_assignment.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: assignmentToDelete })
+            })
+            .then(() => {
+                window.location.reload();
+            });
+        }
+        deleteModal.style.display = 'none';
+    });
+
+    // Close modal if clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === deleteModal) {
+            deleteModal.style.display = 'none';
+            assignmentToDelete = null;
+        }
+    });

@@ -79,6 +79,53 @@ function addAssignment($title, $classname, $duedate, $assigntype, $xp) {
     }
 }
 
+function getFilteredAssignments($search = '', $sortBy = 'duedate') {
+    global $db;
+    
+    $sql = "SELECT * FROM assignments WHERE userID = :userID";
+    $params = array();
+    $params[':userID'] = $_SESSION['user_id'];
+    
+    // Add search conditions if search term is provided
+    if (!empty($search)) {
+        $sql .= " AND (title LIKE :searchTitle OR classname LIKE :searchClass OR assigntype LIKE :searchType)";
+        $searchTerm = "%{$search}%";
+        $params[':searchTitle'] = $searchTerm;
+        $params[':searchClass'] = $searchTerm;
+        $params[':searchType'] = $searchTerm;
+    }
+    
+    // Special handling for 'done' sort to show only completed assignments
+    if ($sortBy === 'done') {
+        $sql .= " AND done = 1";
+    }
+    
+    // Add ORDER BY clause based on sort parameter
+    switch ($sortBy) {
+        case 'duedate':
+            $sql .= " ORDER BY done ASC, duedate ASC";
+            break;
+        case 'assigntype':
+            $sql .= " ORDER BY done ASC, assigntype ASC";
+            break;
+        case 'done':
+            $sql .= " ORDER BY duedate ASC";
+            break;
+        default:
+            if (in_array($sortBy, ['title', 'classname', 'xp'])) {
+                $sql .= " ORDER BY done ASC, {$sortBy} ASC";
+            }
+    }
+    
+    $stmt = $db->prepare($sql);
+    foreach ($params as $key => $val) {
+        $stmt->bindValue($key, $val);
+    }
+    
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+
 function daysUntilDue($duedate) {
 
     $now = new DateTime();

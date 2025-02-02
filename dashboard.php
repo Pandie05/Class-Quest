@@ -20,6 +20,30 @@
         addAssignment($title, $classname, $duedate, $assigntype, $xp);
     }
 
+    // Get search and sort parameters
+    $search = isset($_GET['search']) ? $_GET['search'] : '';
+    $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'duedate';
+
+    // Get filtered assignments
+    $assignments = getFilteredAssignments($search, $sortBy);
+
+    // Sort assignments to put checked ones at the bottom
+    usort($assignments, function($a, $b) use ($sortBy) {
+        // First compare by done status
+        if ($a['done'] !== $b['done']) {
+            return $a['done'] - $b['done'];
+        }
+        
+        // Then sort by the user's selected criteria
+        switch($sortBy) {
+            case 'duedate':
+                return strtotime($a['duedate']) - strtotime($b['duedate']);
+            case 'xp':
+                return $b['xp'] - $a['xp'];
+            default:
+                return strcasecmp($a[$sortBy], $b[$sortBy]);
+        }
+    });
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +57,17 @@
 </head>
 
 <?php
-    $theme = 'umbreon';
+    // Get user's pet theme from database
+    function getUserPetTheme($userID) {
+        global $db;
+        $sql = "SELECT pokemon FROM pets WHERE userID = :userID";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchColumn() ?: 'umbreon'; // default to umbreon if no pet found
+    }
+
+    $theme = getUserPetTheme($_SESSION['user_id']);
     /* themes: absol, blaziken, venasaur, thundurus, pangoru, snorlax, scizor, 
     celebi, umbreon */
 ?>
@@ -131,58 +165,60 @@
         </div>
 
         <div class="assignment-board">
-          
-            <div class="search-sort">
-                <input type="text" id="search" placeholder="Search assignments...">
-                <select id="sort">
-                    <option value="title">Title</option>
-                    <option value="classname">Class Name</option>
-                    <option value="duedate">Due Date</option>
-                    <option value="assigntype">Assignment Type</option>
-                    <option value="xp">XP</option>
-                </select>
-                <button id="search-btn">Search</button>
-            </div>
-
-
-            <div class="assignment-wrapper">
-                <?php 
-                    $assignments = getAssignments();
-
-                    foreach ($assignments as $assignment) {
-                        echo '<div class="assignment">';
-                        echo '<input type="checkbox" class="assignment-checkbox" 
-                        data-id="' . $assignment['id'] . '" ' . ($assignment['done'] ? 'checked' : '') . '>';
-
-                        echo '<div class="assignment-date"><label>' . $assignment['classname'] . '</label><p>' . $assignment['title'] . '</p></div>';
-                        
-                        echo '<div class="assignment-date"><label>Date</label><p>' . date('F j, Y', strtotime($assignment['duedate'])) . '</p></div>';
-
-                        echo '<div class="assignment-xp"><label>' . ucfirst($assignment['assigntype']) . '</label><p>' . $assignment['xp'] . ' xp</p></div>';
-
-                        echo '<div class="assignment-actions">';
-                        echo '<a href="edit_assignment.php?id=' . $assignment['id'] . '" class="edit-link">Edit</a>';
-
-                        echo '<button class="delete-btn" data-id="' . $assignment['id'] . '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M8.106 2.553A1 1 0 0 1 9 2h6a1 1 0 0 1 .894.553L17.618 6H20a1 1 0 1 1 0 2h-1v11a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V8H4a1 1 0 0 1 0-2h2.382zM14.382 4l1 2H8.618l1-2zM11 11a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0zm4 0a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0z" clip-rule="evenodd"/></svg></button>';
-                        echo '</div>';
-                        echo '</div>';
-                    }
-                ?>
-            </div>
-        
-
-    <div>
-
-    <div>
-        
-    
-    
-    <div>
+    <div class="search-sort">
+        <form id="searchForm" method="GET" action="dashboard.php">
+            <input type="text" id="search" name="search" placeholder="Search assignment by title..." value="<?php echo htmlspecialchars($search); ?>">
+            <select id="sort" name="sort">
+                <option value="classname" <?php echo $sortBy === 'classname' ? 'selected' : ''; ?>>Class Name</option>
+                <option value="duedate" <?php echo $sortBy === 'duedate' ? 'selected' : ''; ?>>Due Date</option>
+                <option value="assigntype" <?php echo $sortBy === 'assigntype' ? 'selected' : ''; ?>>Assignment Type</option>
+                <option value="done" <?php echo $sortBy === 'done' ? 'selected' : ''; ?>>Completed</option>
+            </select>
+            <button type="submit" id="search-btn">Search</button>
+        </form>
     </div>
 
-    <!-- HIDDEN ADD ASSIGNMENT FORM (for popup) -->
+    <!-- Delete Confirmation Modal -->
+    <div id="delete-confirm" class="delete-modal">
+        <p>Are you sure you want to delete this assignment?</p>
+        <span class="all-caps">THIS ACTION CANNOT BE UNDONE.</span>
+        <div class="delete-modal-buttons">
+            <button id="cancel-delete" class="cancel-button">Cancel</button>
+            <button id="confirm-delete" class="delete-button">Delete</button>
+        </div>
+    </div>
 
+    <div class="assignment-wrapper">
+        <?php                      
+            foreach ($assignments as $assignment) {                         
+                echo '<div class="assignment">';                         
+                echo '<input type="checkbox" class="assignment-checkbox" 
+                    onclick="fetch(\'update_assignment.php\', {
+                        method: \'POST\',
+                        headers: { \'Content-Type\': \'application/json\' },
+                        body: JSON.stringify({ 
+                            id: ' . $assignment['id'] . ', 
+                            done: ' . ($assignment['done'] ? '0' : '1') . ' 
+                        })
+                    }).then(() => window.location.reload());"
+                    data-id="' . $assignment['id'] . '" 
+                    ' . ($assignment['done'] ? 'checked' : '') . '>';                          
+                
+                echo '<div class="assignment-date"><label>' . htmlspecialchars($assignment['classname']) . '</label><p>' . htmlspecialchars($assignment['title']) . '</p></div>';                                                  
+                echo '<div class="assignment-date"><label>Date</label><p>' . date('F j, Y', strtotime($assignment['duedate'])) . '</p></div>';                          
+                echo '<div class="assignment-xp"><label>' . ucfirst(htmlspecialchars($assignment['assigntype'])) . '</label><p>' . $assignment['xp'] . ' xp</p></div>';                          
+                
+                echo '<div class="assignment-actions">';                         
+                echo '<a href="edit_assignment.php?id=' . $assignment['id'] . '" class="edit-link">Edit</a>';                          
+                echo '<button class="delete-btn" onclick="showDeleteConfirm(' . $assignment['id'] . ')" data-id="' . $assignment['id'] . '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M8.106 2.553A1 1 0 0 1 9 2h6a1 1 0 0 1 .894.553L17.618 6H20a1 1 0 1 1 0 2h-1v11a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V8H4a1 1 0 0 1 0-2h2.382zM14.382 4l1 2H8.618l1-2zM11 11a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0zm4 0a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0z" clip-rule="evenodd"/></svg></button>';                         
+                echo '</div>';                         
+                echo '</div>';                     
+            }                 
+            ?>
+        </div>
+    </div>
 
+    <!-- Add Assignment Form -->
     <div class="add-assignment-form">
         <form action="dashboard.php" method="POST">
             <input type="text" name="title" placeholder="Title" required>
@@ -203,35 +239,109 @@
         </form>
     </div>
 
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" style="display: none;">
+        <div class="loading-spinner"></div>
+    </div>
+
     <script src="scripts/dashboard.js"></script>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const checkboxes = document.querySelectorAll('.assignment-checkbox');
+        // Existing checkbox functionality
+        const checkboxes = document.querySelectorAll('.assignment-checkbox');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const assignmentId = this.getAttribute('data-id');
+                const done = this.checked ? 1 : 0;
 
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', function() {
-                    const assignmentId = this.getAttribute('data-id');
-                    const done = this.checked ? 1 : 0;
-
-                    fetch('update_assignment.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ id: assignmentId, done: done })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            console.log('Assignment updated successfully');
-                        } else {
-                            console.error('Failed to update assignment');
-                        }
-                    })
-                    .catch(error => console.error('Error:', error));
-                });
+                fetch('update_assignment.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ id: assignmentId, done: done })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Get the assignment wrapper
+                        const assignmentWrapper = document.querySelector('.assignment-wrapper');
+                        // Get all assignments
+                        const assignments = Array.from(assignmentWrapper.children);
+                        
+                        // Sort assignments
+                        assignments.sort((a, b) => {
+                            const aChecked = a.querySelector('.assignment-checkbox').checked;
+                            const bChecked = b.querySelector('.assignment-checkbox').checked;
+                            return aChecked - bChecked;
+                        });
+                        
+                        // Reorder the DOM
+                        assignments.forEach(assignment => {
+                            assignmentWrapper.appendChild(assignment);
+                        });
+                    } else {
+                        console.error('Failed to update assignment');
+                        // Revert checkbox if update failed
+                        checkbox.checked = !checkbox.checked;
+                    }
+                })
+                .catch(error => console.error('Error:', error));
             });
         });
-    </script>
+
+        // Add real-time search and sort functionality
+        const sortSelect = document.getElementById('sort');
+        sortSelect.addEventListener('change', function() {
+            document.getElementById('searchForm').submit();
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const loadingOverlay = document.getElementById('loading-overlay');
+
+        // Show loading overlay before page unload
+        window.addEventListener('beforeunload', function() {
+            loadingOverlay.style.display = 'flex';
+        });
+
+        // For checkbox clicks
+        const checkboxes = document.querySelectorAll('.assignment-checkbox');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('click', function(e) {
+                loadingOverlay.style.display = 'flex';
+                const assignmentId = this.getAttribute('data-id');
+                const done = !this.checked; // Invert because the change hasn't processed yet
+
+                fetch('update_assignment.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        id: assignmentId, 
+                        done: done ? 0 : 1
+                    })
+                })
+                .then(() => window.location.reload());
+            });
+        });
+
+        // For sort select changes
+        const sortSelect = document.getElementById('sort');
+        sortSelect.addEventListener('change', function() {
+            loadingOverlay.style.display = 'flex';
+            document.getElementById('searchForm').submit();
+        });
+
+        // For search form submission
+        const searchForm = document.getElementById('searchForm');
+        searchForm.addEventListener('submit', function() {
+            loadingOverlay.style.display = 'flex';
+        });
+    });
+
+
+</script>
+    
 </body>
 </html>
