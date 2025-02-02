@@ -33,7 +33,7 @@
 </head>
 
 <?php
-    $theme = 'celebi';
+    $theme = 'umbreon';
     /* themes: absol, blaziken, venasaur, thundurus, pangoru, snorlax, scizor, 
     celebi, umbreon */
 ?>
