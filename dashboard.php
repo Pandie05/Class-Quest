@@ -10,6 +10,8 @@
         exit();
     }
     
+    $petName = getPetName($_SESSION['user']['ID']);
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $title = $_POST['title'];
         $classname = $_POST['classname'];
@@ -44,6 +46,11 @@
                 return strcasecmp($a[$sortBy], $b[$sortBy]);
         }
     });
+
+    $theme = getUserPetTheme($_SESSION['user']['ID']);
+    /* themes: absol, blaziken, venasaur, thundurus, pangoru, snorlax, scizor, 
+    celebi, umbreon */
+
 ?>
 
 <!DOCTYPE html>
@@ -55,24 +62,6 @@
     <link rel="stylesheet" href="styles/dashboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
-
-<?php
-    // Get user's pet theme from database
-    function getUserPetTheme($userID) {
-        global $db;
-        $sql = "SELECT pokemon FROM pets WHERE userID = :userID";
-        $stmt = $db->prepare($sql);
-        $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetchColumn() ?: 'umbreon'; // default to umbreon if no pet found
-    }
-
-    $theme = getUserPetTheme($_SESSION['user_id']);
-    /* themes: absol, blaziken, venasaur, thundurus, pangoru, snorlax, scizor, 
-    celebi, umbreon */
-?>
-
-
 <body class="theme-<?php echo $theme; ?>">
 
     <nav>
@@ -128,17 +117,23 @@
 
             <div class="pet-board">
 
+            <div class="pet-name">
+                <?php echo htmlspecialchars($petName); ?>
+            </div>
+
             <div class="pet-cont stacked-images">
                 <div class="pet-gif"></div>
             </div>
 
                 <div class="pet-stats">
                     <div class="bars">
+
+                        Level: 5
+
                         <?php
                             $bars = [
                                 ['id' => 'hp', 'max' => 100, 'current' => 75, 'min' => 0],
                                 ['id' => 'xp', 'max' => 200, 'current' => 130, 'min' => 0],
-                                ['id' => 'pwr', 'max' => 50, 'current' => 50, 'min' => 0]
                             ];
 
                             foreach ($bars as $bar) {
@@ -147,6 +142,7 @@
                                 echo '</div>';
                             }
                         ?>
+
                     </div>
                     <div class="labels">
                         <?php

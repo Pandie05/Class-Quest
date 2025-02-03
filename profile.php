@@ -10,6 +10,8 @@
         exit();
     }
 
+    $theme = getUserPetTheme($_SESSION['user']['ID']);
+
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +24,7 @@
     <link rel="stylesheet" href="styles/dashboard.css">
 
 </head>
-<body>
+<body class="theme-<?php echo $theme; ?>">
 
     <nav>
         
@@ -72,8 +74,17 @@
             <div>
 
                 <div class="profile-info">
-                    <h2><?php echo $_SESSION['user']['username']; ?></h2>
-                    <p><?php echo $_SESSION['user']['email']; ?></p>
+                    <h2>Hi!, {<?php echo $_SESSION['user']['username']; ?>}</h2>
+                    <p>Email: <?php echo $_SESSION['user']['email']; ?></p>
+                    <div class="password-input">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" placeholder="Password" value="<?php echo $_SESSION['user']['password']; ?>" readonly>
+                        <svg id="togglePassword" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="#8d8b97" d="M12 9a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5c-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0a9.821 9.821 0 0 0-17.64 0"/>
+                        </svg>
+                    </div>
+
+                    <script src="scripts/login.js"></script>
                 </div>
             
             </div>
