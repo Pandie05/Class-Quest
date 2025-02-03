@@ -18,16 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_start();
         }
 
-        // Ensure the user array contains the username and user_id
-        if (isset($user['username']) && isset($user['user_id'])) {
-            $_SESSION['user'] = $user;
-            header('Location: dashboard.php');
-            exit();
-        } else {
-            die('User data is missing username or user_id.');
-        }
+        $_SESSION['user'] = $user;
+        
+        header('Location: dashboard.php');
+        exit();
     } else {
-        $error = 'Invalid username or password.';
+        $error = 'Invalid username or password';
     }
 }
 ?>
