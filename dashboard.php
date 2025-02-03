@@ -166,15 +166,16 @@
 
         <div class="assignment-board">
     <div class="search-sort">
-        <form id="searchForm" method="GET" action="dashboard.php">
+        <form class="search-top" id="searchForm" method="GET" action="dashboard.php">
             <input type="text" id="search" name="search" placeholder="Search assignment by title..." value="<?php echo htmlspecialchars($search); ?>">
-            <select id="sort" name="sort">
-                <option value="classname" <?php echo $sortBy === 'classname' ? 'selected' : ''; ?>>Class Name</option>
+            <select class="search-top" id="sort" name="sort">
+                
                 <option value="duedate" <?php echo $sortBy === 'duedate' ? 'selected' : ''; ?>>Due Date</option>
                 <option value="assigntype" <?php echo $sortBy === 'assigntype' ? 'selected' : ''; ?>>Assignment Type</option>
                 <option value="done" <?php echo $sortBy === 'done' ? 'selected' : ''; ?>>Completed</option>
             </select>
-            <button type="submit" id="search-btn">Search</button>
+            <button class="search-top" type="submit" id="search-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 12 12"><circle cx="4.5" cy="4.5" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M11 11L7.5 7.5"/></svg></button>
+            <br> <p>Difficulty deleting? Click <a id="search-btn" href="">here</a></p>
         </form>
     </div>
 

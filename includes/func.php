@@ -139,19 +139,13 @@ function daysUntilDue($duedate) {
 
 function xp($duedate, $type) {
     $typeValues = [
-        'final' => 20,
-        'midterm' => 17,
-        'exam' => 15,
-        'test' => 9,
-        'quiz' => 6,
-        'homework' => 4.5
+        'final' => 350,
+        'midterm' => 150,
+        'exam' => 100,
+        'test' => 90,
+        'quiz' => 70,
+        'homework' => 30
     ];
 
-    $days = daysUntilDue($duedate);
-
-    if ($days < 0) {
-        return 0;
-    }
-
-    return $typeValues[$type] * $days;
+    return $typeValues[$type];
 }

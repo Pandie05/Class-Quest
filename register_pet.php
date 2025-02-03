@@ -34,16 +34,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
-    <img src="images/bg.png" alt="" class="background-image">
+    <img loading="lazy" decoding="async" src="images/bg.png" alt="" class="background-image">
     <div class="wrapper">
 
     <div class="logo">
         <img src="images/logo.png" alt="">
     </div>
     <div class="slide-show">
-        <img src="images/login-wall-1.jpg" alt="">
-        <img src="images/login-wall-2.png" alt="">
-        <img src="images/pet-bg.jpg" alt="">
+        <img loading="lazy" decoding="async" src="images/login-wall-1.jpg" alt="">
+        <img loading="lazy" decoding="async" src="images/login-wall-2.png" alt="">
+        <img loading="lazy" decoding="async" src="images/pet-bg.jpg" alt="">
         <div class="indicators">
             <span class="dot active"></span>
             <span class="dot"></span>

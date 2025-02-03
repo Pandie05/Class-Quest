@@ -152,6 +152,9 @@
     image-rendering: pixelated;
     scale: var(--pet-scale);
     filter: contrast(var(--pet-contrast));
+    will-change: transform;
+    transform: translateZ(0);
+    content-visibility: auto;
 }
 
 /* Base Styles */
@@ -166,6 +169,9 @@ body, html {
     display: flex;
     overflow-x: hidden;
     overflow-y: hidden;
+    will-change: transform;
+    transform: translateZ(0);
+    content-visibility: auto;
 }
 
 /* Navigation */
@@ -508,7 +514,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 /* Media Queries */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 940px) {
     body {
         overflow-x: hidden;
     }
@@ -742,8 +748,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .search-sort {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
     column-gap: 40px;
     row-gap: 40px;
     margin-bottom: 20px;
@@ -762,7 +766,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     outline: none;
     transition: all 0.3s;
     color: var(--text);
-    width: 60%;
+    width: 60%; /* Increased width */
 }
 
 .search-sort input:focus {
@@ -779,7 +783,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background: transparent;
     border: 1px solid var(--borders);
     border-radius: 15px;
-    width: 30%;
+    width: 35%; /* Increased width */
     font-size: 1rem;
     outline: none;
     transition: all 0.3s;
@@ -791,7 +795,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background-repeat: no-repeat;
     background-position: right 15px center;
     padding-right: 40px;
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
 .search-sort select:focus {
@@ -805,7 +809,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .search-sort button {
-    padding: 0.7rem;
     border: none;
     justify-content: center;
     align-items: center;
@@ -815,14 +818,27 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     transition: all 0.3s;
     background: transparent;
     color: var(--text);
+    width: auto;
+    height: auto;
+    margin-left: 15px;
     border: solid 1px var(--borders);
-    width: 100px;
-    height: 45px;
-    margin-left: 10px;
+    padding: 0.75rem;
 }
 
-.search-sort button:hover {
-    transform: translateY(-2px);
+.search-sort button svg {
+    width: 16px;
+    height: 16px;
+    color: var(--text);
+    transition: 0.3s;
+}
+
+.search-top {
+    display: flex;
+    align-items: center;
+}
+
+.search-sort button:hover svg {
+    color: var(--text-dim);
 }
 
 .assignment-actions {
@@ -1000,4 +1016,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     background: #ff4444;
     color: white;
     cursor: pointer;
+}
+
+.search-sort p {
+    position: fixed;
+    bottom: 20px;
+    right: 50px;
+    color: #ffffff94;
+    font-weight: 400;
+}
+
+.search-sort p a {
+    color: var(--text-dim);
+    font-weight: 400;
+    text-decoration: none;
 }
