@@ -24,8 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $_SESSION['user'] = $user;
-
-        /* $_SESSION['pet'] = getPet($user['id']); */
         
         header('Location: dashboard.php');
         exit();
