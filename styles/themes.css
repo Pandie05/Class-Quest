@@ -151,6 +151,25 @@
     --form-transparency: #0000008f;
 }
 
+.theme-spinda {
+    --primary-color: #f84646;
+    --secondary-color: #db4444;
+    --tertiary-color: #d6515150;
+    --text: #fff;
+    --text-dim: #ff7777b9;
+    --add-fill: #4a1a1a;
+    --borders: #ec4848;
+    --borders-dim: rgba(236, 77, 77, 0.507);
+    --background-image: url('../images/bg-dark.png');
+    --petbg-image: url('../images/pet-bg-spinda.jpg');
+    --filter-color: invert(30%) sepia(100%) saturate(500%) hue-rotate(-50deg) brightness(60%) contrast(1000%);
+    --background-color: #111111;
+    --pet: url('../images/spinda.gif');
+    --pet-scale: 1.2;
+    --pet-contrast: 1.5;
+    --form-transparency: #0000008f;
+}
+
 /* celebi Theme */
 .theme-celebi {
     --primary-color: #31d139;
