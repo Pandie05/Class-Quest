@@ -6,7 +6,7 @@ body {
     background-image: var(--background-image);
     background-size: cover;
     background-attachment: fixed;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'poppins', sans-serif;
     display: flex;
     color: var(--text);
     height: 100vh;
@@ -66,11 +66,12 @@ nav {
     width: calc(100vw - 100px);
     height: 100vh;
     box-sizing: border-box;
+    overflow-y: auto;
+    margin-top: 42px;
 }
 
 /* FullCalendar Customization */
 .fc {
-    background: var(--form-transparency);
     backdrop-filter: blur(10px);
     padding: 30px;
     height: 100%;
@@ -158,18 +159,6 @@ nav {
     overflow: hidden;
 }
 
-.fc-day-today::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 2px solid var(--primary-color);
-    border-radius: 12px;
-    opacity: 0.6;
-}
-
 .fc-day-today .fc-daygrid-day-number {
     font-weight: 500;
     color: var(--primary-color);
@@ -239,6 +228,23 @@ nav {
 
 .fc-scrollgrid-sync-table {
     height: 100% !important;
+}
+
+.fc-event.completed {
+    background: #ffffff28 !important;
+    opacity: 0.5;
+    position: relative;
+}
+
+.fc-event.completed::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    right: 5px;
+    height: 1px;
+    background: var(--text);
+    transform: translateY(-50%);
 }
 
 /* Animations */

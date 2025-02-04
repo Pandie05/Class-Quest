@@ -27,9 +27,7 @@ $theme = getUserPetTheme($_SESSION['user']['ID']);
     <title>Assignment Calendar</title>
 
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
-
     <link href='styles/calendar.css' rel='stylesheet' />
-    <!-- <link href='styles/dashboard.css' rel='stylesheet' /> -->
     <link href='styles/themes.css' rel='stylesheet' />
 
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
@@ -79,7 +77,9 @@ $theme = getUserPetTheme($_SESSION['user']['ID']);
                             title: '<?php echo htmlspecialchars($assignment['title'] . ' (' . $assignment['classname'] . ')'); ?>',
                             start: '<?php echo $assignment['duedate']; ?>',
                             allDay: true,
-                            url: 'dashboard.php?search=<?php echo urlencode($assignment['title']); ?>&sort=duedate'
+                            url: 'dashboard.php?search=<?php echo urlencode($assignment['title']); ?>&sort=duedate',
+                            className: '<?php echo $assignment['done'] ? "completed" : ""; ?>',
+                            backgroundColor: <?php echo $assignment['done'] ? "'#808080'" : "'#3788d8'"; ?>
                         },
                     <?php endforeach; ?>
                 ]
