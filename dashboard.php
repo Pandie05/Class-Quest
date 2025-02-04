@@ -131,9 +131,9 @@
             </div>
 
             <div class="pet-lvl">
-                <div class="pet-lvl-num">
-                    <?php echo "Level:  " . htmlspecialchars($petData['lvl']); ?>
-                </div>
+                
+                <?php echo "Level:  " . htmlspecialchars($petData['lvl']); ?>
+                
             </div>
 
             <div class="pet-cont stacked-images">
