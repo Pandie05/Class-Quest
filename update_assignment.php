@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':done', $done, PDO::PARAM_BOOL);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    $stmt->bindParam(':userID', $_SESSION['user_id'], PDO::PARAM_INT);
+    $stmt->bindParam(':userID', $_SESSION['user']['ID'], PDO::PARAM_INT);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true]);

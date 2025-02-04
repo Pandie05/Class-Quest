@@ -6,7 +6,7 @@ function getPet($id) {
 
     global $db;
 
-    $sql = "SELECT * FROM pets WHERE user_id = :id";
+    $sql = "SELECT * FROM pets WHERE userID = :id";
 
     $stmt = $db->prepare($sql);
 
@@ -18,6 +18,26 @@ function getPet($id) {
 
 }
 
+// Function to get the pet name
+function getPetName($userID) {
+    global $db;
+    $sql = "SELECT petname FROM pets WHERE userID = :userID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchColumn();
+}
+
+// Get user's pet theme from database
+function getUserPetTheme($userID) {
+    global $db;
+    $sql = "SELECT pokemon FROM pets WHERE userID = :userID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchColumn() ?: 'umbreon'; // default to umbreon if no pet found
+}
+
 function getAssignments() {
     global $db;
     
@@ -25,7 +45,7 @@ function getAssignments() {
     $sql = "SELECT * FROM assignments WHERE userID = :userID";
     
     $stmt = $db->prepare($sql);
-    $stmt->bindParam(':userID', $_SESSION['user_id'], PDO::PARAM_INT);
+    $stmt->bindParam(':userID', $_SESSION['user']['ID'], PDO::PARAM_INT);
     
     $stmt->execute();
     
@@ -40,7 +60,7 @@ function getAssignment($id) {
     
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    $stmt->bindParam(':userID', $_SESSION['user_id'], PDO::PARAM_INT);
+    $stmt->bindParam(':userID', $_SESSION['user']['ID'], PDO::PARAM_INT);
     
     $stmt->execute();
     
@@ -53,7 +73,7 @@ function addAssignment($title, $classname, $duedate, $assigntype, $xp) {
     
     $sql = "SELECT COUNT(*) FROM assignments WHERE userID = :userID AND title = :title AND classname = :classname AND duedate = :duedate AND assigntype = :assigntype";
     $stmt = $db->prepare($sql);
-    $stmt->bindParam(':userID', $_SESSION['user_id'], PDO::PARAM_INT);
+    $stmt->bindParam(':userID', $_SESSION['user']['ID'], PDO::PARAM_INT);
     $stmt->bindParam(':title', $title, PDO::PARAM_STR);
     $stmt->bindParam(':classname', $classname, PDO::PARAM_STR);
     $stmt->bindParam(':duedate', $duedate, PDO::PARAM_STR);
@@ -68,7 +88,7 @@ function addAssignment($title, $classname, $duedate, $assigntype, $xp) {
         
         $sql = "INSERT INTO assignments (userID, title, classname, duedate, assigntype, xp) VALUES (:userID, :title, :classname, :duedate, :assigntype, :xp)";
         $stmt = $db->prepare($sql);
-        $stmt->bindParam(':userID', $_SESSION['user_id'], PDO::PARAM_INT);
+        $stmt->bindParam(':userID', $_SESSION['user']['ID'], PDO::PARAM_INT);
         $stmt->bindParam(':title', $title, PDO::PARAM_STR);
         $stmt->bindParam(':classname', $classname, PDO::PARAM_STR);
         $stmt->bindParam(':duedate', $duedate, PDO::PARAM_STR);
@@ -79,12 +99,28 @@ function addAssignment($title, $classname, $duedate, $assigntype, $xp) {
     }
 }
 
+function updateAssignment($id, $title, $classname, $duedate, $assigntype, $xp) {
+    global $db;
+    
+    $sql = "UPDATE assignments SET title = :title, classname = :classname, duedate = :duedate, assigntype = :assigntype, xp = :xp WHERE ID = :id AND userID = :userID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+    $stmt->bindParam(':classname', $classname, PDO::PARAM_STR);
+    $stmt->bindParam(':duedate', $duedate, PDO::PARAM_STR);
+    $stmt->bindParam(':assigntype', $assigntype, PDO::PARAM_STR);
+    $stmt->bindParam(':xp', $xp, PDO::PARAM_INT);
+    $stmt->bindParam(':userID', $_SESSION['user']['ID'], PDO::PARAM_INT);
+
+    return $stmt->execute();
+}
+
 function getFilteredAssignments($search = '', $sortBy = 'duedate') {
     global $db;
     
     $sql = "SELECT * FROM assignments WHERE userID = :userID";
     $params = array();
-    $params[':userID'] = $_SESSION['user_id'];
+    $params[':userID'] = $_SESSION['user']['ID'];
     
     // Add search conditions if search term is provided
     if (!empty($search)) {
@@ -149,3 +185,16 @@ function xp($duedate, $type) {
 
     return $typeValues[$type];
 }
+
+/* function xp($duedate, $type) {
+    $typeValues = [
+        'final' => 20,
+        'midterm' => 17,
+        'exam' => 15,
+        'test' => 9,
+        'quiz' => 6,
+        'homework' => 4.5
+    ];
+
+    return $typeValues[$type];
+} */

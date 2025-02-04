@@ -20,7 +20,7 @@ if ($assignmentId) {
         $stmt = $db->prepare($sql);
         $stmt->execute([
             ':id' => $assignmentId,
-            ':userID' => $_SESSION['user_id']
+            ':userID' => $_SESSION['user']['ID']
         ]);
         
         echo json_encode(['success' => true]);
