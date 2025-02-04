@@ -18,6 +18,15 @@ function getPet($id) {
 
 }
 
+function getPetData($userId) {
+    global $db;
+    $sql = "SELECT hp, xp, lvl FROM pets WHERE userID = :userID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':userID', $userId, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 // Function to get the pet name
 function getPetName($userID) {
     global $db;
@@ -26,6 +35,23 @@ function getPetName($userID) {
     $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
     $stmt->execute();
     return $stmt->fetchColumn();
+}
+
+function petLevelup($userID) {
+    global $db;
+    $sql = "UPDATE pets SET lvl = lvl + 1 WHERE userID = :userID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+    return $stmt->execute();
+}
+
+function petHpDown($userID , $hp) {
+    global $db;
+    $sql = "UPDATE pets SET hp = hp - :hp WHERE userID = :userID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':hp', $hp, PDO::PARAM_INT);
+    $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+    return $stmt->execute();
 }
 
 // Get user's pet theme from database

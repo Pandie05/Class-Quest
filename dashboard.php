@@ -10,7 +10,9 @@
         exit();
     }
     
-    $petName = getPetName($_SESSION['user']['ID']);
+    $userId = $_SESSION['user']['ID'];
+    $petName = getPetName($userId);
+    $petData = getPetData($userId);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id = isset($_POST['id']) ? $_POST['id'] : null;
@@ -21,9 +23,13 @@
         $xp = xp($duedate, $assigntype);
 
         if ($id) {
+
             updateAssignment($id, $title, $classname, $duedate, $assigntype, $xp);
+
         } else {
+
             addAssignment($title, $classname, $duedate, $assigntype, $xp);
+
         }
     }
 
@@ -124,6 +130,12 @@
                 <?php echo "Name:  " . htmlspecialchars($petName); ?>
             </div>
 
+            <div class="pet-lvl">
+                <div class="pet-lvl-num">
+                    <?php echo "Level:  " . htmlspecialchars($petData['lvl']); ?>
+                </div>
+            </div>
+
             <div class="pet-cont stacked-images">
                 <div class="pet-gif"></div>
             </div>
@@ -133,8 +145,8 @@
 
                         <?php
                             $bars = [
-                                ['id' => 'hp', 'max' => 100, 'current' => 75, 'min' => 0],
-                                ['id' => 'xp', 'max' => 200, 'current' => 130, 'min' => 0],
+                                ['id' => 'hp', 'max' => 100, 'current' => $petData['hp'], 'min' => 0],
+                                ['id' => 'xp', 'max' => 150, 'current' => $petData['xp'], 'min' => 0],
                             ];
 
                             foreach ($bars as $bar) {
@@ -250,57 +262,60 @@
     
     <script>
 
-    function showEditForm(assignment) {
-        const form = document.querySelector('.add-assignment-form');
-        document.getElementById('assignment-id').value = assignment.id;
-        document.getElementById('assignment-title').value = assignment.title;
-        document.getElementById('assignment-classname').value = assignment.classname;
-        document.getElementById('assignment-duedate').value = assignment.duedate;
-        document.getElementById('assignment-assigntype').value = assignment.assigntype;
-        form.classList.add('show');
-    }
+        function showEditForm(assignment) {
+            const form = document.querySelector('.add-assignment-form');
+            document.getElementById('assignment-id').value = assignment.id;
+            document.getElementById('assignment-title').value = assignment.title;
+            document.getElementById('assignment-classname').value = assignment.classname;
+            document.getElementById('assignment-duedate').value = assignment.duedate;
+            document.getElementById('assignment-assigntype').value = assignment.assigntype;
+            form.classList.add('show');
+        }
         
         document.addEventListener('DOMContentLoaded', function() {
-        // Existing checkbox functionality
-        const checkboxes = document.querySelectorAll('.assignment-checkbox');
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                const assignmentId = this.getAttribute('data-id');
-                const done = this.checked ? 1 : 0;
 
-                fetch('update_assignment.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ id: assignmentId, done: done })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // Get the assignment wrapper
-                        const assignmentWrapper = document.querySelector('.assignment-wrapper');
-                        // Get all assignments
-                        const assignments = Array.from(assignmentWrapper.children);
-                        
-                        // Sort assignments
-                        assignments.sort((a, b) => {
-                            const aChecked = a.querySelector('.assignment-checkbox').checked;
-                            const bChecked = b.querySelector('.assignment-checkbox').checked;
-                            return aChecked - bChecked;
-                        });
-                        
-                        // Reorder the DOM
-                        assignments.forEach(assignment => {
-                            assignmentWrapper.appendChild(assignment);
-                        });
-                    } else {
-                        console.error('Failed to update assignment');
-                        // Revert checkbox if update failed
-                        checkbox.checked = !checkbox.checked;
-                    }
-                })
-                .catch(error => console.error('Error:', error));
+            // Existing checkbox functionality
+            const checkboxes = document.querySelectorAll('.assignment-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const assignmentId = this.getAttribute('data-id');
+                    const done = this.checked ? 1 : 0;
+
+                    fetch('update_assignment.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ id: assignmentId, done: done })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Get the assignment wrapper
+                            const assignmentWrapper = document.querySelector('.assignment-wrapper');
+                            // Get all assignments
+                            const assignments = Array.from(assignmentWrapper.children);
+                            
+                            // Sort assignments
+                            assignments.sort((a, b) => {
+                                const aChecked = a.querySelector('.assignment-checkbox').checked;
+                                const bChecked = b.querySelector('.assignment-checkbox').checked;
+                                return aChecked - bChecked;
+                            });
+                            
+                            // Reorder the DOM
+                            assignments.forEach(assignment => {
+                                assignmentWrapper.appendChild(assignment);
+                            });
+                        } else {
+                            console.error('Failed to update assignment');
+                            // Revert checkbox if update failed
+                            checkbox.checked = !checkbox.checked;
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+                
+                });
             });
         });
 
@@ -309,52 +324,51 @@
         sortSelect.addEventListener('change', function() {
             document.getElementById('searchForm').submit();
         });
-    });
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const loadingOverlay = document.getElementById('loading-overlay');
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingOverlay = document.getElementById('loading-overlay');
 
-        // Show loading overlay before page unload
-        window.addEventListener('beforeunload', function() {
-            loadingOverlay.style.display = 'flex';
-        });
-
-        // For checkbox clicks
-        const checkboxes = document.querySelectorAll('.assignment-checkbox');
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('click', function(e) {
+            // Show loading overlay before page unload
+            window.addEventListener('beforeunload', function() {
                 loadingOverlay.style.display = 'flex';
-                const assignmentId = this.getAttribute('data-id');
-                const done = !this.checked; // Invert because the change hasn't processed yet
+            });
 
-                fetch('update_assignment.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        id: assignmentId, 
-                        done: done ? 0 : 1
+            // For checkbox clicks
+            const checkboxes = document.querySelectorAll('.assignment-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('click', function(e) {
+                    loadingOverlay.style.display = 'flex';
+                    const assignmentId = this.getAttribute('data-id');
+                    const done = !this.checked; // Invert because the change hasn't processed yet
+
+                    fetch('update_assignment.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ 
+                            id: assignmentId, 
+                            done: done ? 0 : 1
+                        })
                     })
-                })
-                .then(() => window.location.reload());
+                    .then(() => window.location.reload());
+                });
+            });
+
+            // For sort select changes
+            const sortSelect = document.getElementById('sort');
+            sortSelect.addEventListener('change', function() {
+                loadingOverlay.style.display = 'flex';
+                document.getElementById('searchForm').submit();
+            });
+
+            // For search form submission
+            const searchForm = document.getElementById('searchForm');
+            searchForm.addEventListener('submit', function() {
+                loadingOverlay.style.display = 'flex';
             });
         });
 
-        // For sort select changes
-        const sortSelect = document.getElementById('sort');
-        sortSelect.addEventListener('change', function() {
-            loadingOverlay.style.display = 'flex';
-            document.getElementById('searchForm').submit();
-        });
 
-        // For search form submission
-        const searchForm = document.getElementById('searchForm');
-        searchForm.addEventListener('submit', function() {
-            loadingOverlay.style.display = 'flex';
-        });
-    });
-
-
-</script>
+    </script>
     
 </body>
 </html>
