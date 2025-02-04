@@ -74,6 +74,7 @@
                 <div class="profile-info">
                     <h2>Hi!, <?php echo $_SESSION['user']['username']; ?></h2>
                     <p>Email: <?php echo $_SESSION['user']['email']; ?></p>
+                    
                     <div class="password-input">
                         <label for="password">Password:</label>
                         <div style="position: relative;">
