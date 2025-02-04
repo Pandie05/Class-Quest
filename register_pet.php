@@ -6,18 +6,18 @@ include __DIR__ . '/model/db.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $petname = $_POST['petname'];
-    $pettype = $_POST['pettype'];
+    $pokemon = $_POST['pokemon'];
     $userID = $_POST['userID'];
 
     // Insert pet information into the pets table
-    $sql = "INSERT INTO pets (userID, petname, pettype) VALUES (:userID, :petname, :pettype)";
+    $sql = "INSERT INTO pets (userID, petname, pokemon) VALUES (:userID, :petname, :pokemon)";
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
     $stmt->bindParam(':petname', $petname, PDO::PARAM_STR);
-    $stmt->bindParam(':pettype', $pettype, PDO::PARAM_STR);
+    $stmt->bindParam(':pokemon', $pokemon, PDO::PARAM_STR);
     $stmt->execute();
 
-    header('Location: dashboard.php');
+    header('Location: login.php');
     exit();
 }
 
@@ -46,39 +46,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="pet-selection">
                     <label>
-                        <input type="radio" name="pettype" value="absol" required>
+                        <input type="radio" name="pokemon" value="absol" required>
                         <img src="images/absol-mega.gif" alt="Absol">
                     </label>
                     <label>
-                        <input type="radio" name="pettype" value="blaziken" required>
+                        <input type="radio" name="pokemon" value="blaziken" required>
                         <img src="images/charizard.gif" alt="Blaziken">
                     </label>
                     <label>
-                        <input type="radio" name="pettype" value="venasaur" required>
+                        <input type="radio" name="pokemon" value="venasaur" required>
                         <img src="images/venasaur.gif" alt="Venasaur">
                     </label>
                     <label>
-                        <input type="radio" name="pettype" value="thundurus" required>
+                        <input type="radio" name="pokemon" value="thundurus" required>
                         <img src="images/thundurus.gif" alt="Thundurus">
                     </label>
                     <label>
-                        <input type="radio" name="pettype" value="pangoro" required>
+                        <input type="radio" name="pokemon" value="pangoro" required>
                         <img src="images/pangoro.gif" alt="Pangoro">
                     </label>
                     <label>
-                        <input type="radio" name="pettype" value="snorlax" required>
+                        <input type="radio" name="pokemon" value="snorlax" required>
                         <img src="images/snorlax.gif" alt="Snorlax">
                     </label>
                     <label>
-                        <input type="radio" name="pettype" value="scizor" required>
+                        <input type="radio" name="pokemon" value="scizor" required>
                         <img src="images/scizor.gif" alt="Scizor">
                     </label>
                     <label>
-                        <input type="radio" name="pettype" value="celebi" required>
+                        <input type="radio" name="pokemon" value="celebi" required>
                         <img src="images/celebi.gif" alt="Celebi">
                     </label>
                     <label>
-                        <input type="radio" name="pettype" value="umbreon" required>
+                        <input type="radio" name="pokemon" value="umbreon" required>
                         <img src="images/umbreon.gif" alt="Umbreon">
                     </label>
                 </div>
