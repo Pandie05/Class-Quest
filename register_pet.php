@@ -89,6 +89,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="radio" name="pokemon" value="obstagoon" required>
                         <img src="images/obstagoon.gif" alt="Obstagoon">
                     </label>
+                    <label>
+                        <input type="radio" name="pokemon" value="tyrantrum" required>
+                        <img src="images/tyrantrum.gif" alt="Tyrantrum">
+                    </label>
+                    <label>
+                        <input type="radio" name="pokemon" value="swampert" required>
+                        <img src="images/swampert.gif" alt="Swampert">
+                    </label>
                 </div>
 
                 <button type="submit">

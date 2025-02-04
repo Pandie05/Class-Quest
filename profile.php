@@ -22,6 +22,7 @@
     <title>Class Quest</title>
 
     <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/themes.css">
 
 </head>
 <body class="theme-<?php echo $theme; ?>">
@@ -131,6 +132,18 @@
                             <label>
                                 <input type="radio" name="pokemon" value="obstagoon" required>
                                 <img src="images/obstagoon.gif" alt="Obstagoon">
+                            </label>
+                            <label>
+                                <input type="radio" name="pokemon" value="tyrantrum" required>
+                                <img src="images/tyrantrum.gif" alt="Tyrantrum">
+                            </label>
+                            <label>
+                                <input type="radio" name="pokemon" value="tinkaton" required>
+                                <img src="images/Tinkaton.gif" alt="Tinkaton">
+                            </label>
+                            <label>
+                                <input type="radio" name="pokemon" value="swampert" required>
+                                <img src="images/swampert.gif" alt="Swampert">
                             </label>
                         </div>
 
