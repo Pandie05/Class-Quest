@@ -10,11 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userID = $_POST['userID'];
 
     // Insert pet information into the pets table
-    $sql = "INSERT INTO pets (userID, petname, pokemon) VALUES (:userID, :petname, :pokemon)";
+    $sql = "INSERT INTO pets (userID, petname, pettype) VALUES (:userID, :petname, :pettype)";
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
     $stmt->bindParam(':petname', $petname, PDO::PARAM_STR);
-    $stmt->bindParam(':pokemon', $pettype, PDO::PARAM_STR);
+    $stmt->bindParam(':pettype', $pettype, PDO::PARAM_STR);
     $stmt->execute();
 
     header('Location: dashboard.php');
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="pet-wrapper">
         <div class="header">
-            <h1>Add Your Pet</h1>
+            <h1>Pick Your Pet</h1>
         </div>
 
         <div class="pet-picker">
@@ -62,8 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <img src="images/thundurus.gif" alt="Thundurus">
                     </label>
                     <label>
-                        <input type="radio" name="pettype" value="pangoru" required>
-                        <img src="images/pangoro.gif" alt="Pangoru">
+                        <input type="radio" name="pettype" value="pangoro" required>
+                        <img src="images/pangoro.gif" alt="Pangoro">
                     </label>
                     <label>
                         <input type="radio" name="pettype" value="snorlax" required>
