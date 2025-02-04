@@ -1,17 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('.add-assignment-form');
     const addButton = document.querySelector('.add-btn');
+    const cancelButton = document.querySelector('#cancel-btn');
+    const assignmentForm = document.getElementById('assignment-form');
 
     addButton.addEventListener('click', function() {
-        if (form.classList.contains('show')) {
-            form.classList.remove('show');
-        } else {
-            form.classList.add('show');
-        }
+        form.classList.toggle('show');
         this.classList.toggle('rotate');
     });
 
-    document.querySelector('#cancel-btn').addEventListener('click', function() {
+    cancelButton.addEventListener('click', function() {
         form.classList.remove('show');
         addButton.classList.remove('rotate');
     });
@@ -21,6 +19,13 @@ document.addEventListener('DOMContentLoaded', function() {
             form.classList.remove('show');
             addButton.classList.remove('rotate');
         }
+    });
+
+    document.querySelectorAll('.edit-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const assignment = JSON.parse(this.getAttribute('data-assignment'));
+            showEditForm(assignment);
+        });
     });
 });
 

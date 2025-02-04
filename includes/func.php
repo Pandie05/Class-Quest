@@ -101,18 +101,15 @@ function addAssignment($title, $classname, $duedate, $assigntype, $xp) {
 
 function updateAssignment($id, $title, $classname, $duedate, $assigntype, $xp) {
     global $db;
-    
-    $sql = "UPDATE assignments SET title = :title, classname = :classname, duedate = :duedate, assigntype = :assigntype, xp = :xp WHERE ID = :id AND userID = :userID";
+    $sql = "UPDATE assignments SET title = :title, classname = :classname, duedate = :duedate, assigntype = :assigntype, xp = :xp WHERE id = :id";
     $stmt = $db->prepare($sql);
+    $stmt->bindParam(':title', $title);
+    $stmt->bindParam(':classname', $classname);
+    $stmt->bindParam(':duedate', $duedate);
+    $stmt->bindParam(':assigntype', $assigntype);
+    $stmt->bindParam(':xp', $xp);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    $stmt->bindParam(':title', $title, PDO::PARAM_STR);
-    $stmt->bindParam(':classname', $classname, PDO::PARAM_STR);
-    $stmt->bindParam(':duedate', $duedate, PDO::PARAM_STR);
-    $stmt->bindParam(':assigntype', $assigntype, PDO::PARAM_STR);
-    $stmt->bindParam(':xp', $xp, PDO::PARAM_INT);
-    $stmt->bindParam(':userID', $_SESSION['user']['ID'], PDO::PARAM_INT);
-
-    return $stmt->execute();
+    $stmt->execute();
 }
 
 function getFilteredAssignments($search = '', $sortBy = 'duedate') {
