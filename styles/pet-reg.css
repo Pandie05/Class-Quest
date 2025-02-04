@@ -41,6 +41,8 @@ body {
     margin: 0 auto;
     padding: 2rem;
     color: var(--text);
+    margin-top: 60px;
+    margin-bottom: -30px;
 }
 
 .header {
