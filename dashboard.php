@@ -146,7 +146,7 @@
                         <?php
                             $bars = [
                                 ['id' => 'hp', 'max' => 100, 'current' => $petData['hp'], 'min' => 0],
-                                ['id' => 'xp', 'max' => 150, 'current' => $petData['xp'], 'min' => 0],
+                                ['id' => 'xp', 'max' => 500, 'current' => $petData['xp'], 'min' => 0],
                             ];
 
                             foreach ($bars as $bar) {
