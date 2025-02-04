@@ -34,17 +34,11 @@
 
         <div class="icon-links">
 
-            <a href="dashboard.php" class="home-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12.204c0-2.289 0-3.433.52-4.381c.518-.949 1.467-1.537 3.364-2.715l2-1.241C9.889 2.622 10.892 2 12 2s2.11.622 4.116 1.867l2 1.241c1.897 1.178 2.846 1.766 3.365 2.715S22 9.915 22 12.203v1.522c0 3.9 0 5.851-1.172 7.063S17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.212S2 17.626 2 13.725z"/><path stroke-linecap="round" d="M12 15v3"/></g></svg>
-            </a>
-            <a class="dash-btn">
+            <a class="dash-btn" style="margin-top: 100px;" href="dashboard.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.557 2.75H4.682A1.93 1.93 0 0 0 2.75 4.682v3.875a1.94 1.94 0 0 0 1.932 1.942h3.875a1.94 1.94 0 0 0 1.942-1.942V4.682A1.94 1.94 0 0 0 8.557 2.75m10.761 0h-3.875a1.94 1.94 0 0 0-1.942 1.932v3.875a1.943 1.943 0 0 0 1.942 1.942h3.875a1.94 1.94 0 0 0 1.932-1.942V4.682a1.93 1.93 0 0 0-1.932-1.932m0 10.75h-3.875a1.94 1.94 0 0 0-1.942 1.933v3.875a1.94 1.94 0 0 0 1.942 1.942h3.875a1.94 1.94 0 0 0 1.932-1.942v-3.875a1.93 1.93 0 0 0-1.932-1.932M8.557 13.5H4.682a1.943 1.943 0 0 0-1.932 1.943v3.875a1.93 1.93 0 0 0 1.932 1.932h3.875a1.94 1.94 0 0 0 1.942-1.932v-3.875a1.94 1.94 0 0 0-1.942-1.942"/></svg>
             </a>
-            <a class="pet-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="currentColor" d="M9.5 22q-1.475 0-2.488-1.012T6 18.5q0-.225.063-.35t-.013-.2t-.2-.012T5.5 18q-1.475 0-2.488-1.012T2 14.5t1.013-2.488T5.5 11q.575 0 1.05.15t.9.45l4.15-4.15q-.3-.425-.45-.9T11 5.5q0-1.475 1.013-2.488T14.5 2t2.488 1.013T18 5.5q0 .225-.062.35t.012.2t.2.013T18.5 6q1.475 0 2.488 1.013T22 9.5t-1.012 2.488T18.5 13q-.575 0-1.05-.15t-.9-.45l-4.15 4.15q.3.425.45.9T13 18.5q0 1.475-1.012 2.488T9.5 22m0-2q.65 0 1.075-.425T11 18.5q0-.225-.062-.437t-.188-.413q-.425-.6-.35-1.287t.6-1.213L15.15 11q.525-.525 1.213-.6t1.287.35q.2.125.413.188T18.5 11q.65 0 1.075-.425T20 9.5t-.425-1.075T18.5 8q-.875 0-1.225-.088t-.725-.462t-.462-.725T16 5.5q0-.65-.425-1.075T14.5 4t-1.075.425T13 5.5q0 .275.05.463t.2.387q.425.6.35 1.288T13 8.85L8.85 13q-.525.525-1.213.6t-1.287-.35q-.2-.125-.412-.187T5.5 13q-.65 0-1.075.425T4 14.5t.425 1.075T5.5 16q.875 0 1.225.088t.725.462t.462.725T8 18.5q0 .65.425 1.075T9.5 20m2.5-8"/></svg>
-            </a>
-            <a href="profile.php" class="profile-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.486 2 2 6.486 2 12c0 5.515 4.486 10 10 10s10-4.485 10-10c0-5.514-4.486-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm0-14c-1.104 0-2 .896-2 2s.896 2 2 2s2-.896 2-2s-.896-2-2-2zm0 12c-2.206 0-4-1.794-4-4h2c0 1.104.896 2 2 2s2-.896 2-2h2c0 2.206-1.794 4-4 4z"/></svg>
+            <a href="profile.php" class="pet-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linejoin="round" d="M4 18a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="7" r="3"/></g></svg>
             </a>
             <a class="logout-btn" href="logout.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 20 20"><path fill="currentColor" fill-rule="evenodd" d="M3 3a1 1 0 0 0-1 1v12a1 1 0 1 0 2 0V4a1 1 0 0 0-1-1m10.293 9.293a1 1 0 0 0 1.414 1.414l3-3a1 1 0 0 0 0-1.414l-3-3a1 1 0 1 0-1.414 1.414L14.586 9H7a1 1 0 1 0 0 2h7.586z" clip-rule="evenodd"/></svg>
@@ -55,7 +49,7 @@
 
     <div class="dashboard-wrapper">
 
-        <div class="left-panel">
+        <div class="left-panel-2">
 
             <div class="breds">
                     
@@ -74,18 +68,78 @@
             <div>
 
                 <div class="profile-info">
-                    <h2>Hi!, {<?php echo $_SESSION['user']['username']; ?>}</h2>
+                    <h2>Hi!, <?php echo $_SESSION['user']['username']; ?></h2>
                     <p>Email: <?php echo $_SESSION['user']['email']; ?></p>
                     <div class="password-input">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" placeholder="Password" value="<?php echo $_SESSION['user']['password']; ?>" readonly>
-                        <svg id="togglePassword" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                            <path fill="#8d8b97" d="M12 9a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5c-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0a9.821 9.821 0 0 0-17.64 0"/>
-                        </svg>
+                        <label for="password">Password:</label>
+                        <div style="position: relative;">
+                            <input type="password" name="password" id="password" placeholder="Password" value="<?php echo $_SESSION['user']['password']; ?>" readonly style="padding-right: 30px;">
+                            <svg id="togglePassword" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                                <path fill="currentColor" d="M12 9a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5c-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0a9.821 9.821 0 0 0-17.64 0"/>
+                            </svg>
+                        </div>
                     </div>
 
                     <script src="scripts/login.js"></script>
                 </div>
+
+                <div class="pet-picker">
+                    <form class="pet-pick" action="change_pet.php" method="POST">
+                    <h6>Change your pet:</h6>
+
+                        <div class="pet-selection">
+                            <label>
+                                <input type="radio" name="pokemon" value="absol" required>
+                                <img src="images/absol-mega.gif" alt="Absol">
+                            </label>
+                            <label>
+                                <input type="radio" name="pokemon" value="blaziken" required>
+                                <img src="images/charizard.gif" alt="Blaziken">
+                            </label>
+                            <label>
+                                <input type="radio" name="pokemon" value="venasaur" required>
+                                <img src="images/venasaur.gif" alt="Venasaur">
+                            </label>
+                            <label>
+                                <input type="radio" name="pokemon" value="thundurus" required>
+                                <img src="images/thundurus.gif" alt="Thundurus">
+                            </label>
+                            <label>
+                                <input type="radio" name="pokemon" value="pangoro" required>
+                                <img src="images/pangoro.gif" alt="Pangoro">
+                            </label>
+                            <label>
+                                <input type="radio" name="pokemon" value="snorlax" required>
+                                <img src="images/snorlax.gif" alt="Snorlax">
+                            </label>
+                            <label>
+                                <input type="radio" name="pokemon" value="scizor" required>
+                                <img src="images/scizor.gif" alt="Scizor">
+                            </label>
+                            <label>
+                                <input type="radio" name="pokemon" value="celebi" required>
+                                <img src="images/celebi.gif" alt="Celebi">
+                            </label>
+                            <label>
+                                <input type="radio" name="pokemon" value="umbreon" required>
+                                <img src="images/umbreon.gif" alt="Umbreon">
+                            </label>
+                            <label>
+                                <input type="radio" name="pokemon" value="rayquaza" required>
+                                <img src="images/rayquaza-mega.gif" alt="Rayquaza">
+                            </label>
+                        </div>
+
+                        <button class="save-btn" type="submit">
+                            Save Changes
+                        </button>
+                    </form>
+
+                    <?php if (isset($error)): ?>
+                        <p class="log-err" style="color: red;"><?php echo $error; ?></p>
+                    <?php endif; ?>
+                </div>        
+
             
             </div>
 

@@ -14,6 +14,7 @@
     --background-color: #111111;
     --pet: url('../images/thundurus.gif');
     --pet-scale: 1.2;
+    --form-transparency: #0000008f;
 }
 
 /* blaziken Theme */
@@ -32,31 +33,32 @@
     --background-color: #111111;
     --pet: url('../images/mega-charizard.gif');
     --pet-scale: 1.2;
+    --form-transparency: #0000008f;
 }
 
 /* absol Theme */
 .theme-absol {
-    --primary-color: #4AA5FF;
-    --secondary-color: #3280CC;
-    --tertiary-color: #9ec0ff50;
-    --text: #000000;
-    --text-dim: #213f58cc;
-    --add-fill: #dcedff;
-    --borders: #4AA5FF;
-    --borders-dim: rgba(50, 128, 204, 0.507);
-    --petbg-image: url('../images/pet-bg-water.jpg');
-    --background-image: url('../images/bg-water.png');
+    --primary-color: #0D47A1;
+    --secondary-color: #1565C0;
+    --tertiary-color: #0d47a150;
+    --text: #ffffff;
+    --text-dim: #90caf9cc;
+    --add-fill: #0d47a1;
+    --borders: #2d74dd;
+    --borders-dim: rgba(47, 118, 224, 0.507);
+    --background-image: url('../images/bg-umbreon.png');
+    --petbg-image: url('../images/pet-bg-umbreon.jpg');
     --filter-color: invert(60%) sepia(100%) saturate(500%) hue-rotate(190deg) brightness(100%) contrast(100%);
-    --background-color: #ececec;
+    --background-color: #181818;
     --pet: url('../images/absol-mega.gif');
     --pet-scale: 1;
-    --pet-ml: 85px;
+    --form-transparency: #0000008f;
 }
 
 /* venasaur Theme */
 .theme-venasaur {
-    --primary-color: #4AFF91;
-    --secondary-color: #32CC6F;
+    --primary-color: #31d139;
+    --secondary-color: #51cc32;
     --tertiary-color: #22ff4550;
     --text: #fff;
     --text-dim: #5ea150cc;
@@ -69,9 +71,29 @@
     --background-color: #111111;
     --pet: url('../images/mega-venasaur.gif');
     --pet-scale: 1.2;
+    --form-transparency: #0000008f;
 }
 
-/* pangoru Theme */
+/* pangoro Theme */
+.theme-pangoro {
+    --primary-color: #31d139;
+    --secondary-color: #51cc32;
+    --tertiary-color: #22ff4550;
+    --text: #fff;
+    --text-dim: #5ea150cc;
+    --add-fill: #1A4A2F;
+    --borders: #4AFF91;
+    --borders-dim: rgba(50, 204, 111, 0.507);
+    --petbg-image: url('../images/pet-bg-grass.jpg');
+    --background-image: url('../images/bg-grass.png');
+    --filter-color: invert(70%) sepia(100%) saturate(500%) hue-rotate(90deg) brightness(100%) contrast(100%);
+    --background-color: #111111;
+    --pet: url('../images/pangoro.gif');
+    --pet-scale: 1.2;
+    --form-transparency: #0000008f;
+}
+
+/* snorlax Theme */
 .theme-snorlax {
     --primary-color: #64a4c2; /* Changed to teal */
     --secondary-color: #46818b; /* Changed to teal */
@@ -87,6 +109,7 @@
     --background-color: #111111;
     --pet: url('../images/snorlax.gif');
     --pet-scale: 1;
+    --form-transparency: #0000008f;
 }
 
 /* scizor Theme */
@@ -106,24 +129,26 @@
     --pet: url('../images/scizor.gif');
     --pet-scale: 1.2;
     --pet-contrast: 1.5;
+    --form-transparency: #0000008f;
 }
 
 /* celebi Theme */
 .theme-celebi {
-    --primary-color: #FFB6C1;
-    --secondary-color: #FF69B4;
-    --tertiary-color: #ffb6c150;
-    --text: #000000;
-    --text-dim: #b565a7cc;
-    --add-fill: #ffe4e1;
-    --borders: #FFB6C1;
-    --borders-dim: rgba(255, 155, 170, 0.897);
-    --background-image: url('../images/bg-pink.png');
-    --petbg-image: url('../images/pet-bg-pink.jpg');
-    --filter-color: invert(70%) sepia(100%) saturate(500%) hue-rotate(300deg) brightness(100%) contrast(100%);
-    --background-color: #fff0f5;
+    --primary-color: #31d139;
+    --secondary-color: #51cc32;
+    --tertiary-color: #22ff4550;
+    --text: #fff;
+    --text-dim: #5ea150cc;
+    --add-fill: #1A4A2F;
+    --borders: #4AFF91;
+    --borders-dim: rgba(50, 204, 111, 0.507);
+    --petbg-image: url('../images/pet-bg-forest.jpg');
+    --background-image: url('../images/bg-grass.png');
+    --filter-color: invert(70%) sepia(100%) saturate(500%) hue-rotate(90deg) brightness(100%) contrast(100%);
+    --background-color: #111111;
     --pet: url('../images/celebi.gif');
-    --pet-scale: 0.6;
+    --pet-scale: 0.8;
+    --form-transparency: #0000008f;
 }
 
 /* umbreon Theme */
@@ -142,6 +167,25 @@
     --background-color: #181818;
     --pet: url('../images/umbreon.gif');
     --pet-scale: 1;
+    --form-transparency: #0000008f;
+}
+
+.theme-rayquaza {
+    --primary-color: #d49e29;
+    --secondary-color: #FFD700;
+    --tertiary-color: #00440050;
+    --text: #ffffff;
+    --text-dim: #cd9732cc;
+    --add-fill: #8b0000;
+    --borders: #fbff00;
+    --borders-dim: rgba(255, 187, 0, 0.507);
+    --background-image: url('../images/bg-electric.png');
+    --petbg-image: url('../images/pet-bg-ray.png');
+    --filter-color: invert(50%) sepia(100%) saturate(800%) hue-rotate(25deg) brightness(100%) contrast(300%);
+    --background-color: #111111;
+    --pet: url('../images/rayquaza-mega.gif');
+    --pet-scale: 1;
+    --form-transparency: #0000008f;
 }
 
 .pet-cont .pet-gif {
@@ -430,20 +474,19 @@ nav {
     flex-direction: column;
     gap: 1.3rem;
     width: 100%;
-    backdrop-filter: blur(30px); /* Added blur effect */
 }
 
 .add-assignment-form input,
 .add-assignment-form select {
     padding: 0.8rem;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background: var(--form-transparency);
     border: 1px solid var(--borders);
     border-radius: 15px;
     font-size: 1rem;
     outline: none;
     transition: all 0.3s;
-    color: var(--text);
-    backdrop-filter: blur(10px); /* Blur effect for background */
+    color: var(--text-dim);
+    backdrop-filter: blur(10px);
 }
 
 .add-assignment-form select {
@@ -1022,7 +1065,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     position: fixed;
     bottom: 20px;
     right: 50px;
-    color: #ffffff94;
+    color: var(--text);
     font-weight: 400;
 }
 
@@ -1030,4 +1073,233 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: var(--text-dim);
     font-weight: 400;
     text-decoration: none;
+}
+
+.pet-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    width: auto;
+    margin-left: 5px;
+    height: 15px;
+}
+
+/* profile styles */
+.left-panel-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 100%;
+    height: 90%;
+    padding: 40px;
+    padding-top: 0;
+    border-radius: 35px;
+    color: var(--text);
+    margin-bottom: -30px;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 70%;
+    height: auto;
+    margin-bottom: 40px;
+    color: var(--text);
+    overflow: hidden;
+    margin-left: 1px;
+}
+
+.profile-info h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.profile-info p {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.password-input {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.password-input label {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.password-input input {
+    padding: 3px;
+    background: var(--form-transparency);
+    border: 1px solid var(--borders);
+    border-radius: 15px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s;
+    color: var(--text);
+    padding-left: 10px;
+}
+
+.password-input svg {
+    color: var(--text);
+    width: 16px;
+    height: 20px;
+    margin-right: 3px;
+}
+
+.pet-picker {
+    background-color: transparent;
+    border-radius: 16px;
+    padding: 0rem;
+}
+
+.pet-pick {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: left;
+}
+
+.pet-selection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.pet-selection label {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: transparent;
+    padding: 20px;
+    border: 2px solid var(--borders-dim);
+}
+
+.pet-selection label:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px var(--tertiary-color);
+    border-color: var(--borders);
+}
+
+.pet-selection input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.pet-selection img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 10px;
+    transition: transform 0.3s ease;
+    image-rendering: pixelated;
+}
+
+.pet-selection input[type="radio"]:checked + img {
+    transform: scale(1.1);
+}
+
+.pet-selection label:has(input[type="radio"]:checked) {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px var(--tertiary-color), 0 0 40px var(--tertiary-color), 0 0 60px var(--tertiary-color);
+}
+
+.petname-input {
+    width: calc(100% - 40px);
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 2px solid var(--borders-dim);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    color: var(--text);
+}
+
+.petname-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px var(--tertiary-color);
+}
+
+.petname-input::placeholder {
+    color: var(--text-dim);
+}
+
+.petname-input:hover {
+    border-color: var(--primary-color);
+}
+
+.save-btn {
+    background-color: var(--borders-dim);
+    border: 1px solid var(--borders-dim);
+    border-radius: 15px;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: auto;
+    right: 0;
+    color: var(--text);
+}
+
+.save-btn svg {
+    filter: var(--filter-color);
+}
+
+.back-to-home {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+}
+
+.back-to-home a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.back-to-home a:hover {
+    transform: scale(1.1);
+}
+
+.back-to-home svg {
+    color: var(--primary-color);
+}
+
+.log-err {
+    text-align: center;
+    color: #ff6b6b;
+    margin-top: 1rem;
+}
+
+.pet-picker h6 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text);
 }
