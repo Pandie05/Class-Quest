@@ -128,6 +128,10 @@
                                 <input type="radio" name="pokemon" value="rayquaza" required>
                                 <img src="images/rayquaza-mega.gif" alt="Rayquaza">
                             </label>
+                            <label>
+                                <input type="radio" name="pokemon" value="obstagoon" required>
+                                <img src="images/obstagoon.gif" alt="Obstagoon">
+                            </label>
                         </div>
 
                         <button class="save-btn" type="submit">
