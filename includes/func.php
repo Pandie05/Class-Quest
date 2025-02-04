@@ -67,6 +67,15 @@ function getAssignment($id) {
     return $stmt->fetch();
 }
 
+function getAssignmentsByUser($userId) {
+    global $db;
+    $sql = "SELECT title, classname, duedate FROM assignments WHERE userID = :userID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':userID', $userId, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 function addAssignment($title, $classname, $duedate, $assigntype, $xp) {
     global $db;
 
