@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $hpAwarded = $assignment['hp_awarded'];
 
             // Add XP and update HP
-            $newXp = $pet['xp'] += $assignmentXp;
+            $newXp = $pet['xp'] + $assignmentXp;
             $newHp = $pet['hp'];
 
             // Level up if XP exceeds 150

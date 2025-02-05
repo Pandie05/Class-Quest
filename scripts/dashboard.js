@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('.add-assignment-form');
     const editForm = document.querySelector('.edit-assignment-form');
     const addButton = document.querySelector('.add-btn');
@@ -7,21 +7,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const assignmentForm = document.getElementById('assignment-form');
     const editAssignmentForm = document.getElementById('edit-assignment-form');
 
-    addButton.addEventListener('click', function() {
+    addButton.addEventListener('click', function () {
         form.classList.toggle('show');
         this.classList.toggle('rotate');
     });
 
-    cancelButton.addEventListener('click', function() {
+    cancelButton.addEventListener('click', function () {
         form.classList.remove('show');
         addButton.classList.remove('rotate');
     });
 
-    cancelEditButton.addEventListener('click', function() {
+    cancelEditButton.addEventListener('click', function () {
         editForm.classList.remove('show');
     });
 
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
         if (!form.contains(event.target) && !addButton.contains(event.target)) {
             form.classList.remove('show');
             addButton.classList.remove('rotate');
@@ -32,13 +32,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     document.querySelectorAll('.edit-btn').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const assignment = JSON.parse(this.getAttribute('data-assignment'));
             showEditForm(assignment);
         });
     });
 
-    window.showEditForm = function(assignment) {
+    window.showEditForm = function (assignment) {
         document.getElementById('edit-assignment-id').value = assignment.id;
         document.getElementById('edit-assignment-title').value = assignment.title;
         document.getElementById('edit-assignment-classname').value = assignment.classname;
@@ -52,7 +52,7 @@ document.querySelectorAll('.bar').forEach(bar => {
     const current = parseFloat(bar.getAttribute('data-current'));
     const max = parseFloat(bar.getAttribute('data-max'));
     const min = parseFloat(bar.getAttribute('data-min'));
-    
+
     const percentage = ((current - min) / (max - min) * 100) + '%';
     bar.style.setProperty('--percentage', percentage);
 });
@@ -83,9 +83,9 @@ confirmDelete.addEventListener('click', () => {
             },
             body: JSON.stringify({ id: assignmentToDelete })
         })
-        .then(() => {
-            window.location.reload();
-        });
+            .then(() => {
+                window.location.reload();
+            });
     }
     deleteModal.style.display = 'none';
 });
