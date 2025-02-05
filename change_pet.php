@@ -5,39 +5,40 @@ include __DIR__ . '/model/db.php';
 
 session_start();
 
-// Check if user is logged in
 if (!isset($_SESSION['user'])) {
     header('Location: login.php');
     exit();
 }
 
-// Check if form was submitted and pokemon value exists
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pokemon'])) {
-    
-    $userId = $_SESSION['user']['ID'];
-    $newPokemon = $_POST['pokemon'];
-    
+$userId = $_SESSION['user']['ID'];
+
+// Handle pet type change
+if (isset($_POST['pokemon'])) {
     try {
-        // Update the pokemon column in the pets table
         $sql = "UPDATE pets SET pokemon = ? WHERE userID = ?";
-        $stmt = $db->prepare($sql);  // Changed from $pdo to $db
-        $stmt->execute([$newPokemon, $userId]);
-        
-        // Redirect back to profile page on success
-        header('Location: profile.php');
-        exit();
-        
+        $stmt = $db->prepare($sql);
+        $stmt->execute([$_POST['pokemon'], $userId]);
     } catch (PDOException $e) {
-        // Handle any database errors
-        $error = "Error updating pet choice: " . $e->getMessage();
-        // Redirect back with error
-        header('Location: profile.php?error=' . urlencode($error));
+        $error = "Error updating pet: " . $e->getMessage();
+        header('Location: dashboard.php?error=' . urlencode($error));
         exit();
     }
+}
+
+// Handle pet name change
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $userId = $_SESSION['user']['ID'];
     
-} else {
-    // If accessed directly without POST data, redirect to profile
-    header('Location: profile.php');
+    if (isset($_POST['pokemon'])) {
+        $sql = "UPDATE pets SET pokemon = ?, petname = ? WHERE userID = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([$_POST['pokemon'], $_POST['petname'], $userId]);
+    }
+
+    header('Location: dashboard.php');
     exit();
 }
+
+header('Location: dashboard.php');
+exit();
 ?>

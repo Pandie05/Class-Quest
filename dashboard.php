@@ -73,6 +73,7 @@
     <link rel="stylesheet" href="styles/dashboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/themes.css">
+    <link rel="stylesheet" href="styles/noscroll.css">
 </head>
 <body class="theme-<?php echo $theme; ?>">
 
