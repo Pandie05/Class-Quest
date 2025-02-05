@@ -18,6 +18,15 @@ function getPet($id) {
 
 }
 
+function getPetPokemon($userID) {
+    global $db;
+    $sql = "SELECT pokemon FROM pets WHERE userID = :userID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetchColumn();
+}
+
 function getPetData($userId) {
     global $db;
     $sql = "SELECT hp, xp, lvl FROM pets WHERE userID = :userID";

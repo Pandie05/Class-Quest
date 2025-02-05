@@ -89,68 +89,76 @@
                 </div>
 
                 <div class="pet-picker">
+
+                <?php $currentPokemon = getPetPokemon($_SESSION['user']['ID']); ?>
+
                     <form class="pet-pick" action="change_pet.php" method="POST">
-                    <h6>Change your pet:</h6>
+                        <h6>Change your pet:</h6>
+
+                        <div class="pet-name-section">
+                            <label for="petname">Pet Name:</label>
+                            <input type="text" name="petname" value="<?php echo htmlspecialchars(getPetName($_SESSION['user']['ID'])); ?>" placeholder="Name your pet">                        
+                        </div>
 
                         <div class="pet-selection">
                             <label>
-                                <input type="radio" name="pokemon" value="absol" required>
+                                <input type="radio" name="pokemon" value="absol" <?php echo ($currentPokemon == 'absol') ? 'checked' : ''; ?> required>
                                 <img src="images/absol-mega.gif" alt="Absol">
                             </label>
                             <label>
-                                <input type="radio" name="pokemon" value="blaziken" required>
+                                <input type="radio" name="pokemon" value="blaziken" <?php echo ($currentPokemon == 'blaziken') ? 'checked' : ''; ?> required>
                                 <img src="images/charizard.gif" alt="Blaziken">
                             </label>
                             <label>
-                                <input type="radio" name="pokemon" value="venasaur" required>
+                                <input type="radio" name="pokemon" value="venasaur" <?php echo ($currentPokemon == 'venasaur') ? 'checked' : ''; ?> required>
                                 <img src="images/venasaur.gif" alt="Venasaur">
                             </label>
                             <label>
-                                <input type="radio" name="pokemon" value="thundurus" required>
+                                <input type="radio" name="pokemon" value="thundurus" <?php echo ($currentPokemon == 'thundurus') ? 'checked' : ''; ?> required>
                                 <img src="images/thundurus.gif" alt="Thundurus">
                             </label>
                             <label>
-                                <input type="radio" name="pokemon" value="pangoro" required>
+                                <input type="radio" name="pokemon" value="pangoro" <?php echo ($currentPokemon == 'pangoro') ? 'checked' : ''; ?> required>
                                 <img src="images/pangoro.gif" alt="Pangoro">
                             </label>
                             <label>
-                                <input type="radio" name="pokemon" value="snorlax" required>
+                                <input type="radio" name="pokemon" value="snorlax" <?php echo ($currentPokemon == 'snorlax') ? 'checked' : ''; ?> required>
                                 <img src="images/snorlax.gif" alt="Snorlax">
                             </label>
                             <label>
-                                <input type="radio" name="pokemon" value="scizor" required>
+                                <input type="radio" name="pokemon" value="scizor" <?php echo ($currentPokemon == 'scizor') ? 'checked' : ''; ?> required>
                                 <img src="images/scizor.gif" alt="Scizor">
                             </label>
                             <label>
-                                <input type="radio" name="pokemon" value="celebi" required>
+                                <input type="radio" name="pokemon" value="celebi" <?php echo ($currentPokemon == 'celebi') ? 'checked' : ''; ?> required>
                                 <img src="images/celebi.gif" alt="Celebi">
                             </label>
                             <label>
-                                <input type="radio" name="pokemon" value="umbreon" required>
+                                <input type="radio" name="pokemon" value="umbreon" <?php echo ($currentPokemon == 'umbreon') ? 'checked' : ''; ?> required>
                                 <img src="images/umbreon.gif" alt="Umbreon">
                             </label>
                             <label>
-                                <input type="radio" name="pokemon" value="rayquaza" required>
+                                <input type="radio" name="pokemon" value="rayquaza" <?php echo ($currentPokemon == 'rayquaza') ? 'checked' : ''; ?> required>
                                 <img src="images/rayquaza-mega.gif" alt="Rayquaza">
                             </label>
                             <label>
-                                <input type="radio" name="pokemon" value="obstagoon" required>
+                                <input type="radio" name="pokemon" value="obstagoon" <?php echo ($currentPokemon == 'obstagoon') ? 'checked' : ''; ?> required>
                                 <img src="images/obstagoon.gif" alt="Obstagoon">
                             </label>
                             <label>
-                                <input type="radio" name="pokemon" value="tyrantrum" required>
+                                <input type="radio" name="pokemon" value="tyrantrum" <?php echo ($currentPokemon == 'tyrantrum') ? 'checked' : ''; ?> required>
                                 <img src="images/tyrantrum.gif" alt="Tyrantrum">
                             </label>
                             <label>
-                                <input type="radio" name="pokemon" value="tinkaton" required>
+                                <input type="radio" name="pokemon" value="tinkaton" <?php echo ($currentPokemon == 'tinkaton') ? 'checked' : ''; ?> required>
                                 <img src="images/Tinkaton.gif" alt="Tinkaton">
                             </label>
                             <label>
-                                <input type="radio" name="pokemon" value="swampert" required>
+                                <input type="radio" name="pokemon" value="swampert" <?php echo ($currentPokemon == 'swampert') ? 'checked' : ''; ?> required>
                                 <img src="images/swampert.gif" alt="Swampert">
                             </label>
                             <label>
-                                <input type="radio" name="pokemon" value="spinda" required>
+                                <input type="radio" name="pokemon" value="spinda" <?php echo ($currentPokemon == 'spinda') ? 'checked' : ''; ?> required>
                                 <img src="images/spinda.gif" alt="Spinda">
                             </label>
                         </div>

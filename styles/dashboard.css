@@ -24,7 +24,7 @@ body, html {
     padding: 0;
     display: flex;
     overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-y: auto;
     will-change: transform;
     transform: translateZ(0);
     content-visibility: auto;
@@ -1068,7 +1068,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding-top: 0;
     border-radius: 35px;
     color: var(--text);
-    margin-bottom: -30px;
+    margin-top: -10px;
 }
 
 .profile-info {
@@ -1274,4 +1274,34 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 1.5rem;
     font-weight: 500;
     color: var(--text);
+}
+
+.pet-name-section {
+    margin-bottom: 20px;
+}
+
+.pet-name-section input {
+    padding: 10px;
+    padding-bottom: 12px;
+    border: 1px solid var(--borders);   
+    background: transparent;
+    border-radius: 50px;
+    margin-right: 10px;
+    margin-top: 15px;
+    width: 200px;
+    color: var(--text);
+    margin-left: 5px;
+    height: 3px;
+}
+
+.name-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.pet-name-section input::placeholder {
+    color: var(--text-dim);
+    opacity: 1;
 }
