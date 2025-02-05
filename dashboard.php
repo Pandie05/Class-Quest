@@ -178,7 +178,6 @@
         <form class="search-top" id="searchForm" method="GET" action="dashboard.php">
             <input type="text" id="search" name="search" placeholder="Search assignment by title..." value="<?php echo htmlspecialchars($search); ?>">
             <select class="search-top" id="sort" name="sort">
-                
                 <option value="duedate" <?php echo $sortBy === 'duedate' ? 'selected' : ''; ?>>Due Date</option>
                 <option value="assigntype" <?php echo $sortBy === 'assigntype' ? 'selected' : ''; ?>>Assignment Type</option>
                 <option value="done" <?php echo $sortBy === 'done' ? 'selected' : ''; ?>>Completed</option>
@@ -223,7 +222,7 @@
                 echo '<div class="assignment-xp"><label>' . ucfirst(htmlspecialchars($assignment['assigntype'])) . '</label><p>' . $assignment['xp'] . ' xp</p></div>';
 
                 echo '<div class="assignment-actions">';
-                echo '<button class="edit-btn"  onclick="showEditForm(' . $assignment['id'] . ')" data-assignment=\'' . json_encode($assignment) . '\'>Edit</button>';
+                echo '<a href="#" class="edit-btn" onclick="showEditForm(' . $assignment['id'] . ')" data-assignment=\'' . json_encode($assignment) . '\'>Edit</a>';
                 echo '<button class="delete-btn" onclick="showDeleteConfirm(' . $assignment['id'] . ')" data-id="' . $assignment['id'] . '"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M8.106 2.553A1 1 0 0 1 9 2h6a1 1 0 0 1 .894.553L17.618 6H20a1 1 0 1 1 0 2h-1v11a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V8H4a1 1 0 0 1 0-2h2.382zM14.382 4l1 2H8.618l1-2zM11 11a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0zm4 0a1 1 0 1 0-2 0v6a1 1 0 1 0 2 0z" clip-rule="evenodd"/></svg></button>';
                 echo '</div>';
                 echo '</div>';
@@ -231,7 +230,7 @@
         ?>
     </div>
 
-    <!-- Add/Edit Assignment Form -->
+    <!-- Add Assignment Form -->
     <div class="add-assignment-form">
         <form id="assignment-form" action="dashboard.php" method="POST">
             <input type="hidden" name="id" id="assignment-id">
@@ -253,6 +252,28 @@
         </form>
     </div>
 
+    <!-- Edit Assignment Form -->
+    <div class="edit-assignment-form">
+        <form id="edit-assignment-form" action="dashboard.php" method="POST">
+            <input type="hidden" name="id" id="edit-assignment-id">
+            <input type="text" name="title" id="edit-assignment-title" placeholder="Title" required>
+            <input type="text" name="classname" id="edit-assignment-classname" placeholder="Class Name" required>
+            <input type="date" name="duedate" id="edit-assignment-duedate" required>
+            <select name="assigntype" id="edit-assignment-assigntype" required>
+                <option value="final">Final</option>
+                <option value="midterm">Midterm</option>
+                <option value="exam">Exam</option>
+                <option value="test">Test</option>
+                <option value="quiz">Quiz</option>
+                <option value="homework" selected>Homework</option>
+            </select>
+            <div class="button-group">
+                <button type="submit">Save Changes</button>
+                <button id="cancel-edit-btn" type="button">Cancel</button>
+            </div>
+        </form>
+    </div>
+
     <!-- Loading Overlay -->
     <div id="loading-overlay" style="display: none;">
         <div class="loading-spinner"></div>
@@ -261,16 +282,6 @@
     <script src="scripts/dashboard.js"></script>
     
     <script>
-
-        function showEditForm(assignment) {
-            const form = document.querySelector('.add-assignment-form');
-            document.getElementById('assignment-id').value = assignment.id;
-            document.getElementById('assignment-title').value = assignment.title;
-            document.getElementById('assignment-classname').value = assignment.classname;
-            document.getElementById('assignment-duedate').value = assignment.duedate;
-            document.getElementById('assignment-assigntype').value = assignment.assigntype;
-            form.classList.add('show');
-        }
         
         document.addEventListener('DOMContentLoaded', function() {
 

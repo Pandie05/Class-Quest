@@ -373,6 +373,112 @@ nav {
     box-shadow: 0 2px 8px var(--tertiary-color);
 }
 
+/* Edit Assignment Form */
+.edit-assignment-form {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 2rem;
+    border-radius: 35px;
+    border: 1px solid var(--borders);
+    box-shadow: 0 0 20px rgba(224, 224, 224, 0.2);
+    width: 100%;
+    max-width: 500px;
+    height: 400px;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    backdrop-filter: blur(10px); /* Blur effect for background */
+}
+
+.edit-assignment-form.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.edit-assignment-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    width: 100%;
+}
+
+.edit-assignment-form input,
+.edit-assignment-form select {
+    padding: 0.8rem;
+    background: var(--form-transparency);
+    border: 1px solid var(--borders);
+    border-radius: 15px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s;
+    color: var(--text-dim);
+    backdrop-filter: blur(10px);
+}
+
+.edit-assignment-form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+}
+
+.edit-assignment-form input:focus,
+.edit-assignment-form select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px var(--tertiary-color);
+}
+
+.edit-assignment-form select option {
+    background: var(--background-color);
+    color: var(--text);
+}
+
+.edit-assignment-form .button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 50px;
+}
+
+.edit-assignment-form button {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    border-radius: 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.edit-assignment-form button[type="submit"] {
+    background: var(--primary-color);
+    color: var(--text);
+}
+
+.edit-assignment-form button[type="button"] {
+    background: transparent;
+    border: 1px solid var(--secondary-color);
+    color: var(--text-dim);
+}
+
+.edit-assignment-form button:hover {
+    transform: translateY(-2px);
+}
+
+.edit-assignment-form button[type="submit"]:hover {
+    background: var(--primary-color);
+    box-shadow: 0 2px 8px var(--tertiary-color);
+}
+
 /* Form Utils */
 ::placeholder {
     color: var(--text-dim);
