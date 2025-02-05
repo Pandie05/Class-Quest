@@ -9,17 +9,16 @@
 </head>
 <body>
 
-    <div>
+    <div class="header-container">
 
-        <div class="logo">
-            <img src="images/logo.png" alt="">
+        <h1>Welcome to Class Quest</h1>
+
+        <h3>Create tasks and assignments and level up your <br> pet with an advanced leveling system.</h3>
+
+        <div class="btns">
+            <button class="register-btn"><a href="register.php">Register</a></button>
+            <button class="login-btn"><a href="login.php">Login</a></button>
         </div>
-
-        <h1>Class Quest</h1>
-
-        <h3>Find the motivation to get your work done</h3>
-
-        <button><a href="register.php">Register</a></button>
 
     <div>
 

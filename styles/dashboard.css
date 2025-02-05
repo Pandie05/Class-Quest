@@ -74,6 +74,17 @@ nav {
     transition: 0.2s;
 }
 
+.edit-btn {
+    background: transparent;
+    font-size: 1rem;
+    color: #ffffff9a;
+    transition: 0.3s;
+}
+
+.edit-btn:hover {
+    color: var(--text-dim);
+}
+
 .add-btn:hover {
     border-color: var(--primary-color);
 }

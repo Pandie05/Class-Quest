@@ -78,9 +78,9 @@
 
     <nav>
         
-        <div class="logo">
+        <a href="index.php" class="logo">
             <img src="images/logo.png" alt="">
-        </div>
+        </a>
 
         <div class="icon-links">
             <a class="add-btn">

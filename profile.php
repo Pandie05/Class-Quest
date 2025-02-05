@@ -29,9 +29,9 @@
 
 <nav>
         
-        <div class="logo">
+        <a href="index.php" class="logo">
             <img src="images/logo.png" alt="">
-        </div>
+        </a>
 
         <div class="icon-links" style="margin-top: 100px; gap: 30px;">
             
