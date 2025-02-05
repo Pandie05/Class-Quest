@@ -947,7 +947,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-weight: 500;
     color: var(--text);
     width: auto;
-    margin-left: 5px;
     height: 15px;
 }
 
