@@ -231,12 +231,20 @@
             <input type="text" name="classname" id="assignment-classname" placeholder="Class Name" required>
             <input type="date" name="duedate" id="assignment-duedate" required>
             <select name="assigntype" id="assignment-assigntype" required>
-                <option value="final">Final</option>
-                <option value="midterm">Midterm</option>
-                <option value="exam">Exam</option>
-                <option value="test">Test</option>
-                <option value="quiz">Quiz</option>
-                <option value="homework" selected>Homework</option>
+                <optgroup label="Assignment">
+                    <option value="final">Final</option>
+                    <option value="midterm">Midterm</option>
+                    <option value="test">Test</option>
+                    <option value="homework">Homework</option>
+                    <option value="quiz">Quiz</option>
+                </optgroup>
+                <optgroup label="Or Difficulty">
+                    <option value="Vhard">Very Hard</option>
+                    <option value="hard">Hard</option>
+                    
+                    <option value="med">Medium</option>
+                    <option value="easy" selected>Easy</option>
+                </optgroup>
             </select>
             <div class="button-group">
                 <button type="submit">Add</button>
@@ -252,13 +260,21 @@
             <input type="text" name="title" id="edit-assignment-title" placeholder="Title" required>
             <input type="text" name="classname" id="edit-assignment-classname" placeholder="Class Name" required>
             <input type="date" name="duedate" id="edit-assignment-duedate" required>
-            <select name="assigntype" id="edit-assignment-assigntype" required>
-                <option value="final">Final</option>
-                <option value="midterm">Midterm</option>
-                <option value="exam">Exam</option>
-                <option value="test">Test</option>
-                <option value="quiz">Quiz</option>
-                <option value="homework" selected>Homework</option>
+            <select name="assigntype" id="assignment-assigntype" required>
+                <optgroup label="Assignment">
+                    <option value="final">Final</option>
+                    <option value="midterm">Midterm</option>
+                    <option value="test">Test</option>
+                    <option value="homework">Homework</option>
+                    <option value="quiz">Quiz</option>
+                </optgroup>
+                <optgroup label="Or Difficulty">
+                    <option value="Vhard">Very Hard</option>
+                    <option value="hard">Hard</option>
+                    
+                    <option value="med">Medium</option>
+                    <option value="easy" selected>Easy</option>
+                </optgroup>
             </select>
             <div class="button-group">
                 <button type="submit">Save Changes</button>

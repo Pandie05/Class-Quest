@@ -348,6 +348,13 @@ nav {
     color: var(--text);
 }
 
+.add-assignment-form label {
+    font-size: 1rem;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
 .button-group {
     display: flex;
     gap: 1rem;

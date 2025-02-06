@@ -218,10 +218,13 @@ function xp($duedate, $type) {
     $typeValues = [
         'final' => 350,
         'midterm' => 150,
-        'exam' => 100,
         'test' => 90,
         'quiz' => 70,
-        'homework' => 30
+        'homework' => 30,
+        'Vhard' => 250,
+        'hard' => 150,
+        'med' => 70,
+        'easy' => 35
     ];
 
     return $typeValues[$type];
