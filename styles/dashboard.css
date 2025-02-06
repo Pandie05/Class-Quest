@@ -6,6 +6,7 @@
     image-rendering: pixelated;
     scale: var(--pet-scale);
     filter: contrast(var(--pet-contrast));
+    filter: saturate(var(--pet-saturate));
     will-change: transform;
     transform: translateZ(0);
     content-visibility: auto;
@@ -739,7 +740,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {

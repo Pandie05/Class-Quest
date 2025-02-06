@@ -217,7 +217,7 @@ function daysUntilDue($duedate) {
 function xp($duedate, $type) {
     $typeValues = [
         'final' => 350,
-        'midterm' => 150,
+        'midterm' => 250,
         'test' => 90,
         'quiz' => 70,
         'homework' => 30,

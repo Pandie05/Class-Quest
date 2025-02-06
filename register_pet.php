@@ -46,65 +46,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <div class="pet-selection">
                     <label>
-                        <input type="radio" name="pokemon" value="absol" required>
-                        <img src="images/absol-mega.gif" alt="Absol">
+                        <input type="radio" name="pokemon" value="shinx" required>
+                        <img src="images/shinx.gif" alt="Shinx">
                     </label>
                     <label>
-                        <input type="radio" name="pokemon" value="blaziken" required>
-                        <img src="images/charizard.gif" alt="Blaziken">
+                        <input type="radio" name="pokemon" value="zorua" required>
+                        <img src="images/zorua.gif" alt="Zorua">
                     </label>
                     <label>
-                        <input type="radio" name="pokemon" value="venasaur" required>
-                        <img src="images/venasaur.gif" alt="Venasaur">
+                        <input type="radio" name="pokemon" value="ralts" required>
+                        <img src="images/ralts.gif" alt="Ralts">
                     </label>
-                    <label>
-                        <input type="radio" name="pokemon" value="thundurus" required>
-                        <img src="images/thundurus.gif" alt="Thundurus">
-                    </label>
-                    <label>
-                        <input type="radio" name="pokemon" value="pangoro" required>
-                        <img src="images/pangoro.gif" alt="Pangoro">
-                    </label>
-                    <label>
-                        <input type="radio" name="pokemon" value="snorlax" required>
-                        <img src="images/snorlax.gif" alt="Snorlax">
-                    </label>
-                    <label>
-                        <input type="radio" name="pokemon" value="scizor" required>
-                        <img src="images/scizor.gif" alt="Scizor">
-                    </label>
-                    <label>
-                        <input type="radio" name="pokemon" value="celebi" required>
-                        <img src="images/celebi.gif" alt="Celebi">
-                    </label>
-                    <label>
-                        <input type="radio" name="pokemon" value="umbreon" required>
-                        <img src="images/umbreon.gif" alt="Umbreon">
-                    </label>
-                    <label>
-                        <input type="radio" name="pokemon" value="rayquaza" required>
-                        <img src="images/rayquaza-mega.gif" alt="Rayquaza">
-                    </label>
-                    <label>
-                        <input type="radio" name="pokemon" value="obstagoon" required>
-                        <img src="images/obstagoon.gif" alt="Obstagoon">
-                    </label>
-                    <label>
-                        <input type="radio" name="pokemon" value="tyrantrum" required>
-                        <img src="images/tyrantrum.gif" alt="Tyrantrum">
-                    </label>
-                    <label>
-                        <input type="radio" name="pokemon" value="swampert" required>
-                        <img src="images/swampert.gif" alt="Swampert">
-                    </label>
-                    <label>
-                        <input type="radio" name="pokemon" value="spinda" required>
-                        <img src="images/spinda.gif" alt="Spinda">
-                    </label>
-                    <label>
-                        <input type="radio" name="pokemon" value="gardevoir" <?php echo ($currentPokemon == 'gardevoir') ? 'checked' : ''; ?> required>
-                        <img src="images/gardevoir.gif" alt="Gardevoir">
-                    </label>
+                    
                 </div>
 
                 <button type="submit">

@@ -174,7 +174,7 @@
 
         </div>
 
-        <div class="assignment-board">
+    <div class="assignment-board">
     <div class="search-sort">
         <form class="search-top" id="searchForm" method="GET" action="dashboard.php">
             <input type="text" id="search" name="search" placeholder="Search assignment by title..." value="<?php echo htmlspecialchars($search); ?>">
@@ -241,7 +241,6 @@
                 <optgroup label="Or Difficulty">
                     <option value="Vhard">Very Hard</option>
                     <option value="hard">Hard</option>
-                    
                     <option value="med">Medium</option>
                     <option value="easy" selected>Easy</option>
                 </optgroup>
