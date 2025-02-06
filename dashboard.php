@@ -147,7 +147,7 @@
                         <?php
                             $bars = [
                                 ['id' => 'hp', 'max' => 100, 'current' => $petData['hp'], 'min' => 0],
-                                ['id' => 'xp', 'max' => 500, 'current' => $petData['xp'], 'min' => 0],
+                                ['id' => 'xp', 'max' => 200, 'current' => $petData['xp'], 'min' => 0],
                             ];
 
                             foreach ($bars as $bar) {
@@ -207,16 +207,8 @@
             foreach ($assignments as $assignment) {
                 echo '<div class="assignment">';
                 echo '<input type="checkbox" class="assignment-checkbox"
-                    onclick="fetch(\'update_assignment.php\', {
-                        method: \'POST\',
-                        headers: { \'Content-Type\': \'application/json\' },
-                        body: JSON.stringify({
-                            id: ' . $assignment['id'] . ',
-                            done: ' . ($assignment['done'] ? '0' : '1') . '
-                        })
-                    }).then(() => window.location.reload());"
-                    data-id="' . $assignment['id'] . '"
-                    ' . ($assignment['done'] ? 'checked' : '') . '>';
+                data-id="' . $assignment['id'] . '"
+                ' . ($assignment['done'] ? 'checked' : '') . '>';
 
                 echo '<div class="assignment-date"><label>' . htmlspecialchars($assignment['classname']) . '</label><p>' . htmlspecialchars($assignment['title']) . '</p></div>';
                 echo '<div class="assignment-date"><label>Date</label><p>' . date('F j, Y', strtotime($assignment['duedate'])) . '</p></div>';
@@ -247,7 +239,7 @@
                 <option value="homework" selected>Homework</option>
             </select>
             <div class="button-group">
-                <button type="submit">Save Changes</button>
+                <button type="submit">Add</button>
                 <button id="cancel-btn" type="button">Cancel</button>
             </div>
         </form>
@@ -283,104 +275,95 @@
     <script src="scripts/dashboard.js"></script>
     
     <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const loadingOverlay = document.getElementById('loading-overlay');
         
-        document.addEventListener('DOMContentLoaded', function() {
-
-            // Existing checkbox functionality
-            const checkboxes = document.querySelectorAll('.assignment-checkbox');
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', function() {
-                    const assignmentId = this.getAttribute('data-id');
-                    const done = this.checked ? 1 : 0;
-
-                    fetch('update_assignment.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ id: assignmentId, done: done })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            // Get the assignment wrapper
-                            const assignmentWrapper = document.querySelector('.assignment-wrapper');
-                            // Get all assignments
-                            const assignments = Array.from(assignmentWrapper.children);
-                            
-                            // Sort assignments
-                            assignments.sort((a, b) => {
-                                const aChecked = a.querySelector('.assignment-checkbox').checked;
-                                const bChecked = b.querySelector('.assignment-checkbox').checked;
-                                return aChecked - bChecked;
-                            });
-                            
-                            // Reorder the DOM
-                            assignments.forEach(assignment => {
-                                assignmentWrapper.appendChild(assignment);
-                            });
-                        } else {
-                            console.error('Failed to update assignment');
-                            // Revert checkbox if update failed
-                            checkbox.checked = !checkbox.checked;
-                        }
-                    })
-                    .catch(error => console.error('Error:', error));
+        // show loading overlay before page unload
+        window.addEventListener('beforeunload', function() {
+            loadingOverlay.style.display = 'flex';
+        });
+        
+        // add a flag to track if we're processing a checkbox
+        let isProcessing = false;
+        
+        // checkbox handling - first event listener
+        const checkboxes = document.querySelectorAll('.assignment-checkbox');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if (isProcessing) return; // prevent multiple clicks
+                isProcessing = true;
                 
+                loadingOverlay.style.display = 'flex';
+                const assignmentId = this.getAttribute('data-id');
+                const done = this.checked ? 1 : 0;
+
+                fetch('update_assignment.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        id: assignmentId, 
+                        done: done 
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.reload();
+                    } else {
+                        console.error('Failed to update assignment');
+                        checkbox.checked = !checkbox.checked;
+                        loadingOverlay.style.display = 'none';
+                        isProcessing = false;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    checkbox.checked = !checkbox.checked;
+                    loadingOverlay.style.display = 'none';
+                    isProcessing = false;
                 });
+            });
+
+            // second event listener for the same checkboxes
+            checkbox.addEventListener('click', function(e) {
+                if (isProcessing) {
+                    e.preventDefault(); // prevent the click if we're processing
+                    return;
+                }
+                isProcessing = true;
+                
+                loadingOverlay.style.display = 'flex';
+                const assignmentId = this.getAttribute('data-id');
+                const done = !this.checked; // invert because the change hasn't processed yet
+
+                fetch('update_assignment.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        id: assignmentId, 
+                        done: done ? 0 : 1
+                    })
+                })
+                .then(() => window.location.reload());
             });
         });
 
-        // Add real-time search and sort functionality
+        // for sort select changes
         const sortSelect = document.getElementById('sort');
         sortSelect.addEventListener('change', function() {
+            loadingOverlay.style.display = 'flex';
             document.getElementById('searchForm').submit();
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const loadingOverlay = document.getElementById('loading-overlay');
-
-            // Show loading overlay before page unload
-            window.addEventListener('beforeunload', function() {
-                loadingOverlay.style.display = 'flex';
-            });
-
-            // For checkbox clicks
-            const checkboxes = document.querySelectorAll('.assignment-checkbox');
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener('click', function(e) {
-                    loadingOverlay.style.display = 'flex';
-                    const assignmentId = this.getAttribute('data-id');
-                    const done = !this.checked; // Invert because the change hasn't processed yet
-
-                    fetch('update_assignment.php', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ 
-                            id: assignmentId, 
-                            done: done ? 0 : 1
-                        })
-                    })
-                    .then(() => window.location.reload());
-                });
-            });
-
-            // For sort select changes
-            const sortSelect = document.getElementById('sort');
-            sortSelect.addEventListener('change', function() {
-                loadingOverlay.style.display = 'flex';
-                document.getElementById('searchForm').submit();
-            });
-
-            // For search form submission
-            const searchForm = document.getElementById('searchForm');
-            searchForm.addEventListener('submit', function() {
-                loadingOverlay.style.display = 'flex';
-            });
+        // for search form submission
+        const searchForm = document.getElementById('searchForm');
+        searchForm.addEventListener('submit', function() {
+            loadingOverlay.style.display = 'flex';
         });
-
-
-    </script>
+    });
+</script>
     
 </body>
 </html>

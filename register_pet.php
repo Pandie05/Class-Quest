@@ -101,6 +101,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="radio" name="pokemon" value="spinda" required>
                         <img src="images/spinda.gif" alt="Spinda">
                     </label>
+                    <label>
+                        <input type="radio" name="pokemon" value="gardevoir" <?php echo ($currentPokemon == 'gardevoir') ? 'checked' : ''; ?> required>
+                        <img src="images/gardevoir.gif" alt="Gardevoir">
+                    </label>
                 </div>
 
                 <button type="submit">

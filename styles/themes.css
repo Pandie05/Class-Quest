@@ -279,3 +279,21 @@
     --pet-scale: 1.1;
     --form-transparency: #0000008f;
 }
+
+.theme-gardevoir {
+    --primary-color: #2b81e4;
+    --secondary-color: #e66430;
+    --tertiary-color: #3693b871;
+    --text: #ffffff;
+    --text-dim: #82d1ffcc;
+    --add-fill: #7d16ad;
+    --borders: #e46736;
+    --borders-dim: rgba(255, 122, 61, 0.507);
+    --background-image: url('../images/bg-gard.png');
+    --petbg-image: url('../images/pet-bg-gard.jpg');
+    --filter-color: invert(60%) sepia(100%) saturate(500%) hue-rotate(190deg) brightness(100%) contrast(100%);
+    --background-color: #111111;
+    --pet: url('../images/gardevoir.gif');
+    --pet-scale: 1.1;
+    --form-transparency: #0000008f;
+}

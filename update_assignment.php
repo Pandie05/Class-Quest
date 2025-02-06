@@ -10,13 +10,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $data['id'];
     $done = $data['done'];
 
-    $sql = "UPDATE assignments SET done = :done WHERE id = :id AND userID = :userID";
-    $stmt = $db->prepare($sql);
-    $stmt->bindParam(':done', $done, PDO::PARAM_BOOL);
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    $stmt->bindParam(':userID', $_SESSION['user']['ID'], PDO::PARAM_INT);
+    try {
+        // Start transaction
+        $db->beginTransaction();
 
-    if ($stmt->execute()) {
+        // Update assignment status
+        $sql = "UPDATE assignments SET done = :done WHERE id = :id AND userID = :userID";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':done', $done, PDO::PARAM_BOOL);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':userID', $_SESSION['user']['ID'], PDO::PARAM_INT);
+        $success = $stmt->execute();
+
+        if (!$success) {
+            throw new Exception("Failed to update assignment status");
+        }
+
         // Fetch assignment XP
         $sql = "SELECT xp FROM assignments WHERE id = :id";
         $stmt = $db->prepare($sql);
@@ -34,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pet = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($done) {
-            // Check if HP has already been awarded for this assignment
             $sql = "SELECT hp_awarded FROM assignments WHERE id = :id";
             $stmt = $db->prepare($sql);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
@@ -42,48 +50,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $assignment = $stmt->fetch(PDO::FETCH_ASSOC);
             $hpAwarded = $assignment['hp_awarded'];
 
-            // Add XP and update HP
             $newXp = $pet['xp'] + $assignmentXp;
             $newHp = $pet['hp'];
 
-            // Level up if XP exceeds 150
-            if ($newXp >= 500) {
-            petLevelup($userId); // Increment level
-            $newXp = $newXp % 500; // Remainder after leveling up
+            if ($newXp >= 200) {
+                petLevelup($userId);
+                $newXp = $newXp % 200;
             }
 
-            // Increase HP by 20% of assignment XP, capped at 100, if not already awarded
             if (!$hpAwarded) {
-            $newHp = min(100, $newHp + (0.2 * $assignmentXp));
-
-            // Mark HP as awarded for this assignment
-            $sql = "UPDATE assignments SET hp_awarded = 1 WHERE id = :id";
-            $stmt = $db->prepare($sql);
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmt->execute();
+                $newHp = min(100, $newHp + (0.2 * $assignmentXp));
+                $sql = "UPDATE assignments SET hp_awarded = 1 WHERE id = :id";
+                $stmt = $db->prepare($sql);
+                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+                $stmt->execute();
             }
         } else {
-            // Subtract XP and update HP
-            $newXp = $pet['xp'] - $assignmentXp;
+            $newXp = max(0, $pet['xp'] - $assignmentXp);
             $newHp = $pet['hp'];
-
-            // Ensure XP is not negative
-            if ($newXp < 0) {
-            $newXp = 0;
-            }
         }
 
-        // Update pet XP and HP in the database
+        // Update pet stats
         $sql = "UPDATE pets SET xp = :xp, hp = :hp WHERE userID = :userID";
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':xp', $newXp, PDO::PARAM_INT);
         $stmt->bindParam(':hp', $newHp, PDO::PARAM_INT);
         $stmt->bindParam(':userID', $userId, PDO::PARAM_INT);
-        $stmt->execute();
+        $success = $stmt->execute();
 
-        echo json_encode(['success' => true]);
-    } else {
-        echo json_encode(['success' => false, 'error' => $stmt->errorInfo()]);
+        if (!$success) {
+            throw new Exception("Failed to update pet stats");
+        }
+
+        // Commit transaction
+        $db->commit();
+        
+        header('Content-Type: application/json');
+        echo json_encode(['success' => true, 'done' => $done]);
+    } catch (Exception $e) {
+        // Rollback on error
+        $db->rollBack();
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'error' => $e->getMessage()]);
     }
+} else {
+    header('Content-Type: application/json');
+    echo json_encode(['success' => false, 'error' => 'Invalid request method']);
 }
-?>

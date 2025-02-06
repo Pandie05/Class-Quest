@@ -32,18 +32,14 @@ $theme = getUserPetTheme($_SESSION['user']['ID']);
 
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.min.js'></script>
-    
 </head>
 <body class="theme-<?php echo $theme; ?>">
-
-<nav>
-        
+    <nav>
         <a href="index.php" class="logo">
             <img src="images/logo.png" alt="">
         </a>
 
         <div class="icon-links">
-            
             <a class="dash-btn" href="dashboard.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12.204c0-2.289 0-3.433.52-4.381c.518-.949 1.467-1.537 3.364-2.715l2-1.241C9.889 2.622 10.892 2 12 2s2.11.622 4.116 1.867l2 1.241c1.897 1.178 2.846 1.766 3.365 2.715S22 9.915 22 12.203v1.522c0 3.9 0 5.851-1.172 7.063S17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.212S2 17.626 2 13.725z"/><path stroke-linecap="round" d="M9 16c.85.63 1.885 1 3 1s2.15-.37 3-1"/></g></svg>
             </a>
@@ -56,12 +52,8 @@ $theme = getUserPetTheme($_SESSION['user']['ID']);
             <a class="logout-btn" href="logout.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 20 20"><path fill="currentColor" fill-rule="evenodd" d="M3 3a1 1 0 0 0-1 1v12a1 1 0 1 0 2 0V4a1 1 0 0 0-1-1m10.293 9.293a1 1 0 0 0 1.414 1.414l3-3a1 1 0 0 0 0-1.414l-3-3a1 1 0 1 0-1.414 1.414L14.586 9H7a1 1 0 1 0 0 2h7.586z" clip-rule="evenodd"/></svg>
             </a>
-        <div>
-
-        
-
+        </div>
     </nav>
-
 
     <div id="calendar"></div>
 
@@ -69,8 +61,20 @@ $theme = getUserPetTheme($_SESSION['user']['ID']);
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
 
+            // get the last selected view from localStorage or default to month view
+            var lastView = localStorage.getItem('calendarViewType') || 'dayGridMonth';
+            
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
+                initialView: lastView,
+                views: {
+                    dayGridMonth: { buttonText: 'Month' },
+                    timeGridWeek: { buttonText: 'Week' }
+                },
+                headerToolbar: {
+                    left: 'prev,next,dayGridMonth,timeGridWeek,today',
+                    center: 'title',
+                    right: ''
+                },
                 events: [
                     <?php foreach ($assignments as $assignment): ?>
                         {
@@ -83,6 +87,16 @@ $theme = getUserPetTheme($_SESSION['user']['ID']);
                         },
                     <?php endforeach; ?>
                 ]
+            });
+
+            // add event listener for view changes
+            calendar.on('_viewChange', function(arg) {
+                localStorage.setItem('calendarViewType', calendar.view.type);
+            });
+
+            // also save view when switching via the toolbar buttons
+            calendar.on('datesSet', function() {
+                localStorage.setItem('calendarViewType', calendar.view.type);
             });
 
             calendar.render();
