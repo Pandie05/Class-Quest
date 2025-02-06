@@ -99,6 +99,10 @@
             <a class="logout-btn" href="logout.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 20 20"><path fill="currentColor" fill-rule="evenodd" d="M3 3a1 1 0 0 0-1 1v12a1 1 0 1 0 2 0V4a1 1 0 0 0-1-1m10.293 9.293a1 1 0 0 0 1.414 1.414l3-3a1 1 0 0 0 0-1.414l-3-3a1 1 0 1 0-1.414 1.414L14.586 9H7a1 1 0 1 0 0 2h7.586z" clip-rule="evenodd"/></svg>
             </a>
+            <a class="admin-btn" href="admin.php">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zM9 17v-2h6v2H9zm0-4h6V7H9v6z"/></svg>
+            </a>
+
         <div>
 
     </nav>
@@ -270,7 +274,6 @@
                 <optgroup label="Or Difficulty">
                     <option value="Vhard">Very Hard</option>
                     <option value="hard">Hard</option>
-                    
                     <option value="med">Medium</option>
                     <option value="easy" selected>Easy</option>
                 </optgroup>
