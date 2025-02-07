@@ -214,10 +214,10 @@
     --borders: #cfc887;
     --borders-dim: rgba(223, 212, 133, 0.507);
     --background-image: url('../images/bg-yeller.png');
-    --petbg-image: url('../images/pet-bg-sleep.jpg');
+    --petbg-image: url('../images/open.gif');
     --filter-color: invert(30%) sepia(100%) saturate(3000%) hue-rotate(20deg) brightness(85%) contrast(50%);
     --background-color: #111111;
-    --pet: url('../images/mimikyu.gif');
+    --pet: url('../images/open.gif');
     --pet-scale: 0.9;
     --form-transparency: #0000008f;
 }
