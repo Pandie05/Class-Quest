@@ -8,10 +8,13 @@ if (isset($data['password']) && isset($_SESSION['user']['ID'])) {
     $userID = $_SESSION['user']['ID'];
     $newPassword = $data['password']; // Reminder: Hash the password before storing it in the database
 
-    updatePassword($userID, $newPassword);
-
-    echo json_encode(['success' => true]);
+    if (!empty($newPassword)) {
+        updatePassword($userID, $newPassword);
+        echo json_encode(['success' => true]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Password cannot be empty']);
+    }
 } else {
-    echo json_encode(['success' => false]);
+    echo json_encode(['success' => false, 'message' => 'Invalid request']);
 }
 ?>
