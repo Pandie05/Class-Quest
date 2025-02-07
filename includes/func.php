@@ -1,7 +1,6 @@
 <?php
 include __DIR__ . '../../model/db.php';
 
-//testing this
 function getPet($id) {
 
     global $db;
@@ -16,6 +15,15 @@ function getPet($id) {
 
     return $stmt->fetch();
 
+}
+
+function updatePassword($id, $password) {
+    global $db;
+    $sql = "UPDATE users SET password = :password WHERE ID = :id";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
 }
 
 function getPetPokemon($userID) {

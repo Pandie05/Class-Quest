@@ -42,8 +42,21 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('edit-assignment-id').value = assignment.id;
         document.getElementById('edit-assignment-title').value = assignment.title;
         document.getElementById('edit-assignment-classname').value = assignment.classname;
-        document.getElementById('edit-assignment-duedate').value = new Date(assignment.duedate).toISOString().split('T')[0];
-        document.getElementById('edit-assignment-assigntype').value = assignment.assigntype;
+
+        // validate date
+        const dueDate = new Date(assignment.duedate);
+        if (!isNaN(dueDate)) {
+            document.getElementById('edit-assignment-duedate').value = dueDate.toISOString().split('T')[0];
+        }
+
+        const assigntypeSelect = document.getElementById('assignment-assigntype');
+        const options = assigntypeSelect.options;
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].value === assignment.assigntype) {
+                options[i].selected = true;
+                break;
+            }
+        }
         editForm.classList.add('show');
     };
 });
