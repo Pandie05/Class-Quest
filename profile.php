@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="styles/dashboard.css">
     <link rel="stylesheet" href="styles/themes.css">
     <link rel="stylesheet" href="styles/noscroll.css">
+    <link rel="stylesheet" href="styles/nav.css">
+    <link rel="stylesheet" href="styles/profile.css">
 
 </head>
 <body class="theme-<?php echo $theme; ?>">

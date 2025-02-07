@@ -74,6 +74,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/themes.css">
     <link rel="stylesheet" href="styles/noscroll.css">
+    <link rel="stylesheet" href="styles/nav.css">
+    <link rel="stylesheet" href="styles/addTask.css">
 </head>
 <body class="theme-<?php echo $theme; ?>">
 

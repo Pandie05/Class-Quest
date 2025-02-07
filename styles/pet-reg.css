@@ -186,6 +186,7 @@ button[type="submit"] svg {
     background-color: transparent;
     border-radius: 50%;
     transition: all 0.3s ease;
+    position: fixed;
 }
 
 .back-to-home a:hover {
@@ -203,6 +204,11 @@ button[type="submit"] svg {
 }
 
 @media (max-width: 768px) {
+    body {
+        overflow-x: scroll;
+        overflow-y: scroll;
+    }
+
     .pet-selection {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
@@ -214,6 +220,10 @@ button[type="submit"] svg {
     
     .pet-picker {
         padding: 1rem;
+    }
+
+    .back-to-home a {
+        display: none;
     }
 }
 
