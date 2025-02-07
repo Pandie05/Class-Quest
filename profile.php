@@ -137,6 +137,10 @@
                                 <input type="radio" name="pokemon" value="zoroark" <?php echo ($currentPokemon == 'zoroark') ? 'checked' : ''; ?> required>
                                 <img src="images/zoroark.gif" alt="zoroark">
                             </label>
+                            <label>
+                                <input type="radio" name="pokemon" value="mimikyu" <?php echo ($currentPokemon == 'mimikyu') ? 'checked' : ''; ?> required>
+                                <img src="images/mimikyu.gif" alt="mimikyu">
+                            </label>
                             
                         </div>
 

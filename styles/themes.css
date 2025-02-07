@@ -185,3 +185,39 @@
     --pet-scale: 1.1;
     --form-transparency: #0000008f;
 }
+
+.theme-zoroark {
+    --primary-color: #cf2929;
+    --secondary-color: #4ec0a4;
+    --tertiary-color: #b8363671;
+    --text: #ffffff;
+    --text-dim: #ff8686cc;
+    --add-fill: #791818;
+    --borders: #e43636;
+    --borders-dim: rgba(255, 61, 61, 0.507);
+    --background-image: url('../images/bg-dark.png');
+    --petbg-image: url('../images/pet-bg-dark.jpg');
+    --filter-color: invert(30%) sepia(100%) saturate(3000%) hue-rotate(-35deg) brightness(85%) contrast(400%);
+    --background-color: #111111;
+    --pet: url('../images/zoroark.gif');
+    --pet-scale: 1.1;
+    --form-transparency: #0000008f;
+}
+
+.theme-mimikyu {
+    --primary-color: #c5be7d;
+    --secondary-color: #888047;
+    --tertiary-color: #c2b54271;
+    --text: #ffffff;
+    --text-dim: #bbb484cc;
+    --add-fill: #b1a071;
+    --borders: #cfc887;
+    --borders-dim: rgba(223, 212, 133, 0.507);
+    --background-image: url('../images/bg-yeller.png');
+    --petbg-image: url('../images/pet-bg-sleep.jpg');
+    --filter-color: invert(30%) sepia(100%) saturate(3000%) hue-rotate(20deg) brightness(85%) contrast(50%);
+    --background-color: #111111;
+    --pet: url('../images/mimikyu.gif');
+    --pet-scale: 0.9;
+    --form-transparency: #0000008f;
+}
