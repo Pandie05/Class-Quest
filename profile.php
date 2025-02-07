@@ -72,103 +72,145 @@
                 <h2>Hi!, <?php echo $_SESSION['user']['username']; ?></h2>
                 <p>Email: <?php echo $_SESSION['user']['email']; ?></p>
                 
-                <div class="password-input">
-                    <label for="password">Password:</label>
-                    <div style="position: relative;">
-                        <input type="password" name="password" id="password" placeholder="Password" value="<?php echo $_SESSION['user']['password']; ?>" readonly style="padding-right: 30px;">
-                        <svg id="togglePassword" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
-                            <path fill="currentColor" d="M12 9a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5c-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0a9.821 9.821 0 0 0-17.64 0"/>
-                        </svg>
+                <div class="password-change-section">
+                    <div class="password-input">
+                        <label for="password">Password:</label>
+                        <div style="position: relative;">
+                            <input type="password" name="password" id="password" placeholder="Password" value="<?php echo $_SESSION['user']['password']; ?>" readonly style="padding-right: 30px;">
+                            <svg id="togglePassword" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                                <path fill="currentColor" d="M12 9a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5c-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0a9.821 9.821 0 0 0-17.64 0"/>
+                            </svg>
+                        </div>
                     </div>
+
+                    <div class="password-input">
+                        <label for="new-password">New Password:</label>
+                        <div style="position: relative;">
+                            <input type="password" name="new-password" id="new-password" placeholder="New Password" style="padding-right: 30px;">
+                            <svg id="toggleNewPassword" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                                <path fill="currentColor" d="M12 9a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5c-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0a9.821 9.821 0 0 0-17.64 0"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="password-input">
+                        <label for="confirm-password">Confirm Password:</label>
+                        <div style="position: relative;">
+                            <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password" style="padding-right: 30px;">
+                            <svg id="toggleConfirmPassword" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                                <path fill="currentColor" d="M12 9a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5c-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0a9.821 9.821 0 0 0-17.64 0"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <button id="change-password-btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-dasharray="24" stroke-dashoffset="24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l6 6l10 -10"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="24;0"/></path></svg></button>
                 </div>
 
-                <div class="password-input">
-                    <label for="new-password">New Password:</label>
-                    <div style="position: relative;">
-                        <input type="password" name="new-password" id="new-password" placeholder="New Password" style="padding-right: 30px;">
-                        <svg id="toggleNewPassword" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
-                            <path fill="currentColor" d="M12 9a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5c-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0a9.821 9.821 0 0 0-17.64 0"/>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="password-input">
-                    <label for="confirm-password">Confirm Password:</label>
-                    <div style="position: relative;">
-                        <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password" style="padding-right: 30px;">
-                        <svg id="toggleConfirmPassword" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
-                            <path fill="currentColor" d="M12 9a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5c-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0a9.821 9.821 0 0 0-17.64 0"/>
-                        </svg>
-                    </div>
-                </div>
-
-                <button id="change-password-btn">Change</button>
 
                 <script src="scripts/login.js"></script>
                 <script src="scripts/profile.js"></script>
             </div>
+            
+
+            <?php 
+            $currentPokemon = getPetPokemon($_SESSION['user']['ID']);
+            $petData = getPetData($_SESSION['user']['ID']);
+            $availablePets = getAvailablePets($petData['lvl']);
+            ?>
 
             <div class="pet-picker">
-
-            <?php $currentPokemon = getPetPokemon($_SESSION['user']['ID']); ?>
-
                 <form class="pet-pick" action="change_pet.php" method="POST">
                     <h6>Change your pet:</h6>
+                    <p class="current-level">Current Level: <?php echo $petData['lvl']; ?></p>
 
-                    <div class="pet-name-section">
-                        <label for="petname">Pet Name:</label>
-                        <input type="text" name="petname" value="<?php echo htmlspecialchars(getPetName($_SESSION['user']['ID'])); ?>" placeholder="Name your pet">                        
+                    <div class='pet-save'>
+                        <div class="pet-name-section">
+                            <label for="petname">Pet Name:</label>
+                            <input type="text" name="petname" value="<?php echo htmlspecialchars(getPetName($_SESSION['user']['ID'])); ?>" placeholder="Name your pet">
+                        </div>
+                        <button class="save-btn" type="submit">
+                            Save Changes
+                        </button>   
+                    </div>
+                    
+                    <div class="pet-selection">
+                        <!-- Evolution Order -->
+                        <label <?php echo !in_array('shinx', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="shinx" <?php echo ($currentPokemon == 'shinx') ? 'checked' : ''; ?> required>
+                            <img src="images/shinx.gif" alt="shinx">
+                            <span class="level-req">lvl 1</span>
+                        </label>
+                        
+                        <label <?php echo !in_array('luxio', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="luxio" <?php echo ($currentPokemon == 'luxio') ? 'checked' : ''; ?> <?php echo !in_array('luxio', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/luxio.gif" alt="luxio">
+                            <span class="level-req">lvl 5</span>
+                        </label>
+                        
+                        <label <?php echo !in_array('luxray', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="luxray" <?php echo ($currentPokemon == 'luxray') ? 'checked' : ''; ?> <?php echo !in_array('luxray', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/luxray.gif" alt="luxray">
+                            <span class="level-req">lvl 10</span>
+                        </label>
+                        
+                        <label <?php echo !in_array('ralts', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="ralts" <?php echo ($currentPokemon == 'ralts') ? 'checked' : ''; ?> required>
+                            <img src="images/ralts.gif" alt="ralts">
+                            <span class="level-req">lvl 1</span>
+                        </label>
+                        
+                        <label <?php echo !in_array('kirlia', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="kirlia" <?php echo ($currentPokemon == 'kirlia') ? 'checked' : ''; ?> <?php echo !in_array('kirlia', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/kirlia.gif" alt="kirlia">
+                            <span class="level-req">lvl 5</span>
+                        </label>
+                        
+                        <label <?php echo !in_array('gardevoir', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="gardevoir" <?php echo ($currentPokemon == 'gardevoir') ? 'checked' : ''; ?> <?php echo !in_array('gardevoir', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/gardevoir.gif" alt="gardevoir">
+                            <span class="level-req">lvl 10</span>
+                        </label>
+                        
+                        <label <?php echo !in_array('megaGardevoir', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="megaGardevoir" <?php echo ($currentPokemon == 'megaGardevoir') ? 'checked' : ''; ?> <?php echo !in_array('megaGardevoir', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/megaGardevoir.gif" alt="megaGardevoir">
+                            <span class="level-req">lvl 15</span>
+                        </label>
+                        
+                        <label <?php echo !in_array('zorua', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="zorua" <?php echo ($currentPokemon == 'zorua') ? 'checked' : ''; ?> required>
+                            <img src="images/zorua.gif" alt="zorua">
+                            <span class="level-req">lvl 1</span>
+                        </label>
+                        
+                        <label <?php echo !in_array('zoroark', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="zoroark" <?php echo ($currentPokemon == 'zoroark') ? 'checked' : ''; ?> <?php echo !in_array('zoroark', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/zoroark.gif" alt="zoroark">
+                            <span class="level-req">lvl 8</span>
+                        </label>
+
+                        <label <?php echo !in_array('toxel', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="toxel" <?php echo ($currentPokemon == 'toxel') ? 'checked' : ''; ?> required>
+                            <img src="images/toxel.gif" alt="toxel">
+                            <span class="level-req">lvl 1</span>
+                        </label>
+
+                        <label <?php echo !in_array('toxtricity', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="toxtricity" <?php echo ($currentPokemon == 'toxtricity') ? 'checked' : ''; ?> <?php echo !in_array('toxtricity', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/toxtricity.gif" alt="toxtricity">
+                            <span class="level-req">lvl 8</span>
+                        </label>
+
+                        <label <?php echo !in_array('toxtricityGigantamax', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="toxtricityGigantamax" <?php echo ($currentPokemon == 'toxtricityGigantamax') ? 'checked' : ''; ?> <?php echo !in_array('toxtricityGigantamax', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/toxtricity-gigantamax.gif" alt="toxtricityGigantamax">
+                            <span class="level-req">lvl 25</span>
+                        </label>
                     </div>
 
-                        <div class="pet-selection">
-                            <label>
-                                <input type="radio" name="pokemon" value="shinx" <?php echo ($currentPokemon == 'shinx') ? 'checked' : ''; ?> required>
-                                <img src="images/shinx.gif" alt="shinx">
-                            </label>
-                            <label>
-                                <input type="radio" name="pokemon" value="luxio" <?php echo ($currentPokemon == 'luxio') ? 'checked' : ''; ?> required>
-                                <img src="images/luxio.gif" alt="luxio">
-                            </label>
-                            <label>
-                                <input type="radio" name="pokemon" value="luxray" <?php echo ($currentPokemon == 'luxray') ? 'checked' : ''; ?> required>
-                                <img src="images/luxray.gif" alt="luxray">
-                            </label>
-                            <label>
-                                <input type="radio" name="pokemon" value="ralts" <?php echo ($currentPokemon == 'ralts') ? 'checked' : ''; ?> required>
-                                <img src="images/ralts.gif" alt="ralts">
-                            </label>
-                            <label>
-                                <input type="radio" name="pokemon" value="kirlia" <?php echo ($currentPokemon == 'kirlia') ? 'checked' : ''; ?> required>
-                                <img src="images/kirlia.gif" alt="kirlia">
-                            </label>
-                            <label>
-                                <input type="radio" name="pokemon" value="gardevoir" <?php echo ($currentPokemon == 'gordevoir') ? 'checked' : ''; ?> required>
-                                <img src="images/gardevoir.gif" alt="kirlia">
-                            </label>
-                            <label>
-                                <input type="radio" name="pokemon" value="megaGardevoir" <?php echo ($currentPokemon == 'megaGardevoir') ? 'checked' : ''; ?> required>
-                                <img src="images/megaGardevoir.gif" alt="megaGardevoir">
-                            </label>
-                            <label>
-                                <input type="radio" name="pokemon" value="zorua" <?php echo ($currentPokemon == 'zorua') ? 'checked' : ''; ?> required>
-                                <img src="images/zorua.gif" alt="zorua">
-                            </label>
-                            <label>
-                                <input type="radio" name="pokemon" value="zoroark" <?php echo ($currentPokemon == 'zoroark') ? 'checked' : ''; ?> required>
-                                <img src="images/zoroark.gif" alt="zoroark">
-                            </label>
-                            
-                        </div>
-
-                    <button class="save-btn" type="submit">
-                        Save Changes
-                    </button>
+                    
                 </form>
-
-                <?php if (isset($error)): ?>
-                    <p class="log-err" style="color: red;"><?php echo $error; ?></p>
-                <?php endif; ?>
-            </div>        
+            </div>     
 
         
         </div>
@@ -176,6 +218,10 @@
     </div>
 
 </div>
+
+<footer>
+    <p>...</p>
+</footer>
 
 </body>
 </html>

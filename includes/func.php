@@ -35,13 +35,47 @@ function getPetPokemon($userID) {
     return $stmt->fetchColumn();
 }
 
+// Function to get the pet level for avaliable pets
+function getAvailablePets($level) {
+    $available = ['shinx', 'ralts', 'zorua', 'toxel']; // Base pets always available
+    
+    if ($level >= 5) {
+        $available[] = 'luxio';
+        $available[] = 'kirlia';
+    }
+    
+    if ($level >= 8) {
+        $available[] = 'zoroark';
+        $available[] = 'toxtricity';
+    }
+    
+    if ($level >= 10) {
+        $available[] = 'luxray';
+        $available[] = 'gardevoir';
+    }
+    
+    if ($level >= 15) {
+        $available[] = 'megaGardevoir';
+    }
+
+    if ($level >= 25) {
+        $available[] = 'toxtricityGigantamax';
+    }
+    
+    return $available;
+}
+
 function getPetData($userId) {
     global $db;
     $sql = "SELECT hp, xp, lvl FROM pets WHERE userID = :userID";
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':userID', $userId, PDO::PARAM_INT);
     $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$result) {
+        return ['hp' => 100, 'xp' => 0, 'lvl' => 1]; // Default values if no pet found
+    }
+    return $result;
 }
 
 // Function to get the pet name
