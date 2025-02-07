@@ -311,3 +311,22 @@
     --pet-scale: 1.1;
     --form-transparency: #0000008f;
 }
+
+.theme-ceruledge {
+    --primary-color: #5900ff;
+    --secondary-color: #d655c5;
+    --tertiary-color: #8072ff71;
+    --text: #ffffff;
+    --text-dim: #7667ffcc;
+    --add-fill: #4311b8;
+    --borders: #5d9eff;
+    --borders-dim: rgba(0, 60, 255, 0.507);
+    --background-image: url('../images/bg-ceruledge.png');
+    --petbg-image: url('../images/pet-bg-purphell.jpg');
+    --filter-color: invert(30%) sepia(80%) saturate(2000%) hue-rotate(270deg) brightness(85%) contrast(50%);
+    --background-color: #111111;
+    --background-color: #111111;
+    --pet: url('../images/ceruledge.gif');
+    --pet-scale: 1;
+    --form-transparency: #0000008f;
+}

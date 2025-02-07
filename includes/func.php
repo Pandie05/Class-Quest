@@ -48,6 +48,7 @@ function getAvailablePets($level) {
         $available[] = 'zoroark';
         $available[] = 'toxtricity';
         $available[] = 'armorouge';
+        $available[] = 'ceruledge';
     }
     
     if ($level >= 10) {

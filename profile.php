@@ -218,6 +218,11 @@
                             <img src="images/armorouge.gif" alt="armorouge">
                             <span class="level-req">lvl 8</span>
                         </label>
+                        <label <?php echo !in_array('ceruledge', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="ceruledge" <?php echo ($currentPokemon == 'ceruledge') ? 'checked' : ''; ?> <?php echo !in_array('ceruledge', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/ceruledge.gif" alt="ceruledge">
+                            <span class="level-req">lvl 8</span>
+                        </label>
 
                     </div>
 
