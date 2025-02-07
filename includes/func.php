@@ -37,7 +37,7 @@ function getPetPokemon($userID) {
 
 // Function to get the pet level for avaliable pets
 function getAvailablePets($level) {
-    $available = ['shinx', 'ralts', 'zorua', 'toxel']; // Base pets always available
+    $available = ['shinx', 'ralts', 'zorua', 'toxel', 'charcadet']; // Base pets always available
     
     if ($level >= 5) {
         $available[] = 'luxio';
@@ -47,6 +47,7 @@ function getAvailablePets($level) {
     if ($level >= 8) {
         $available[] = 'zoroark';
         $available[] = 'toxtricity';
+        $available[] = 'armorouge';
     }
     
     if ($level >= 10) {

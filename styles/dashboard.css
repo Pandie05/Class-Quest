@@ -1077,6 +1077,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 35px;
     color: var(--text);
     position: relative;
+    overflow-y: auto;
 }
 
 .password-change-section {
@@ -1413,7 +1414,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 0.9rem;
     letter-spacing: 0.5px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    background: var(--primary-color);
+    background: transparent;
     padding: 0.5rem 1rem;
     border-radius: 6px;
     white-space: nowrap;
@@ -1442,8 +1443,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .pet-selection label.locked:hover .level-req {
-    background: var(--primary-color);
-    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+    background: transparent;
     transform: translate(-50%, calc(50% + 12px));
 }
 

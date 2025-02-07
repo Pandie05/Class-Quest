@@ -275,3 +275,39 @@
     --pet-scale: 1.5;
     --form-transparency: #0000008f;
 }
+
+.theme-charcadet {
+    --primary-color: #ff0000;
+    --secondary-color: #c43db8;
+    --tertiary-color: #ff000071;
+    --text: #ffffff;
+    --text-dim: #ff6767cc;
+    --add-fill: #ff0000;
+    --borders: #ff0000;
+    --borders-dim: rgba(255, 0, 0, 0.507);
+    --background-image: url('../images/bg-amouge.png');
+    --petbg-image: url('../images/pet-bg-fire2.jpg');
+    --filter-color: invert(30%) sepia(100%) saturate(3000%) hue-rotate(0deg) brightness(100%) contrast(100%);
+    --background-color: #111111;
+    --pet: url('../images/charcadet.gif');
+    --pet-scale: 1;
+    --form-transparency: #0000008f;
+}
+
+.theme-armorouge {
+    --primary-color: #ff0000;
+    --secondary-color: #d6c041;
+    --tertiary-color: #ff000071;
+    --text: #ffffff;
+    --text-dim: #ff6767cc;
+    --add-fill: #ff0000;
+    --borders: #ff0000;
+    --borders-dim: rgba(255, 0, 0, 0.507);
+    --background-image: url('../images/armorouge.png');
+    --petbg-image: url('../images/pet-bg-fire2.jpg');
+    --filter-color: invert(30%) sepia(100%) saturate(3000%) hue-rotate(0deg) brightness(100%) contrast(100%);
+    --background-color: #111111;
+    --pet: url('../images/armorouge.gif');
+    --pet-scale: 1.1;
+    --form-transparency: #0000008f;
+}

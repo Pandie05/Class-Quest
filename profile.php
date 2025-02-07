@@ -23,6 +23,7 @@
 
     <link rel="stylesheet" href="styles/dashboard.css">
     <link rel="stylesheet" href="styles/themes.css">
+    <link rel="stylesheet" href="styles/noscroll.css">
 
 </head>
 <body class="theme-<?php echo $theme; ?>">
@@ -132,7 +133,7 @@
                             Save Changes
                         </button>   
                     </div>
-                    
+
                     <div class="pet-selection">
                         <!-- Evolution Order -->
                         <label <?php echo !in_array('shinx', $availablePets) ? 'class="locked"' : ''; ?>>
@@ -206,6 +207,18 @@
                             <img src="images/toxtricity-gigantamax.gif" alt="toxtricityGigantamax">
                             <span class="level-req">lvl 25</span>
                         </label>
+
+                        <label <?php echo !in_array('charcadet', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="charcadet" <?php echo ($currentPokemon == 'charcadet') ? 'checked' : ''; ?> required>
+                            <img src="images/charcadet.gif" alt="charcadet">
+                            <span class="level-req">lvl 1</span>
+                        </label>
+                        <label <?php echo !in_array('armorouge', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="armorouge" <?php echo ($currentPokemon == 'armorouge') ? 'checked' : ''; ?> <?php echo !in_array('armorouge', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/armorouge.gif" alt="armorouge">
+                            <span class="level-req">lvl 8</span>
+                        </label>
+
                     </div>
 
                     
