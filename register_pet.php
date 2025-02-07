@@ -57,6 +57,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="radio" name="pokemon" value="ralts" required>
                         <img src="images/ralts.gif" alt="Ralts">
                     </label>
+                    <label>
+                        <input type="radio" name="pokemon" value="toxel" required>
+                        <img src="images/toxel.gif" alt="Toxel">
+                    </label>
                     
                 </div>
 
