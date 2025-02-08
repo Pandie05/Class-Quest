@@ -384,3 +384,76 @@
 .pet-selection label:not(.locked) .level-req {
     display: none;
 }
+
+
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .left-panel-2 {
+        padding: 20px;
+    }
+
+    .password-change-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        max-width: 100%;
+    }
+
+    .password-change-section button {
+        align-self: flex-start;
+        margin-left: -40px;
+    }
+
+    .profile-info {
+        flex-direction: column;
+        gap: 20px;
+        max-width: 100%;
+    }
+
+    .pet-picker {
+        margin-top: 0;
+    }
+
+    .pet-selection {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
+    .pet-selection label {
+        padding: 10px;
+    }
+
+    .petname-input {
+        width: 100%;
+    }
+
+    .save-btn {
+        width: 40%;
+    }
+
+    .back-to-home {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .pet-name-section input {
+        width: 50%;
+        margin-left: 5px;
+    }
+
+    .pet-selection label.locked::after {
+        padding: 4rem 3rem;
+    }
+
+    .pet-selection label.locked .level-req {
+        transform: translate(-50%, calc(50% + 10px));
+    }
+
+    .change-password-btn {
+        position: absolute;
+        left: 10px;
+    }
+    
+}
