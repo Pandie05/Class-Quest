@@ -29,6 +29,7 @@ $theme = getUserPetTheme($_SESSION['user']['ID']);
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
     <link href='styles/calendar.css' rel='stylesheet' />
     <link href='styles/themes.css' rel='stylesheet' />
+    <script src='scripts/nav.js' defer></script>
 
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.min.js'></script>
@@ -38,6 +39,12 @@ $theme = getUserPetTheme($_SESSION['user']['ID']);
         <a href="index.php" class="logo">
             <img src="images/logo.png" alt="">
         </a>
+
+        <div class="hamburger">
+            <span class="bark"></span>
+            <span class="bark"></span>
+            <span class="bark"></span>
+        </div>
 
         <div class="icon-links">
             <a class="dash-btn" href="dashboard.php">

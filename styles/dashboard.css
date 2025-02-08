@@ -567,3 +567,99 @@
     width: auto;
     height: 15px;
 }
+
+@media screen and (max-width: 768px) {
+    body, html{
+        overflow-y: scroll;
+        overflow-x: scroll;
+        height: 100dvh;
+    }
+
+    /* Overall Layout */
+    .dashboard-wrapper {
+        flex-direction: column;
+        margin-left: 5px;
+        padding: 10px;
+        height: auto;
+        gap: 15px;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .left-panel {
+        max-width: 90%;
+        padding: 20px;
+        margin-bottom: 0;
+        margin-left: 0;
+        max-height: 50%;
+        margin-right: 60px;
+        margin-bottom: 0;
+    }
+
+    .pet-board {
+        max-width: 100%;
+        padding: 20px;
+        margin-bottom: 0;
+        height: 100%;
+        margin-bottom: 0;
+        border: none;
+    }
+
+    .pet-cont {
+        height: 100%;
+    }
+
+    .breds {
+        display: none;
+    }
+
+    .assignment-board {
+        max-width: 95%;
+        padding: 20px;
+        margin-bottom: -20px;
+        height: 60%;
+        margin-right: 20px;
+        border: none;
+        margin-top: -70px;
+    }
+
+    .search-sort {
+        margin: 0;
+        margin-left: 15px;
+        margin-bottom: -20px;
+        display: flex;
+        margin-bottom: 0;
+        width: 70%;
+    }
+
+    .search-sort input {
+        height: 5px;
+    }
+
+    .search-sort select {
+        height: 33px;
+        font-size: 0.8rem;
+    }
+
+    .search-sort button {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .assignment-wrapper {
+        padding: 0;
+        gap: 0px;
+    }
+
+    .assignment-wrapper label {
+        font-size: 0.5rem;
+    }
+
+    .assignment-wrapper p {
+        font-size: 0.8rem;
+    }
+
+    .assignment-xp {
+        display: none;
+    }
+}

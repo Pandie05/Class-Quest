@@ -111,6 +111,14 @@
     box-shadow: 0 2px 8px var(--tertiary-color);
 }
 
+@media screen and (max-width: 768px) {
+    .add-assignment-form {
+        height: 500px;
+        width: 75%;
+        z-index: 500;
+    }
+}
+
 /* Edit Assignment Form */
 .edit-assignment-form {
     background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */

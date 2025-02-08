@@ -23,9 +23,11 @@
 
     <link rel="stylesheet" href="styles/dashboard.css">
     <link rel="stylesheet" href="styles/themes.css">
-    <link rel="stylesheet" href="styles/noscroll.css">
     <link rel="stylesheet" href="styles/nav.css">
+    <link rel="stylesheet" href="styles/noscroll.css">
     <link rel="stylesheet" href="styles/profile.css">
+    <script src='scripts/nav.js' defer></script>
+    
 
 </head>
 <body class="theme-<?php echo $theme; ?>">
@@ -34,6 +36,12 @@
     <a href="index.php" class="logo">
         <img src="images/logo.png" alt="">
     </a>
+
+    <div class="hamburger">
+        <span class="bark"></span>
+        <span class="bark"></span>
+        <span class="bark"></span>
+    </div>
 
     <div class="icon-links" style="margin-top: 100px; gap: 30px;">
         <a class="dash-btn" href="dashboard.php">
