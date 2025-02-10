@@ -37,6 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     else {
 
+        // Hash password
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
         // Insert into users
         $sql = "INSERT INTO users (email, username, password) VALUES (:email, :username, :password)";
         $stmt = $db->prepare($sql);
