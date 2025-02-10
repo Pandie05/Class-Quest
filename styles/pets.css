@@ -1,0 +1,12 @@
+.pet-page {
+    width: 100dvw;
+    height: 100dvh;
+    margin-top: 20px;
+    margin-left: 100px;
+    padding: 40px;
+    color: var(--text);
+}
+
+.icon-links {
+    margin-top: 100px;
+}
