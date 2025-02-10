@@ -66,8 +66,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->execute();
             }
         } else {
-            $newXp = max(0, $pet['xp'] - $assignmentXp);
+            $newXp = $pet['xp'] - $assignmentXp;
             $newHp = $pet['hp'];
+
+            while ($newXp < 0) {
+                petLeveldown($userId);
+                $newXp += 200; 
+            }
         }
 
         // Update pet stats
@@ -76,24 +81,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':xp', $newXp, PDO::PARAM_INT);
         $stmt->bindParam(':hp', $newHp, PDO::PARAM_INT);
         $stmt->bindParam(':userID', $userId, PDO::PARAM_INT);
-        $success = $stmt->execute();
-
-        if (!$success) {
-            throw new Exception("Failed to update pet stats");
-        }
+        $stmt->execute();
 
         // Commit transaction
         $db->commit();
-        
-        header('Content-Type: application/json');
-        echo json_encode(['success' => true, 'done' => $done]);
+
+        echo json_encode(['success' => true]);
     } catch (Exception $e) {
-        // Rollback on error
+        // Rollback transaction on error
         $db->rollBack();
-        header('Content-Type: application/json');
-        echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+        echo json_encode(['success' => false, 'message' => $e->getMessage()]);
     }
-} else {
-    header('Content-Type: application/json');
-    echo json_encode(['success' => false, 'error' => 'Invalid request method']);
 }

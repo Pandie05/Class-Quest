@@ -251,8 +251,8 @@
 <div class="add-assignment-form">
     <form id="assignment-form" action="dashboard.php" method="POST">
         <input type="hidden" name="id" id="assignment-id">
-        <input type="text" name="title" id="assignment-title" placeholder="Title" required>
-        <input type="text" name="classname" id="assignment-classname" placeholder="Class Name" required>
+        <input type="text" name="title" id="assignment-title" placeholder="Title" maxlength="18" required>
+        <input type="text" name="classname" id="assignment-classname" placeholder="Class Name" maxlength="15" required>
         <input type="date" name="duedate" id="assignment-duedate" required>
         <select name="assigntype" id="assignment-assigntype" required>
             <optgroup label="Assignment">
@@ -280,10 +280,10 @@
 <div class="edit-assignment-form">
     <form id="edit-assignment-form" action="dashboard.php" method="POST">
         <input type="hidden" name="id" id="edit-assignment-id">
-        <input type="text" name="title" id="edit-assignment-title" placeholder="Title" required>
-        <input type="text" name="classname" id="edit-assignment-classname" placeholder="Class Name" required>
+        <input type="text" name="title" id="edit-assignment-title" placeholder="Title" maxlength="18" required>
+        <input type="text" name="classname" id="edit-assignment-classname" placeholder="Class Name" maxlength="15" required>
         <input type="date" name="duedate" id="edit-assignment-duedate" required>
-        <select name="assigntype" id="assignment-assigntype" required>
+        <select name="assigntype" id="edit-assignment-assigntype" required>
             <optgroup label="Assignment">
                 <option value="final">Final</option>
                 <option value="midterm">Midterm</option>

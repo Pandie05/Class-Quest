@@ -2,7 +2,6 @@
 
 include __DIR__ . '/includes/gyatt.php';
 include __DIR__ . '/model/db.php';
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $email = $_POST['email'];
@@ -16,9 +15,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute();
     $count = $stmt->fetchColumn();
 
+    //rege for email (bob marley)
+    $email_regex = '/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/';
+    
     if ($count > 0) {
         $error = 'Email or username already exists.';
-    } else {
+    } 
+    else if (!preg_match($email_regex, $email)) {
+        $error = 'Invalid email format.';
+    } 
+    else if (empty($email) || empty($username) || empty($password)) {
+        $error = 'Email, username, or password is empty.';
+    }
+    else if (strlen($username) < 3 || strlen($username) > 20) {
+        $error = 'Username must be between 3 and 20 characters.';
+    } 
+    else if (strlen($password) < 6 || strlen($password) > 20) {
+        $error = 'Password must be between 6 and 20 characters.';
+    }
+
+    
+    else {
+
         // Insert into users
         $sql = "INSERT INTO users (email, username, password) VALUES (:email, :username, :password)";
         $stmt = $db->prepare($sql);
@@ -43,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class Quest</title>
+    <title>Register</title>
     <link rel="stylesheet" href="styles/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
