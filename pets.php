@@ -105,7 +105,7 @@
                     <div class='pet-save'>
                         <div class="pet-name-section">
                             <label for="petname">Pet Name:</label>
-                            <input type="text" name="petname" value="<?php echo htmlspecialchars(getPetName($_SESSION['user']['ID'])); ?>" placeholder="Name your pet">
+                            <input type="text" name="petname" value="<?php echo htmlspecialchars(getPetName($_SESSION['user']['ID'])); ?>" placeholder="Name your pet" maxlength="15">
                         </div>
                         <button class="save-btn" type="submit">
                             Save Changes
