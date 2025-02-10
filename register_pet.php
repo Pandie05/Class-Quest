@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="pet-picker">
             <form class="pet-pick" action="register_pet.php" method="POST">
                 <input type="hidden" name="userID" value="<?php echo htmlspecialchars($_GET['userID']); ?>" required>
-                <input class="petname-input" type="text" name="petname" placeholder="Pet Name" required>
+                <input class="petname-input" type="text" name="petname" placeholder="Pet Name" maxlength="15" required>
 
                 <div class="pet-selection">
                     <label>

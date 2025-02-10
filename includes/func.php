@@ -98,6 +98,14 @@ function petLevelup($userID) {
     return $stmt->execute();
 }
 
+function petLeveldown($userID) {
+    global $db;
+    $sql = "UPDATE pets SET lvl = lvl - 1 WHERE userID = :userID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+    return $stmt->execute();
+}
+
 function petHpDown($userID , $hp) {
     global $db;
     $sql = "UPDATE pets SET hp = hp - :hp WHERE userID = :userID";
