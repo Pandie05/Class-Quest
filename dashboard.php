@@ -40,6 +40,23 @@
     // Get filtered assignments
     $assignments = getFilteredAssignments($search, $sortBy);
 
+    // Check for past due assignments and decrease HP if necessary
+    foreach ($assignments as $assignment) {
+        if (!$assignment['done'] && new DateTime($assignment['duedate']) < new DateTime() && !$assignment['hp_awarded']) {
+            $newHp = max(0, $petData['hp'] - 5);
+            petHpDown($userId, 10);
+
+            // Update assignment to mark HP as awarded
+            $sql = "UPDATE assignments SET hp_awarded = 1 WHERE id = :id";
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id', $assignment['id'], PDO::PARAM_INT);
+            $stmt->execute();
+
+            // Update pet HP in session
+            $petData['hp'] = $newHp;
+        }
+    }
+
     // Sort assignments to put checked ones at the bottom
     usort($assignments, function($a, $b) use ($sortBy) {
         // First compare by done status
@@ -59,8 +76,6 @@
     });
 
     $theme = getUserPetTheme($_SESSION['user']['ID']);
-    /* themes: absol, blaziken, venasaur, thundurus, pangoru, snorlax, scizor, 
-    celebi, umbreon */
 
 ?>
 
