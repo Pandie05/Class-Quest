@@ -35,37 +35,7 @@ function getPetPokemon($userID) {
     return $stmt->fetchColumn();
 }
 
-// Function to get the pet level for avaliable pets
-function getAvailablePets($level) {
-    $available = ['shinx', 'ralts', 'zorua', 'toxel', 'charcadet']; // Base pets always available
-    
-    if ($level >= 5) {
-        $available[] = 'luxio';
-        $available[] = 'kirlia';
-    }
-    
-    if ($level >= 8) {
-        $available[] = 'zoroark';
-        $available[] = 'toxtricity';
-        $available[] = 'armorouge';
-        $available[] = 'ceruledge';
-    }
-    
-    if ($level >= 10) {
-        $available[] = 'luxray';
-        $available[] = 'gardevoir';
-    }
-    
-    if ($level >= 15) {
-        $available[] = 'megaGardevoir';
-    }
 
-    if ($level >= 25) {
-        $available[] = 'toxtricityGigantamax';
-    }
-    
-    return $available;
-}
 
 function getPetData($userId) {
     global $db;
@@ -280,6 +250,81 @@ function xp($duedate, $type) {
     ];
 
     return $typeValues[$type];
+}
+
+function getTaskCompletionCounts($userID) {
+    global $db;
+    $sql = "SELECT 
+        COUNT(*) as total_tasks,
+        SUM(CASE WHEN assigntype = 'quiz' THEN 1 ELSE 0 END) as quizzes,
+        SUM(CASE WHEN assigntype = 'test' THEN 1 ELSE 0 END) as tests,
+        SUM(CASE WHEN assigntype = 'homework' THEN 1 ELSE 0 END) as homework,
+        SUM(CASE WHEN assigntype = 'final' THEN 1 ELSE 0 END) as finals
+        FROM assignments 
+        WHERE userID = :userID AND done = 1";
+    
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+// Function to get the pet level for avaliable pets
+function getAvailablePets($level) {
+    global $db;
+    $userID = $_SESSION['user']['ID'];
+    $taskCounts = getTaskCompletionCounts($userID);
+    
+    // Ensure task counts are set to 0 if no assignments are completed
+    $taskCounts = array_map(function($count) {
+        return $count ?? 0;
+    }, $taskCounts);
+
+    // Define requirements for task-based unlocks
+    $requirements = [
+        'vulpix' => ['tasks' => 3, 'type' => 'homework', 'display' => '3 homeworks'],
+        'ninetails' => ['tasks' => 8, 'type' => 'homework', 'display' => '8 homeworks']
+    ];
+    
+    // Base pets always available
+    $available = ['shinx', 'ralts', 'zorua', 'toxel', 'charcadet'];
+    $unlockInfo = [];
+    
+    // Level-based unlocks (keeping existing logic)
+    if ($level >= 5) {
+        $available[] = 'luxio';
+        $available[] = 'kirlia';
+    }
+    if ($level >= 8) {
+        $available[] = 'zoroark';
+        $available[] = 'toxtricity';
+        $available[] = 'armorouge';
+        $available[] = 'ceruledge';
+    }
+    if ($level >= 10) {
+        $available[] = 'luxray';
+        $available[] = 'gardevoir';
+    }
+    if ($level >= 15) {
+        $available[] = 'megaGardevoir';
+    }
+    if ($level >= 25) {
+        $available[] = 'toxtricityGigantamax';
+    }
+
+    // Task-based unlocks
+    foreach ($requirements as $pokemon => $req) {
+        if ($taskCounts[$req['type']] >= $req['tasks']) {
+            $available[] = $pokemon;
+        }
+        $unlockInfo[$pokemon] = [
+            'current' => $taskCounts[$req['type']],
+            'required' => $req['tasks'],
+            'display' => $req['display']
+        ];
+    }
+    
+    return ['available' => $available, 'requirements' => $unlockInfo];
 }
 
 /* function xp($duedate, $type) {

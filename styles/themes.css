@@ -330,3 +330,39 @@
     --pet-scale: 1;
     --form-transparency: #0000008f;
 }
+
+.theme-vulpix {
+    --primary-color: #0059ff;
+    --secondary-color: #0099ff;
+    --tertiary-color: #006eff71;
+    --text: #ffffff;
+    --text-dim: #67c2ffcc;
+    --add-fill: #0066ff;
+    --borders: #0059ff;
+    --borders-dim: rgba(0, 68, 255, 0.507);
+    --background-image: url('../images/bg-umbreon.png');
+    --petbg-image: url('../images/pet-bg-snowy');
+    --filter-color: invert(30%) sepia(100%) saturate(3000%) hue-rotate(195deg) brightness(85%) contrast(200%);
+    --background-color: #111111;
+    --pet: url('../images/vulpix.gif');
+    --pet-scale: 0.9;
+    --form-transparency: #0000008f;
+}
+
+.theme-ninetails {
+    --primary-color: #0059ff;
+    --secondary-color: #0099ff;
+    --tertiary-color: #006eff71;
+    --text: #ffffff;
+    --text-dim: #67c2ffcc;
+    --add-fill: #0066ff;
+    --borders: #0059ff;
+    --borders-dim: rgba(0, 68, 255, 0.507);
+    --background-image: url('../images/bg-umbreon.png');
+    --petbg-image: url('../images/pet-bg-nine.jpg');
+    --filter-color: invert(30%) sepia(100%) saturate(3000%) hue-rotate(195deg) brightness(85%) contrast(200%);
+    --background-color: #111111;
+    --pet: url('../images/ninetails.gif');
+    --pet-scale: 1.05;
+    --form-transparency: #0000008f;
+}

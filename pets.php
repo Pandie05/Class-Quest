@@ -92,7 +92,9 @@
         <?php 
             $currentPokemon = getPetPokemon($_SESSION['user']['ID']);
             $petData = getPetData($_SESSION['user']['ID']);
-            $availablePets = getAvailablePets($petData['lvl']);
+            $petsInfo = getAvailablePets($petData['lvl']);
+            $availablePets = $petsInfo['available'];
+            $requirements = $petsInfo['requirements'];
         ?>
 
         <div class="pet-page">
@@ -200,6 +202,30 @@
                             <input type="radio" name="pokemon" value="ceruledge" <?php echo ($currentPokemon == 'ceruledge') ? 'checked' : ''; ?> <?php echo !in_array('ceruledge', $availablePets) ? 'disabled' : ''; ?>>
                             <img src="images/ceruledge.gif" alt="ceruledge">
                             <span class="level-req">lvl 8</span>
+                        </label>
+
+                        <label <?php echo !in_array('vulpix', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="vulpix" <?php echo ($currentPokemon == 'vulpix') ? 'checked' : ''; ?> <?php echo !in_array('vulpix', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/vulpix.gif" alt="vulpix">
+                            <span class="level-req">
+                                <?php 
+                                if (!in_array('vulpix', $availablePets)) {
+                                    echo "{$requirements['vulpix']['current']}/{$requirements['vulpix']['display']}";
+                                }
+                                ?>
+                            </span>
+                        </label>
+
+                        <label <?php echo !in_array('ninetails', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="ninetails" <?php echo ($currentPokemon == 'ninetails') ? 'checked' : ''; ?> <?php echo !in_array('ninetails', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/ninetails.gif" alt="ninetails">
+                            <span class="level-req">
+                                <?php 
+                                if (!in_array('ninetails', $availablePets)) {
+                                    echo "{$requirements['ninetails']['current']}/{$requirements['ninetails']['display']}";
+                                }
+                                ?>
+                            </span>
                         </label>
 
                     </div>
