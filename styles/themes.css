@@ -366,3 +366,39 @@
     --pet-scale: 1.05;
     --form-transparency: #0000008f;
 }
+
+.theme-celebi {
+    --primary-color: #73da73;
+    --secondary-color: #65a75f;
+    --tertiary-color: #4fcdff62;
+    --text: #ffffff;
+    --text-dim: #93f893cc;
+    --add-fill: #599e59;
+    --borders: #73d878;
+    --borders-dim: rgba(93, 182, 93, 0.507);
+    --background-image: url('../images/bg-celebi.png');
+    --petbg-image: url('../images/pet-bg-celeb.jpg');
+    --filter-color: invert(30%) sepia(100%) saturate(2000%) hue-rotate(90deg) brightness(85%) contrast(30%);
+    --background-color: #111111;
+    --pet: url('../images/celebi.gif');
+    --pet-scale: 0.9;
+    --form-transparency: #0000008f;
+}
+
+.theme-celebiPink {
+    --primary-color: #ff69b4;
+    --secondary-color: #ff1493;
+    --tertiary-color: #82ff6938;
+    --text: #ffffff;
+    --text-dim: #ffb6c1cc;
+    --add-fill: #ff69b4;
+    --borders: #ff69b4;
+    --borders-dim: rgba(255, 105, 180, 0.507);
+    --background-image: url('../images/bg-pink.png');
+    --petbg-image: url('../images/pet-bg-celebPink.jpg');
+    --filter-color: invert(30%) sepia(100%) saturate(3000%) hue-rotate(300deg) brightness(100%) contrast(70%);
+    --background-color: #111111;
+    --pet: url('../images/celebiPink.gif');
+    --pet-scale: 0.9;
+    --form-transparency: #0000008f;
+}

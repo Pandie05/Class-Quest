@@ -283,14 +283,16 @@ function getAvailablePets($level) {
     // Define requirements for task-based unlocks
     $requirements = [
         'vulpix' => ['tasks' => 3, 'type' => 'homework', 'display' => '3 homeworks'],
-        'ninetails' => ['tasks' => 8, 'type' => 'homework', 'display' => '8 homeworks']
+        'ninetails' => ['tasks' => 8, 'type' => 'homework', 'display' => '8 homeworks'],
+        'celebi' => ['tasks' => 1, 'type' => 'finals', 'display' => '1 final'],
+        'celebiPink' => ['tasks' => 7, 'type' => 'quizzes', 'display' => '7 quizzes']
     ];
     
     // Base pets always available
     $available = ['shinx', 'ralts', 'zorua', 'toxel', 'charcadet'];
     $unlockInfo = [];
     
-    // Level-based unlocks (keeping existing logic)
+    // Level-based unlocks
     if ($level >= 5) {
         $available[] = 'luxio';
         $available[] = 'kirlia';
@@ -314,11 +316,24 @@ function getAvailablePets($level) {
 
     // Task-based unlocks
     foreach ($requirements as $pokemon => $req) {
-        if ($taskCounts[$req['type']] >= $req['tasks']) {
-            $available[] = $pokemon;
+        if (is_array($req['tasks'])) {
+            $allTasksMet = true;
+            foreach ($req['tasks'] as $type => $count) {
+                if ($taskCounts[$type] < $count) {
+                    $allTasksMet = false;
+                    break;
+                }
+            }
+            if ($allTasksMet) {
+                $available[] = $pokemon;
+            }
+        } else {
+            if ($taskCounts[$req['type']] >= $req['tasks']) {
+                $available[] = $pokemon;
+            }
         }
         $unlockInfo[$pokemon] = [
-            'current' => $taskCounts[$req['type']],
+            'current' => is_array($req['tasks']) ? array_map(function($type) use ($taskCounts) { return $taskCounts[$type]; }, array_keys($req['tasks'])) : $taskCounts[$req['type']],
             'required' => $req['tasks'],
             'display' => $req['display']
         ];

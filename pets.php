@@ -228,6 +228,30 @@
                             </span>
                         </label>
 
+                        <label <?php echo !in_array('celebi', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="celebi" <?php echo ($currentPokemon == 'celebi') ? 'checked' : ''; ?> <?php echo !in_array('celebi', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/celebi.gif" alt="celebi">
+                            <span class="level-req">
+                                <?php 
+                                if (!in_array('celebi', $availablePets)) {
+                                    echo "{$requirements['celebi']['current']}/{$requirements['celebi']['display']}";
+                                }
+                                ?>
+                            </span>
+                        </label>
+
+                        <label <?php echo !in_array('celebiPink', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="celebiPink" <?php echo ($currentPokemon == 'celebiPink') ? 'checked' : ''; ?> <?php echo !in_array('celebiPink', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/celebiPink.gif" alt="celebiPink">
+                            <span class="level-req">
+                                <?php 
+                                if (!in_array('celebiPink', $availablePets)) {
+                                    echo "{$requirements['celebiPink']['current']}/{$requirements['celebiPink']['display']}";
+                                }
+                                ?>
+                            </span>
+                        </label>
+
                     </div>
 
                     
