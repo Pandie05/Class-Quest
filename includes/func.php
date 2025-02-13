@@ -45,12 +45,12 @@ function getPetData($userId) {
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$result) {
-        return ['hp' => 100, 'xp' => 0, 'lvl' => 1]; // Default values if no pet found
+        return ['hp' => 100, 'xp' => 0, 'lvl' => 1]; // default values if no pet found
     }
     return $result;
 }
 
-// Function to get the pet name
+// get the pet name
 function getPetName($userID) {
     global $db;
     $sql = "SELECT petname FROM pets WHERE userID = :userID";
@@ -85,7 +85,7 @@ function petHpDown($userID , $hp) {
     return $stmt->execute();
 }
 
-// Get user's pet theme from database
+// get user's pet theme from database
 function getUserPetTheme($userID) {
     global $db;
     $sql = "SELECT pokemon FROM pets WHERE userID = :userID";
@@ -98,7 +98,7 @@ function getUserPetTheme($userID) {
 function getAssignments() {
     global $db;
     
-    // Only get assignments for the logged-in user
+    // only get assignments for the logged-in user
     $sql = "SELECT * FROM assignments WHERE userID = :userID";
     
     $stmt = $db->prepare($sql);
@@ -112,7 +112,7 @@ function getAssignments() {
 function getAssignment($id) {
     global $db;
     
-    // Get specific assignment but only if it belongs to the logged-in user
+    // get specific assignment but only if it belongs to the logged-in user
     $sql = "SELECT * FROM assignments WHERE ID = :id AND userID = :userID";
     
     $stmt = $db->prepare($sql);
@@ -185,7 +185,7 @@ function getFilteredAssignments($search = '', $sortBy = 'duedate') {
     $params = array();
     $params[':userID'] = $_SESSION['user']['ID'];
     
-    // Add search conditions if search term is provided
+    // add search conditions if search term is provided
     if (!empty($search)) {
         $sql .= " AND (title LIKE :searchTitle OR classname LIKE :searchClass OR assigntype LIKE :searchType)";
         $searchTerm = "%{$search}%";
@@ -194,12 +194,12 @@ function getFilteredAssignments($search = '', $sortBy = 'duedate') {
         $params[':searchType'] = $searchTerm;
     }
     
-    // Special handling for 'done' sort to show only completed assignments
+    // handling for done sort to show only completed assignments
     if ($sortBy === 'done') {
         $sql .= " AND done = 1";
     }
     
-    // Add ORDER BY clause based on sort parameter
+    // add ORDER BY clause based on sort parameter
     switch ($sortBy) {
         case 'duedate':
             $sql .= " ORDER BY done ASC, duedate ASC";
@@ -273,18 +273,18 @@ function getTaskCompletionCounts($userID) {
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-// Function to get the pet level for avaliable pets
+// function to get the pet level and tasks needed for avaliable pets
 function getAvailablePets($level) {
     global $db;
     $userID = $_SESSION['user']['ID'];
     $taskCounts = getTaskCompletionCounts($userID);
     
-    // Ensure task counts are set to 0 if no assignments are completed
+    // make task counts 0 if no assignments are completed
     $taskCounts = array_map(function($count) {
         return $count ?? 0;
     }, $taskCounts);
 
-    // Define requirements for task-based unlocks
+    // requirements for task-based unlocks
     $requirements = [
         'vulpix' => ['tasks' => 3, 'type' => 'easy', 'display' => '3 easy tasks'],
         'ninetails' => ['tasks' => 8, 'type' => 'easy', 'display' => '8 easy tasks'],
@@ -292,11 +292,11 @@ function getAvailablePets($level) {
         'celebiPink' => ['tasks' => 7, 'type' => 'quizzes', 'display' => '7 quizzes']
     ];
     
-    // Base pets always available
+    // starter pets
     $available = ['shinx', 'ralts', 'zorua', 'toxel', 'charcadet'];
     $unlockInfo = [];
     
-    // Level-based unlocks
+    // level-based unlocks
     if ($level >= 5) {
         $available[] = 'luxio';
         $available[] = 'kirlia';
@@ -318,7 +318,7 @@ function getAvailablePets($level) {
         $available[] = 'toxtricityGigantamax';
     }
 
-    // Task-based unlocks
+    // task-based unlocks 
     foreach ($requirements as $pokemon => $req) {
         if (is_array($req['tasks'])) {
             $allTasksMet = true;
@@ -345,16 +345,3 @@ function getAvailablePets($level) {
     
     return ['available' => $available, 'requirements' => $unlockInfo];
 }
-
-/* function xp($duedate, $type) {
-    $typeValues = [
-        'final' => 20,
-        'midterm' => 17,
-        'exam' => 15,
-        'test' => 9,
-        'quiz' => 6,
-        'homework' => 4.5
-    ];
-
-    return $typeValues[$type];
-} */
