@@ -217,7 +217,8 @@
         <button class="search-top" type="submit" id="search-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 12 12"><circle cx="4.5" cy="4.5" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M11 11L7.5 7.5"/></svg></button>
         <br> <p><a id="search-btn" href=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 11A8.1 8.1 0 0 0 4.5 9M4 5v4h4m-4 4a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"/></svg></a></p>
     </form>
-
+    
+    <a class="add-btn2">+</a>
     
 </div>
 

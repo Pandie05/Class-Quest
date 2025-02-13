@@ -259,7 +259,11 @@ function getTaskCompletionCounts($userID) {
         SUM(CASE WHEN assigntype = 'quiz' THEN 1 ELSE 0 END) as quizzes,
         SUM(CASE WHEN assigntype = 'test' THEN 1 ELSE 0 END) as tests,
         SUM(CASE WHEN assigntype = 'homework' THEN 1 ELSE 0 END) as homework,
-        SUM(CASE WHEN assigntype = 'final' THEN 1 ELSE 0 END) as finals
+        SUM(CASE WHEN assigntype = 'final' THEN 1 ELSE 0 END) as finals,
+        SUM(CASE WHEN assigntype = 'vhard' THEN 1 ELSE 0 END) as vhard,
+        SUM(CASE WHEN assigntype = 'hard' THEN 1 ELSE 0 END) as hard,
+        SUM(CASE WHEN assigntype = 'med' THEN 1 ELSE 0 END) as med,
+        SUM(CASE WHEN assigntype = 'easy' THEN 1 ELSE 0 END) as easy
         FROM assignments 
         WHERE userID = :userID AND done = 1";
     
@@ -282,8 +286,8 @@ function getAvailablePets($level) {
 
     // Define requirements for task-based unlocks
     $requirements = [
-        'vulpix' => ['tasks' => 3, 'type' => 'homework', 'display' => '3 homeworks'],
-        'ninetails' => ['tasks' => 8, 'type' => 'homework', 'display' => '8 homeworks'],
+        'vulpix' => ['tasks' => 3, 'type' => 'easy', 'display' => '3 easy tasks'],
+        'ninetails' => ['tasks' => 8, 'type' => 'easy', 'display' => '8 easy tasks'],
         'celebi' => ['tasks' => 1, 'type' => 'finals', 'display' => '1 final'],
         'celebiPink' => ['tasks' => 7, 'type' => 'quizzes', 'display' => '7 quizzes']
     ];

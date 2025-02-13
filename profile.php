@@ -125,15 +125,6 @@
           
         </div>
 
-        <div class="achievments-section">
-
-            <div class="achievement">
-                <p>Golden Boy</p>
-                <p>Complete 10 assignments</p>
-            </div>
-
-        </div>
-
     </div>
    
 </div>

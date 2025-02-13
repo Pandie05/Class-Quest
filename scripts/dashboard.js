@@ -2,14 +2,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('.add-assignment-form');
     const editForm = document.querySelector('.edit-assignment-form');
     const addButton = document.querySelector('.add-btn');
+    const addButton2 = document.querySelector('.add-btn2');
     const cancelButton = document.querySelector('#cancel-btn');
     const cancelEditButton = document.querySelector('#cancel-edit-btn');
-    const assignmentForm = document.getElementById('assignment-form');
-    const editAssignmentForm = document.getElementById('edit-assignment-form');
 
     addButton.addEventListener('click', function () {
         form.classList.toggle('show');
         this.classList.toggle('rotate');
+    });
+
+    addButton2.addEventListener('click', function () {
+        form.classList.toggle('show');
+        addButton.classList.toggle('rotate');
     });
 
     cancelButton.addEventListener('click', function () {
@@ -22,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.addEventListener('click', function (event) {
-        if (!form.contains(event.target) && !addButton.contains(event.target)) {
+        if (!form.contains(event.target) && !addButton.contains(event.target) && !addButton2.contains(event.target)) {
             form.classList.remove('show');
             addButton.classList.remove('rotate');
         }
