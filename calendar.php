@@ -70,6 +70,12 @@ $theme = getUserPetTheme($_SESSION['user']['ID']);
 
     <div id="calendar"></div>
 
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" style="display: none;">
+        <div class="loading-spinner"></div>
+    </div>
+
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');

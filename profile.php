@@ -129,9 +129,10 @@
    
 </div>
 
-<footer>
-    <p>...</p>
-</footer>
+<!-- Loading Overlay -->
+<div id="loading-overlay" style="display: none;">
+    <div class="loading-spinner"></div>
+</div>
 
 </body>
 </html>
