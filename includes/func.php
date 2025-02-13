@@ -289,7 +289,8 @@ function getAvailablePets($level) {
         'vulpix' => ['tasks' => 3, 'type' => 'easy', 'display' => '3 easy tasks'],
         'ninetails' => ['tasks' => 8, 'type' => 'easy', 'display' => '8 easy tasks'],
         'celebi' => ['tasks' => 1, 'type' => 'finals', 'display' => '1 final'],
-        'celebiPink' => ['tasks' => 7, 'type' => 'quizzes', 'display' => '7 quizzes']
+        'celebiPink' => ['tasks' => 7, 'type' => 'quizzes', 'display' => '7 quizzes'],
+        'articuno' => ['tasks' => 5, 'type' => 'vhard', 'display' => '5 vhard tasks'],
     ];
     
     // starter pets

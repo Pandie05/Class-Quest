@@ -276,6 +276,18 @@
                             </span>
                         </label>
 
+                        <label <?php echo !in_array('articuno', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="articuno" <?php echo ($currentPokemon == 'articuno') ? 'checked' : ''; ?> <?php echo !in_array('articuno', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/articuno.gif" alt="articuno">
+                            <span class="level-req">
+                                <?php 
+                                if (!in_array('articuno', $availablePets)) {
+                                    echo "{$requirements['articuno']['current']}/{$requirements['articuno']['display']}";
+                                }
+                                ?>
+                            </span>
+                        </label>
+
                     </div>
 
                     
