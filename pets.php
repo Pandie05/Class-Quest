@@ -116,6 +116,18 @@
 
                     <div class="pet-selection">
                         <!-- Evolution Order -->
+                        <label <?php echo !in_array('petilil', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="petilil" <?php echo ($currentPokemon == 'petilil') ? 'checked' : ''; ?> required>
+                            <img src="images/petilil.gif" alt="petilil">
+                            <span class="level-req">lvl 1</span>
+                        </label>
+
+                        <label <?php echo !in_array('lilligant', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="lilligant" <?php echo ($currentPokemon == 'petilil') ? 'checked' : ''; ?> required>
+                            <img src="images/lilligant.gif" alt="lilligant">
+                            <span class="level-req">lvl 5</span>
+                        </label>
+
                         <label <?php echo !in_array('shinx', $availablePets) ? 'class="locked"' : ''; ?>>
                             <input type="radio" name="pokemon" value="shinx" <?php echo ($currentPokemon == 'shinx') ? 'checked' : ''; ?> required>
                             <img src="images/shinx.gif" alt="shinx">
@@ -202,6 +214,12 @@
                             <input type="radio" name="pokemon" value="ceruledge" <?php echo ($currentPokemon == 'ceruledge') ? 'checked' : ''; ?> <?php echo !in_array('ceruledge', $availablePets) ? 'disabled' : ''; ?>>
                             <img src="images/ceruledge.gif" alt="ceruledge">
                             <span class="level-req">lvl 8</span>
+                        </label>
+
+                        <label <?php echo !in_array('cinderaceGMAX', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="cinderaceGMAX" <?php echo ($currentPokemon == 'cinderaceGMAX') ? 'checked' : ''; ?> <?php echo !in_array('cinderaceGMAX', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/cinderaceGMAX.gif" alt="cinderaceGMAX">
+                            <span class="level-req">lvl 40</span>
                         </label>
 
                         <label <?php echo !in_array('vulpix', $availablePets) ? 'class="locked"' : ''; ?>>

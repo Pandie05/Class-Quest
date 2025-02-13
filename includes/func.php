@@ -293,13 +293,14 @@ function getAvailablePets($level) {
     ];
     
     // starter pets
-    $available = ['shinx', 'ralts', 'zorua', 'toxel', 'charcadet'];
+    $available = ['shinx', 'ralts', 'zorua', 'toxel', 'charcadet', 'petilil'];
     $unlockInfo = [];
     
     // level-based unlocks
     if ($level >= 5) {
         $available[] = 'luxio';
         $available[] = 'kirlia';
+        $available[] = 'lilligant';
     }
     if ($level >= 8) {
         $available[] = 'zoroark';
@@ -316,6 +317,9 @@ function getAvailablePets($level) {
     }
     if ($level >= 25) {
         $available[] = 'toxtricityGigantamax';
+    }
+    if ($level >= 40) {
+        $available[] = 'cinderaceGMAX';
     }
 
     // task-based unlocks 

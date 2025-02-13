@@ -402,3 +402,70 @@
     --pet-scale: 0.9;
     --form-transparency: #0000008f;
 }
+
+.theme-petilil {
+    --primary-color: #97ff82;
+    --secondary-color: #5ed341;
+    --tertiary-color: #82ff6938;
+    --text: #ffffff;
+    --text-dim: #d3ffb6cc;
+    --add-fill: #5caa5c;
+    --borders: #6ce26c;
+    --borders-dim: rgba(110, 255, 105, 0.507);
+    --background-image: url('../images/bg-grass.png');
+    --petbg-image: url('../images/pet-bg-grass.jpg');
+    --filter-color: invert(30%) sepia(100%) saturate(2000%) hue-rotate(90deg) brightness(85%) contrast(30%);
+    --background-color: #111111;
+    --pet: url('../images/petilil.gif');
+    --pet-scale: 0.8;
+    --form-transparency: #0000008f;
+}
+
+.theme-lilligant {
+    --primary-color: #97ff82;
+    --secondary-color: #5ed341;
+    --tertiary-color: #82ff6938;
+    --text: #ffffff;
+    --text-dim: #d3ffb6cc;
+    --add-fill: #5caa5c;
+    --borders: #6ce26c;
+    --borders-dim: rgba(110, 255, 105, 0.507);
+    --background-image: url('../images/bg-grass.png');
+    --petbg-image: url('../images/pet-bg-lilli.png');
+    --filter-color: invert(30%) sepia(100%) saturate(2000%) hue-rotate(90deg) brightness(85%) contrast(30%);
+    --background-color: #111111;
+    --pet: url('../images/lilligant.gif');
+    --pet-scale: 1;
+    --form-transparency: #0000008f;
+}
+
+/* orange red yellow */
+.theme-cinderaceGMAX {
+    --primary-color: #ff8c00;
+    --secondary-color: #ff4500;
+    --tertiary-color: #f5c13142;
+    --text: #ffffff;
+    --text-dim: #ff9b9bcc;
+    --add-fill: #c03838;
+    --borders: rgb(228, 58, 58);
+    --borders-dim: rgba(255, 22, 22, 0.459);
+    --background-image: url('../images/bg-cinder.png');
+    --petbg-image: url('../images/pet-bg-dark.jpg');
+    --filter-color: invert(30%) sepia(100%) saturate(3000%) hue-rotate(300deg) brightness(100%) contrast(70%);
+    --background-color: #111111;
+    --pet: url('../images/cinderaceGMAX.gif');
+    --pet-scale: 1.1;
+    --form-transparency: #0000008f;
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
