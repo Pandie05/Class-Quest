@@ -215,6 +215,12 @@
                             <img src="images/ceruledge.gif" alt="ceruledge">
                             <span class="level-req">lvl 8</span>
                         </label>
+                        
+                        <label <?php echo !in_array('machamp', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="machamp" <?php echo ($currentPokemon == 'machamp') ? 'checked' : ''; ?> <?php echo !in_array('machamp', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/machamp.gif" alt="machamp">
+                            <span class="level-req">lvl 30</span>
+                        </label>
 
                         <label <?php echo !in_array('cinderaceGMAX', $availablePets) ? 'class="locked"' : ''; ?>>
                             <input type="radio" name="pokemon" value="cinderaceGMAX" <?php echo ($currentPokemon == 'cinderaceGMAX') ? 'checked' : ''; ?> <?php echo !in_array('cinderaceGMAX', $availablePets) ? 'disabled' : ''; ?>>

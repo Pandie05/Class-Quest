@@ -318,6 +318,9 @@ function getAvailablePets($level) {
     if ($level >= 25) {
         $available[] = 'toxtricityGigantamax';
     }
+    if ($level >= 30) {
+        $available[] = 'machamp';
+    }
     if ($level >= 40) {
         $available[] = 'cinderaceGMAX';
     }

@@ -469,3 +469,22 @@
         transform: translateY(0px);
     }
 }
+
+/* orange pinkishredpurple neongreenyellow */
+.theme-machamp {
+    --primary-color: #d9ff00;
+    --secondary-color: #ff8800;
+    --tertiary-color: #f57f3142;
+    --text: #ffffff;
+    --text-dim: #ff46ff9a;
+    --add-fill: #8a235b;
+    --borders: rgb(228, 58, 143);
+    --borders-dim: rgba(255, 22, 177, 0.459);
+    --background-image: url('../images/bg-mach.png');
+    --petbg-image: url('../images/pet-bg-des.jpg');
+    --filter-color: invert(30%) sepia(100%) saturate(3000%) hue-rotate(300deg) brightness(100%) contrast(70%);
+    --background-color: #111111;
+    --pet: url('../images/machamp.gif');
+    --pet-scale: 1.5;
+    --form-transparency: #0000008f;
+}
