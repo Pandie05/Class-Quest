@@ -26,11 +26,16 @@
 }
 
 .pet-selection {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+}
+
+.lvl-unlocks, .task-unlocks {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 20px;
-    width: 100%;
-    overflow-y: none;
+    width: 50%;
 }
 
 .pet-selection label {
@@ -38,6 +43,7 @@
     cursor: pointer;
     display: flex;
     justify-content: center;
+
     align-items: center;
     aspect-ratio: 1;
     border-radius: 12px;
@@ -193,7 +199,7 @@
 .pet-selection label.locked::after {
     content: '🔒';
     position: absolute;
-    top: 35%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.95);
     font-size: clamp(16px, 4vw, 24px);
@@ -213,17 +219,17 @@
 
 .pet-selection label.locked .level-req {
     position: absolute;
-    top: 35%;
+    top: 15%;
     left: 50%;
     transform: translate(-50%, calc(50% + 15px));
     color: #ffffff;
     z-index: 3;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     letter-spacing: 0.5px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     background: transparent;
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1rem;
     border-radius: 6px;
     white-space: nowrap;
     transition: all 0.3s ease;
@@ -282,8 +288,14 @@
         margin-top: 0;
     }
 
-    .pet-selection {
+    .lvl-unlocks, .task-unlocks {
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        width: 100%;
+    }
+
+    .pet-selection {
+        flex-direction: column;
+        gap: 1rem;
     }
 
     .pet-selection label {

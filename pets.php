@@ -50,7 +50,6 @@
     <link rel="stylesheet" href="styles/themes.css">
     <link rel="stylesheet" href="styles/nav.css">
     <link rel="stylesheet" href="styles/pets.css">
-    <link rel="stylesheet" href="styles/profile.css">
     <script src="scripts/nav.js" defer></script>
 
 </head>
@@ -116,6 +115,7 @@
 
                     <div class="pet-selection">
                         <!-- Evolution Order -->
+                        <div class="lvl-unlocks">
                         <label <?php echo !in_array('petilil', $availablePets) ? 'class="locked"' : ''; ?>>
                             <input type="radio" name="pokemon" value="petilil" <?php echo ($currentPokemon == 'petilil') ? 'checked' : ''; ?> required>
                             <img src="images/petilil.gif" alt="petilil">
@@ -205,7 +205,7 @@
                             <img src="images/charcadet.gif" alt="charcadet">
                             <span class="level-req">lvl 1</span>
                         </label>
-                        <label <?php echo !in_array('armorouge', $availablePets) ? 'class="locked"' : ''; ?>>
+                        <label <?php echo !in_array('arorouge', $availablePets) ? 'class="locked"' : ''; ?>>
                             <input type="radio" name="pokemon" value="armorouge" <?php echo ($currentPokemon == 'armorouge') ? 'checked' : ''; ?> <?php echo !in_array('armorouge', $availablePets) ? 'disabled' : ''; ?>>
                             <img src="images/armorouge.gif" alt="armorouge">
                             <span class="level-req">lvl 8</span>
@@ -227,7 +227,9 @@
                             <img src="images/cinderaceGMAX.gif" alt="cinderaceGMAX">
                             <span class="level-req">lvl 40</span>
                         </label>
+                        </div>
 
+                        <div class="task-unlocks">
                         <label <?php echo !in_array('vulpix', $availablePets) ? 'class="locked"' : ''; ?>>
                             <input type="radio" name="pokemon" value="vulpix" <?php echo ($currentPokemon == 'vulpix') ? 'checked' : ''; ?> <?php echo !in_array('vulpix', $availablePets) ? 'disabled' : ''; ?>>
                             <img src="images/vulpix.gif" alt="vulpix">
@@ -287,6 +289,7 @@
                                 ?>
                             </span>
                         </label>
+                        </div>
 
                     </div>
 
