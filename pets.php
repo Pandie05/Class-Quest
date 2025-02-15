@@ -205,7 +205,7 @@
                             <img src="images/charcadet.gif" alt="charcadet">
                             <span class="level-req">lvl 1</span>
                         </label>
-                        <label <?php echo !in_array('arorouge', $availablePets) ? 'class="locked"' : ''; ?>>
+                        <label <?php echo !in_array('armorouge', $availablePets) ? 'class="locked"' : ''; ?>>
                             <input type="radio" name="pokemon" value="armorouge" <?php echo ($currentPokemon == 'armorouge') ? 'checked' : ''; ?> <?php echo !in_array('armorouge', $availablePets) ? 'disabled' : ''; ?>>
                             <img src="images/armorouge.gif" alt="armorouge">
                             <span class="level-req">lvl 8</span>
@@ -230,6 +230,42 @@
                         </div>
 
                         <div class="task-unlocks">
+                        <label <?php echo !in_array('litten', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="litten" <?php echo ($currentPokemon == 'litten') ? 'checked' : ''; ?> <?php echo !in_array('litten', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/litten.gif" alt="litten">
+                            <span class="level-req">
+                                <?php 
+                                if (!in_array('litten', $availablePets)) {
+                                    echo "{$requirements['litten']['current']}/{$requirements['litten']['display']}";
+                                }
+                                ?>
+                            </span>
+                        </label>
+
+                        <label <?php echo !in_array('torracat', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="torracat" <?php echo ($currentPokemon == 'torracat') ? 'checked' : ''; ?> <?php echo !in_array('torracat', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/torracat.gif" alt="torracat">
+                            <span class="level-req">
+                                <?php 
+                                if (!in_array('torracat', $availablePets)) {
+                                    echo "{$requirements['torracat']['current']}/{$requirements['torracat']['display']}";
+                                }
+                                ?>
+                            </span>
+                        </label>
+
+                        <label <?php echo !in_array('incineroar', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="incineroar" <?php echo ($currentPokemon == 'incineroar') ? 'checked' : ''; ?> <?php echo !in_array('incineroar', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/incineroar.gif" alt="incineroar">
+                            <span class="level-req">
+                                <?php 
+                                if (!in_array('incineroar', $availablePets)) {
+                                    echo "{$requirements['incineroar']['current']}/{$requirements['incineroar']['display']}";
+                                }
+                                ?>
+                            </span>
+                        </label>
+
                         <label <?php echo !in_array('vulpix', $availablePets) ? 'class="locked"' : ''; ?>>
                             <input type="radio" name="pokemon" value="vulpix" <?php echo ($currentPokemon == 'vulpix') ? 'checked' : ''; ?> <?php echo !in_array('vulpix', $availablePets) ? 'disabled' : ''; ?>>
                             <img src="images/vulpix.gif" alt="vulpix">
@@ -289,6 +325,19 @@
                                 ?>
                             </span>
                         </label>
+
+                        <label <?php echo !in_array('urshifu', $availablePets) ? 'class="locked"' : ''; ?>>
+                            <input type="radio" name="pokemon" value="urshifu" <?php echo ($currentPokemon == 'urshifu') ? 'checked' : ''; ?> <?php echo !in_array('urshifu', $availablePets) ? 'disabled' : ''; ?>>
+                            <img src="images/urshifu.gif" alt="urshifu">
+                            <span class="level-req">
+                                <?php 
+                                if (!in_array('urshifu', $availablePets)) {
+                                    echo "{$requirements['urshifu']['current']}/{$requirements['urshifu']['display']}";
+                                }
+                                ?>
+                            </span>
+                        </label>
+
                         </div>
 
                     </div>

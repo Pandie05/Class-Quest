@@ -291,6 +291,10 @@ function getAvailablePets($level) {
         'celebi' => ['tasks' => 1, 'type' => 'finals', 'display' => '1 final'],
         'celebiPink' => ['tasks' => 7, 'type' => 'quizzes', 'display' => '7 quizzes'],
         'articuno' => ['tasks' => 5, 'type' => 'vhard', 'display' => '5 vhard tasks'],
+        'urshifu' => ['tasks' => 3, 'type' => 'finals', 'display' => '3 Finals'],
+        'litten' => ['tasks' => 1, 'type' => 'total_tasks', 'display' => '1 task'],
+        'torracat' => ['tasks' => 5, 'type' => 'total_tasks', 'display' => '5 tasks'],
+        'incineroar' => ['tasks' => 10, 'type' => 'total_tasks', 'display' => '10 tasks'],
     ];
     
     // starter pets

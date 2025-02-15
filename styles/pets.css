@@ -28,14 +28,23 @@
 .pet-selection {
     display: flex;
     flex-direction: row;
-    gap: 1.5rem;
+    column-gap: 2rem;
 }
 
-.lvl-unlocks, .task-unlocks {
+.lvl-unlocks {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 20px;
     width: 50%;
+    height: min-content;
+}
+
+.task-unlocks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 20px;
+    width: 50%;
+    height: min-content;
 }
 
 .pet-selection label {

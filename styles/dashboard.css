@@ -32,12 +32,12 @@
     gap: 20px;
     width: 100%;
     max-width: 30%;
-    height: 90%;
+    height: 95%;
     padding: 40px;
     padding-top: 0;
     border-radius: 35px;
     color: var(--text);
-    margin-bottom: -30px;
+    margin-bottom: -40px;
     animation: fadeIn 0.5s ease-in-out;
 
 }
@@ -182,8 +182,8 @@
     gap: 20px;
     width: 100%;
     max-width: 70%;
-    height: 80%;
-    margin-bottom: 40px;
+    height: 85%;
+    margin-bottom: 30px;
     padding: 20px 80px 20px 20px;
     border-radius: 25px;
     border: 2px solid var(--borders-dim);

@@ -508,3 +508,78 @@
     --pet-scale: 1.4;
     --form-transparency: #0000008f;
 }
+
+.theme-urshifu {
+    --primary-color: #00bfff;
+    --secondary-color: #e22b86;
+    --tertiary-color: #8400ff52;
+    --text: #ffffff;
+    --text-dim: #00f7ffb6;
+    --add-fill: #8a2be2;
+    --borders: rgb(138, 43, 226);
+    --borders-dim: rgba(138, 43, 226, 0.459);
+    --background-image: url('../images/bg-ursh.png');
+    --petbg-image: url('../images/pet-bg-nine.jpg');
+    --filter-color: invert(30%) sepia(80%) saturate(2000%) hue-rotate(270deg) brightness(85%) contrast(50%);
+    --background-color: #111111;
+    --pet: url('../images/urshifu.gif');
+    --pet-scale: 1.4;
+    --form-transparency: #0000008f;
+}
+
+.theme-litten {
+    --primary-color: #ff0000;
+    --secondary-color: #ff552b;
+    --tertiary-color: #f57f3142;
+    --text: #ffffff;
+    --text-dim: #ff9b9bcc;
+    --add-fill: #c03838;
+    --borders: rgb(228, 58, 58);
+    --borders-dim: rgba(255, 22, 22, 0.459);
+    --background-image: url('../images/bg-fire.png');
+    --petbg-image: url('../images/pet-bg-fire2.jpg');
+    --filter-color: invert(30%) sepia(100%) saturate(3000%) hue-rotate(0deg) brightness(100%) contrast(100%);
+    --background-color: #111111;
+    --pet: url('../images/litten.gif');
+    --pet-scale: 0.8;
+    --form-transparency: #0000008f;
+    --pet-saturate: 150%;
+}
+
+.theme-torracat {
+    --primary-color: #ff0000;
+    --secondary-color: #ff552b;
+    --tertiary-color: #f57f3142;
+    --text: #ffffff;
+    --text-dim: #ff9b9bcc;
+    --add-fill: #c03838;
+    --borders: rgb(228, 58, 58);
+    --borders-dim: rgba(255, 22, 22, 0.459);
+    --background-image: url('../images/bg-fire.png');
+    --petbg-image: url('../images/pet-bg-fire2.jpg');
+    --filter-color: invert(30%) sepia(100%) saturate(3000%) hue-rotate(0deg) brightness(100%) contrast(100%);
+    --background-color: #111111;
+    --pet: url('../images/torracat.gif');
+    --pet-scale: 0.9;
+    --form-transparency: #0000008f;
+    --pet-saturate: 150%;
+}
+
+.theme-incineroar {
+    --primary-color: #ff0000;
+    --secondary-color: #ff552b;
+    --tertiary-color: #2fbdff42;
+    --text: #ffffff;
+    --text-dim: #ff9b9bcc;
+    --add-fill: #c03838;
+    --borders: rgb(228, 58, 58);
+    --borders-dim: rgba(255, 22, 22, 0.459);
+    --background-image: url('../images/bg-fire.png');
+    --petbg-image: url('../images/pet-bg-fire2.jpg');
+    --filter-color: invert(30%) sepia(100%) saturate(6000%) hue-rotate(0deg) brightness(100%) contrast(400%);
+    --background-color: #111111;
+    --pet: url('../images/incineroar.gif');
+    --pet-scale: 1.2;
+    --form-transparency: #0000008f;
+    --pet-saturate: 150%;
+}
