@@ -208,7 +208,7 @@
 <div class="assignment-board">
 <div class="search-sort">
     <form class="search-top" id="searchForm" method="GET" action="dashboard.php">
-        <input type="text" id="search" name="search" placeholder="Search assignment by title..." value="<?php echo htmlspecialchars($search); ?>">
+        <input type="text" id="search" name="search"  maxlength="30" max placeholder="Search assignment by title..." value="<?php echo htmlspecialchars($search); ?>">
         <select class="search-top" id="sort" name="sort">
             <option value="duedate" <?php echo $sortBy === 'duedate' ? 'selected' : ''; ?>>Due Date</option>
             <option value="assigntype" <?php echo $sortBy === 'assigntype' ? 'selected' : ''; ?>>Assignment Type</option>

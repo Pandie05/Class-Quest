@@ -4,15 +4,10 @@ include __DIR__ . '../../model/db.php';
 function getPet($id) {
 
     global $db;
-
     $sql = "SELECT * FROM pets WHERE userID = :id";
-
     $stmt = $db->prepare($sql);
-
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-
     $stmt->execute();
-
     return $stmt->fetch();
 
 }
@@ -84,6 +79,8 @@ function petHpDown($userID , $hp) {
     $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
     return $stmt->execute();
 }
+
+//pet death ->>>> WORK ON THIS
 
 // get user's pet theme from database
 function getUserPetTheme($userID) {
