@@ -43,7 +43,7 @@
     // Check for past due assignments and decrease HP if necessary
     foreach ($assignments as $assignment) {
         if (!$assignment['done'] && new DateTime($assignment['duedate']) < new DateTime() && !$assignment['hp_awarded']) {
-            $newHp = max(0, $petData['hp'] - 5);
+            $newHp = max(0, $petData['hp'] - 10);
             petHpDown($userId, 10);
 
             // Update assignment to mark HP as awarded
@@ -54,6 +54,16 @@
 
             // Update pet HP in session
             $petData['hp'] = $newHp;
+
+            // Check if pet has died
+            if ($newHp < 100) {
+                $sql = "UPDATE pets SET dead = 1 WHERE userID = :userID";
+                $stmt = $db->prepare($sql);
+                $stmt->bindParam(':userID', $userId, PDO::PARAM_INT);
+                $stmt->execute();
+            }
+
+
         }
     }
 

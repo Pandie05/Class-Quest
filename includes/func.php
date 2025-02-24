@@ -34,7 +34,7 @@ function getPetPokemon($userID) {
 
 function getPetData($userId) {
     global $db;
-    $sql = "SELECT hp, xp, lvl FROM pets WHERE userID = :userID";
+    $sql = "SELECT hp, xp, lvl, dead FROM pets WHERE userID = :userID";
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':userID', $userId, PDO::PARAM_INT);
     $stmt->execute();
@@ -80,7 +80,13 @@ function petHpDown($userID , $hp) {
     return $stmt->execute();
 }
 
-//pet death ->>>> WORK ON THIS
+function petDeath($userID) {
+    global $db;
+    $sql = "UPDATE pets SET dead = 1 WHERE userID = :userID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+    return $stmt->execute();
+}
 
 // get user's pet theme from database
 function getUserPetTheme($userID) {
