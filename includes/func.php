@@ -31,7 +31,6 @@ function getPetPokemon($userID) {
 }
 
 
-
 function getPetData($userId) {
     global $db;
     $sql = "SELECT hp, xp, lvl, dead FROM pets WHERE userID = :userID";

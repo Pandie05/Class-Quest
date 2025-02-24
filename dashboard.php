@@ -9,6 +9,7 @@
         header('Location: login.php');
         exit();
     }
+
     
     $userId = $_SESSION['user']['ID'];
     $petName = getPetName($userId);
@@ -55,17 +56,31 @@
             // Update pet HP in session
             $petData['hp'] = $newHp;
 
-            // Check if pet has died
-            if ($newHp < 100) {
-                $sql = "UPDATE pets SET dead = 1 WHERE userID = :userID";
-                $stmt = $db->prepare($sql);
-                $stmt->bindParam(':userID', $userId, PDO::PARAM_INT);
-                $stmt->execute();
-            }
-
-
         }
+
     }
+
+     /* //check for pet death
+     if ($petData['hp'] <= 0) {
+
+        $petData['hp'] = 0;
+
+        $sql = "UPDATE pets SET dead = 1 WHERE userID = :userID";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':userID', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        if($petData['dead'] == 1) {
+            echo "<script>alert('Your pet has died!');</script>";
+
+            //redirect to pets page
+            header('Location: pets.php');
+
+            
+        }
+    
+    }  */
+
 
     // Sort assignments to put checked ones at the bottom
     usort($assignments, function($a, $b) use ($sortBy) {
