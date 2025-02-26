@@ -4,15 +4,10 @@ include __DIR__ . '../../model/db.php';
 function getPet($id) {
 
     global $db;
-
     $sql = "SELECT * FROM pets WHERE userID = :id";
-
     $stmt = $db->prepare($sql);
-
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-
     $stmt->execute();
-
     return $stmt->fetch();
 
 }
@@ -36,10 +31,9 @@ function getPetPokemon($userID) {
 }
 
 
-
 function getPetData($userId) {
     global $db;
-    $sql = "SELECT hp, xp, lvl FROM pets WHERE userID = :userID";
+    $sql = "SELECT hp, xp, lvl, dead FROM pets WHERE userID = :userID";
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':userID', $userId, PDO::PARAM_INT);
     $stmt->execute();
@@ -81,6 +75,14 @@ function petHpDown($userID , $hp) {
     $sql = "UPDATE pets SET hp = hp - :hp WHERE userID = :userID";
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':hp', $hp, PDO::PARAM_INT);
+    $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+    return $stmt->execute();
+}
+
+function petDeath($userID) {
+    global $db;
+    $sql = "UPDATE pets SET dead = 1 WHERE userID = :userID";
+    $stmt = $db->prepare($sql);
     $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
     return $stmt->execute();
 }

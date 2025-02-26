@@ -9,6 +9,7 @@
         header('Location: login.php');
         exit();
     }
+
     
     $userId = $_SESSION['user']['ID'];
     $petName = getPetName($userId);
@@ -43,7 +44,7 @@
     // Check for past due assignments and decrease HP if necessary
     foreach ($assignments as $assignment) {
         if (!$assignment['done'] && new DateTime($assignment['duedate']) < new DateTime() && !$assignment['hp_awarded']) {
-            $newHp = max(0, $petData['hp'] - 5);
+            $newHp = max(0, $petData['hp'] - 10);
             petHpDown($userId, 10);
 
             // Update assignment to mark HP as awarded
@@ -54,8 +55,32 @@
 
             // Update pet HP in session
             $petData['hp'] = $newHp;
+
         }
+
     }
+
+     /* //check for pet death
+     if ($petData['hp'] <= 0) {
+
+        $petData['hp'] = 0;
+
+        $sql = "UPDATE pets SET dead = 1 WHERE userID = :userID";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':userID', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        if($petData['dead'] == 1) {
+            echo "<script>alert('Your pet has died!');</script>";
+
+            //redirect to pets page
+            header('Location: pets.php');
+
+            
+        }
+    
+    }  */
+
 
     // Sort assignments to put checked ones at the bottom
     usort($assignments, function($a, $b) use ($sortBy) {
@@ -210,7 +235,7 @@
 <div class="assignment-board">
 <div class="search-sort">
     <form class="search-top" id="searchForm" method="GET" action="dashboard.php">
-        <input type="text" id="search" name="search" placeholder="Search assignment by title..." value="<?php echo htmlspecialchars($search); ?>">
+        <input type="text" id="search" name="search"  maxlength="30" max placeholder="Search assignment by title..." value="<?php echo htmlspecialchars($search); ?>">
         <select class="search-top" id="sort" name="sort">
             <option value="duedate" <?php echo $sortBy === 'duedate' ? 'selected' : ''; ?>>Due Date</option>
             <option value="assigntype" <?php echo $sortBy === 'assigntype' ? 'selected' : ''; ?>>Assignment Type</option>
