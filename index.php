@@ -16,8 +16,8 @@
         <h3>Create tasks and assignments and level up your <br> pet with an advanced leveling system.</h3>
 
         <div class="btns">
-            <button class="register-btn"><a href="register.php">Register</a></button>
-            <button class="login-btn"><a href="login.php">Login</a></button>
+            <a href="register.php"><button class="register-btn">Register</button></a>
+            <a href="login.php"><button class="login-btn">Log-In</button></a>
         </div>
 
     <div>
