@@ -147,6 +147,7 @@
     --pet: url('../images/megaGardevoir.gif');
     --pet-scale: 1.1;
     --form-transparency: #0000008f;
+    --particles: url('../images/snow.gif');
 }
 
 .theme-zorua {

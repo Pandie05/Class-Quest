@@ -96,6 +96,8 @@
 </head>
 <body class="theme-<?php echo $theme; ?>">
 
+
+
 <nav>
     <a href="index.php" class="logo">
         <img src="images/logo.png" alt="">
