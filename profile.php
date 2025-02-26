@@ -59,9 +59,7 @@
             <a class="logout-btn" href="includes/logout.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 20 20"><path fill="currentColor" fill-rule="evenodd" d="M3 3a1 1 0 0 0-1 1v12a1 1 0 1 0 2 0V4a1 1 0 0 0-1-1m10.293 9.293a1 1 0 0 0 1.414 1.414l3-3a1 1 0 0 0 0-1.414l-3-3a1 1 0 1 0-1.414 1.414L14.586 9H7a1 1 0 1 0 0 2h7.586z" clip-rule="evenodd"/></svg>
             </a>
-            <a class="home-btn" href="admin.php">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 14v2a6 6 0 0 0-6 6H4a8 8 0 0 1 8-8m0-1c-3.315 0-6-2.685-6-6s2.685-6 6-6s6 2.685 6 6s-2.685 6-6 6m0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4m9 6h1v5h-8v-5h1v-1a3 3 0 1 1 6 0zm-2 0v-1a1 1 0 1 0-2 0v1z"/></svg>
-            </a>
+            
         </div>
     </nav>
 
@@ -69,23 +67,21 @@
 
     <div class="left-panel-2">
 
-        
-
         <div class="sec1">
             
-        <div class="breds">
-                
-            <h1> 
-                <?php
-                    $date = date('l, F j, Y');
-                    $dateParts = explode(', ', $date);
-                    $dayOfWeek = $dateParts[0];
-                    $formattedDate = '<span>' . $dateParts[1] . ', ' . $dateParts[2] . '</span>';
-                    echo $dayOfWeek . ', ' . $formattedDate;
-                ?>
-            </h1>
+            <div class="breds">
+                    
+                <h1> 
+                    <?php
+                        $date = date('l, F j, Y');
+                        $dateParts = explode(', ', $date);
+                        $dayOfWeek = $dateParts[0];
+                        $formattedDate = '<span>' . $dateParts[1] . ', ' . $dateParts[2] . '</span>';
+                        echo $dayOfWeek . ', ' . $formattedDate;
+                    ?>
+                </h1>
 
-        </div>
+            </div>
 
             <div class="profile-info">
                 <h2>Hi!, <?php echo $_SESSION['user']['username']; ?></h2>
@@ -125,7 +121,230 @@
           
         </div>
 
+        <!-- Pet Stats and Progress Section -->
+        <div class="pet-stats-container">
+
+            <!-- Pet Info Summary Card -->
+            <div class="stats-card pet-summary">
+                <div class="card-header">
+                    <h3>Pet Summary</h3>
+                </div>
+                <div class="card-content">
+                    <?php
+                        $petData = getPetData($_SESSION['user']['ID']);
+                        $petName = getPetName($_SESSION['user']['ID']) ?: 'Your Pet';
+                        $pokemon = getPetPokemon($_SESSION['user']['ID']) ?: 'umbreon';
+                    ?>
+                    <div class="pet-profile">
+                        <div class="pet-image">
+                        </div>
+                        <div class="pet-details">
+                            <h4><?php echo htmlspecialchars($petName); ?></h4>
+                            <div class="pet-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Level:</span>
+                                    <span class="stat-value"><?php echo $petData['lvl']; ?></span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">HP:</span>
+                                    <span class="stat-value"><?php echo $petData['hp']; ?>/100</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">XP:</span>
+                                    <span class="stat-value"><?php echo $petData['xp']; ?></span><span> / 200</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Status:</span>
+                                    <span class="stat-value <?php echo isset($petData['dead']) && $petData['dead'] ? 'status-danger' : 'status-good'; ?>">
+                                        <?php echo isset($petData['dead']) && $petData['dead'] ? 'Fainted' : 'Healthy'; ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Assignment Progress Card -->
+            <div class="stats-card assignment-progress">
+                <div class="card-header">
+                    <h3>Assignment Progress</h3>
+                </div>
+                <div class="card-content">
+                    <?php
+                        $assignments = getAssignmentsByUser($_SESSION['user']['ID']);
+                        $totalAssignments = count($assignments);
+                        $completedAssignments = 0;
+                        $upcomingDue = 0;
+                        
+                        foreach($assignments as $assignment) {
+                            if($assignment['done']) {
+                                $completedAssignments++;
+                            } else {
+                                $dueDate = new DateTime($assignment['duedate']);
+                                $now = new DateTime();
+                                if($dueDate > $now && $dueDate <= $now->modify('+3 days')) {
+                                    $upcomingDue++;
+                                }
+                            }
+                        }
+                        
+                        $completionRate = $totalAssignments > 0 ? round(($completedAssignments / $totalAssignments) * 100) : 0;
+                    ?>
+                    
+                    <div class="progress-stats">
+                        <div class="stat-block">
+                            <div class="stat-circle">
+                                <span class="stat-number"><?php echo $totalAssignments; ?></span>
+                            </div>
+                            <div class="stat-label">Total Tasks</div>
+                        </div>
+                        
+                        <div class="stat-block">
+                            <div class="stat-circle">
+                                <span class="stat-number"><?php echo $completedAssignments; ?></span>
+                            </div>
+                            <div class="stat-label">Completed</div>
+                        </div>
+                        
+                        <div class="stat-block">
+                            <div class="stat-circle">
+                                <span class="stat-number"><?php echo $totalAssignments - $completedAssignments; ?></span>
+                            </div>
+                            <div class="stat-label">Pending</div>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="completion-bar">
+                        <div class="progress-label">Completion Rate: <?php echo $completionRate; ?>%</div>
+                        <div class="progress-container">
+                            <div class="progress-fill" style="width: <?php echo $completionRate; ?>%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Task Breakdown Card -->
+            <div class="stats-card task-breakdown">
+                <div class="card-header">
+                    <h3>Tasks by Difficulty</h3>
+                </div>
+                <div class="card-content">
+                    <?php
+                        $taskCounts = getTaskCompletionCounts($_SESSION['user']['ID']);
+                    ?>
+                    <div class="task-grid">
+                        <div class="task-type">
+                            <div class="task-icon easy">E</div>
+                            <div class="task-count"><?php echo $taskCounts['easy'] ?? 0; ?></div>
+                            <div class="task-name">Easy</div>
+                        </div>
+                        <div class="task-type">
+                            <div class="task-icon medium">M</div>
+                            <div class="task-count"><?php echo $taskCounts['med'] ?? 0; ?></div>
+                            <div class="task-name">Medium</div>
+                        </div>
+                        <div class="task-type">
+                            <div class="task-icon hard">H</div>
+                            <div class="task-count"><?php echo $taskCounts['hard'] ?? 0; ?></div>
+                            <div class="task-name">Hard</div>
+                        </div>
+                        <div class="task-type">
+                            <div class="task-icon v-hard">VH</div>
+                            <div class="task-count"><?php echo $taskCounts['vhard'] ?? 0; ?></div>
+                            <div class="task-name">Very Hard</div>
+                        </div>
+                    </div>
+                    
+                    <div class="assignment-types">
+                        <div class="assignment-type">
+                            <span class="type-label">Quizzes:</span>
+                            <span class="type-value"><?php echo $taskCounts['quizzes'] ?? 0; ?></span>
+                        </div>
+                        <div class="assignment-type">
+                            <span class="type-label">Tests:</span>
+                            <span class="type-value"><?php echo $taskCounts['tests'] ?? 0; ?></span>
+                        </div>
+                        <div class="assignment-type">
+                            <span class="type-label">Homework:</span>
+                            <span class="type-value"><?php echo $taskCounts['homework'] ?? 0; ?></span>
+                        </div>
+                        <div class="assignment-type">
+                            <span class="type-label">Finals:</span>
+                            <span class="type-value"><?php echo $taskCounts['finals'] ?? 0; ?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Achievements Section -->
+            <div class="stats-card achievements">
+                <div class="card-header">
+                    <h3>Pet Achievements</h3>
+                </div>
+                <div class="card-content">
+                    <?php
+                        $level = $petData['lvl'];
+                        $petInfo = getAvailablePets($level);
+                        $unlockedCount = count($petInfo['available']);
+                        $totalPets = count($petInfo['available']) + count($petInfo['requirements']);
+                        
+                        // Get the next pet to unlock
+                        $nextPet = null;
+                        $nextPetReq = null;
+                        foreach ($petInfo['requirements'] as $petName => $req) {
+                            if (!in_array($petName, $petInfo['available'])) {
+                                $nextPet = $petName;
+                                $nextPetReq = $req;
+                                break;
+                            }
+                        }
+                    ?>
+                    
+                    <div class="achievement-summary">
+                        <div class="pet-unlock-progress">
+                            <div class="unlock-title">Pet Collection</div>
+                            <div class="unlock-stats"><?php echo $unlockedCount; ?> / <?php echo $totalPets; ?> Unlocked</div>
+                            <div class="progress-container">
+                                <div class="progress-fill" style="width: <?php echo ($unlockedCount / $totalPets) * 100; ?>%"></div>
+                            </div>
+                        </div>
+                        
+                        <?php if ($nextPet && $nextPetReq): ?>
+                        <div class="next-unlock">
+                            <div class="unlock-title">Next Pet Unlock:</div>
+                            <div class="unlock-requirement">
+                                <?php echo ucfirst(str_replace(['Gmax', 'GMAX'], ['Gigantamax', 'Gigantamax'], $nextPet)); ?>
+                                <span class="requirement-text">
+                                    (<?php echo $nextPetReq['display']; ?>)
+                                </span>
+                            </div>
+                            <div class="current-progress">
+                                Progress: <?php 
+                                    if (is_array($nextPetReq['current'])) {
+                                        echo implode('/', $nextPetReq['current']);
+                                    } else {
+                                        echo $nextPetReq['current']; 
+                                    }
+                                ?> / 
+                                <?php 
+                                    if (is_array($nextPetReq['required'])) {
+                                        echo implode('/', $nextPetReq['required']);
+                                    } else {
+                                        echo $nextPetReq['required']; 
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+        
    
 </div>
 
