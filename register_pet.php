@@ -3,21 +3,43 @@
 include __DIR__ . '/includes/gyatt.php';
 include __DIR__ . '/model/db.php';
 
+session_start();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $petname = $_POST['petname'];
     $pokemon = $_POST['pokemon'];
     $userID = $_POST['userID'];
 
-    // Insert pet information into the pets table
-    $sql = "INSERT INTO pets (userID, petname, pokemon) VALUES (:userID, :petname, :pokemon)";
+    // Check if the user already has a pet
+    $sql = "SELECT * FROM pets WHERE userID = :userID";
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
-    $stmt->bindParam(':petname', $petname, PDO::PARAM_STR);
-    $stmt->bindParam(':pokemon', $pokemon, PDO::PARAM_STR);
     $stmt->execute();
+    $existingPet = $stmt->fetch();
 
-    header('Location: login.php');
+    if ($existingPet) {
+        // Update the existing pet record
+        $sql = "UPDATE pets SET petname = :petname, pokemon = :pokemon WHERE userID = :userID";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+        $stmt->bindParam(':petname', $petname, PDO::PARAM_STR);
+        $stmt->bindParam(':pokemon', $pokemon, PDO::PARAM_STR);
+        $stmt->execute();
+    } else {
+        // Insert a new pet record
+        $sql = "INSERT INTO pets (userID, petname, pokemon) VALUES (:userID, :petname, :pokemon)";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':userID', $userID, PDO::PARAM_INT);
+        $stmt->bindParam(':petname', $petname, PDO::PARAM_STR);
+        $stmt->bindParam(':pokemon', $pokemon, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
+    // Log the user in
+    $_SESSION['user'] = ['ID' => $userID];
+
+    header('Location: dashboard.php');
     exit();
 }
 

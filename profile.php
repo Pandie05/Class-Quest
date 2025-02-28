@@ -12,6 +12,10 @@
 
     $theme = getUserPetTheme($_SESSION['user']['ID']);
 
+    $userInfo = getUserInfo($_SESSION['user']['ID']);
+    $_SESSION['user']['username'] = $userInfo['username'];
+    $_SESSION['user']['email'] = $userInfo['email'];
+
 ?>
 
 <!DOCTYPE html>
