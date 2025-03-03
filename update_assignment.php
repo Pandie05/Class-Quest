@@ -36,12 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Update pet XP and HP
         $userId = $_SESSION['user']['ID'];
-        $sql = "SELECT hp, xp FROM pets WHERE userID = :userID";
+        $sql = "SELECT hp, xp, lvl FROM pets WHERE userID = :userID";
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':userID', $userId, PDO::PARAM_INT);
         $stmt->execute();
         $pet = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        $levelUp = false;
+        
         if ($done) {
             $sql = "SELECT hp_awarded FROM assignments WHERE id = :id";
             $stmt = $db->prepare($sql);
@@ -56,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($newXp >= 200) {
                 petLevelup($userId);
                 $newXp = $newXp % 200;
+                $levelUp = true;
             }
 
             if (!$hpAwarded) {
@@ -86,7 +89,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Commit transaction
         $db->commit();
 
-        echo json_encode(['success' => true]);
+        // Get updated pet level
+        $sql = "SELECT lvl FROM pets WHERE userID = :userID";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':userID', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+        $updatedPet = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Store level up info in session instead of just in response
+        if ($levelUp) {
+            $_SESSION['level_up'] = true;
+            $_SESSION['new_level'] = $updatedPet['lvl'];
+        }
+        
+        echo json_encode([
+            'success' => true
+        ]);
     } catch (Exception $e) {
         // Rollback transaction on error
         $db->rollBack();

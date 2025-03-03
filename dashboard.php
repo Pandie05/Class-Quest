@@ -93,6 +93,21 @@
 
 ?>
 
+<?php
+// Check if there was a level up
+$showLevelUp = false;
+$newLevel = 0;
+if (isset($_SESSION['level_up']) && $_SESSION['level_up']) {
+    $showLevelUp = true;
+    $newLevel = $_SESSION['new_level'];
+    
+    // Clear the level up flag so it doesn't show again
+    $_SESSION['level_up'] = false;
+    unset($_SESSION['level_up']);
+    unset($_SESSION['new_level']);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,6 +120,7 @@
     <link rel="stylesheet" href="styles/noscroll.css">
     <link rel="stylesheet" href="styles/nav.css">
     <link rel="stylesheet" href="styles/addTask.css">
+    <link rel="stylesheet" href="styles/popup.css">
     <script src="scripts/nav.js" defer></script>
 
 </head>
@@ -338,13 +354,43 @@
     </form>
 </div>
 
-
 <!-- Loading Overlay -->
 <div id="loading-overlay" style="display: none;">
     <div class="loading-spinner"></div>
 </div>
 
+<div id="level-up-modal" style="display: none;">
+    <div class="level-up-content">
+        <h2>Level Up!</h2>
+        <p id="level-up-message">Your pet has reached a new level!</p>
+        <div id="particle-container"></div>
+        <button id="level-up-close">Continue</button>
+    </div>
+</div>
+
 <script src="scripts/dashboard.js"></script>
+
+<!-- level up modal js -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Close button functionality
+        document.getElementById('level-up-close').addEventListener('click', function() {
+            document.getElementById('level-up-modal').style.display = 'none';
+        });
+
+        // Check if we should show level up modal from PHP session
+        <?php if ($showLevelUp): ?>
+        setTimeout(function() {
+            const modal = document.getElementById('level-up-modal');
+            const message = document.getElementById('level-up-message');
+            message.textContent = `Your pet has reached level <?php echo $newLevel; ?>!`;
+            modal.style.display = 'flex';
+            createParticles();
+        }, 300); // Short delay to ensure everything is loaded
+        <?php endif; ?>
+    });
+</script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const loadingOverlay = document.getElementById('loading-overlay');
