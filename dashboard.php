@@ -80,7 +80,7 @@
     // Check if the pet is dead
     if ($petData['hp'] <= 0) {
 
-        $sql = "UPDATE pets SET hp = 100, xp = 0, lvl = 0 WHERE userID = :userID";
+        $sql = "UPDATE pets SET hp = 100, xp = 0, lvl = 1 WHERE userID = :userID";
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':userID', $userId, PDO::PARAM_INT);
         $stmt->execute();
@@ -109,8 +109,6 @@
 
 </head>
 <body class="theme-<?php echo $theme; ?>">
-
-
 
 <nav>
     <a href="index.php" class="logo">
