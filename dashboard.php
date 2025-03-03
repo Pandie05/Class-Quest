@@ -321,7 +321,9 @@
 </div>
 
 <!-- Edit Assignment Form -->
+
 <div class="edit-assignment-form">
+    
     <form id="edit-assignment-form" action="dashboard.php" method="POST">
         <input type="hidden" name="id" id="edit-assignment-id">
         <input type="text" name="title" id="edit-assignment-title" placeholder="Title" maxlength="18" required>
@@ -348,6 +350,7 @@
         </div>
     </form>
 </div>
+
 
 <!-- Loading Overlay -->
 <div id="loading-overlay" style="display: none;">
