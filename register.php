@@ -124,10 +124,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p class="log-err" style="color: red;"><?php echo $error; ?></p>
                 <?php endif; ?>
 
-                <div class="terms">
-                    <input type="checkbox" class="ui-checkbox"> I agree to the <a href="#" id="terms-link">Terms of Service</a>
-                </div>
-
             </div>
 
             <div class="back-to-home">

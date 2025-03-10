@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('edit-assignment-duedate').value = dueDate.toISOString().split('T')[0];
         }
 
-        const assigntypeSelect = document.getElementById('assignment-assigntype');
+        const assigntypeSelect = document.getElementById('edit-assignment-assigntype');
         const options = assigntypeSelect.options;
         for (let i = 0; i < options.length; i++) {
             if (options[i].value === assignment.assigntype) {
@@ -63,54 +63,129 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         editForm.classList.add('show');
     };
-});
 
-document.querySelectorAll('.bar').forEach(bar => {
-    const current = parseFloat(bar.getAttribute('data-current'));
-    const max = parseFloat(bar.getAttribute('data-max'));
-    const min = parseFloat(bar.getAttribute('data-min'));
+    // Update bar visuals
+    document.querySelectorAll('.bar').forEach(bar => {
+        const current = parseFloat(bar.getAttribute('data-current'));
+        const max = parseFloat(bar.getAttribute('data-max'));
+        const min = parseFloat(bar.getAttribute('data-min'));
 
-    const percentage = ((current - min) / (max - min) * 100) + '%';
-    bar.style.setProperty('--percentage', percentage);
-});
+        const percentage = ((current - min) / (max - min) * 100) + '%';
+        bar.style.setProperty('--percentage', percentage);
+    });
 
-let assignmentToDelete = null;
-const deleteModal = document.getElementById('delete-confirm');
-const cancelDelete = document.getElementById('cancel-delete');
-const confirmDelete = document.getElementById('confirm-delete');
-const loadingOverlay = document.getElementById('loading-overlay');
+    // Assignment deletion
+    let assignmentToDelete = null;
+    const deleteModal = document.getElementById('delete-confirm');
+    const cancelDelete = document.getElementById('cancel-delete');
+    const confirmDelete = document.getElementById('confirm-delete');
+    const loadingOverlay = document.getElementById('loading-overlay');
 
-function showDeleteConfirm(assignmentId) {
-    assignmentToDelete = assignmentId;
-    deleteModal.style.display = 'block';
-}
+    window.showDeleteConfirm = function (assignmentId) {
+        assignmentToDelete = assignmentId;
+        deleteModal.style.display = 'block';
+    };
 
-cancelDelete.addEventListener('click', () => {
-    deleteModal.style.display = 'none';
-    assignmentToDelete = null;
-});
+    cancelDelete.addEventListener('click', () => {
+        deleteModal.style.display = 'none';
+        assignmentToDelete = null;
+    });
 
-confirmDelete.addEventListener('click', () => {
-    if (assignmentToDelete) {
+    confirmDelete.addEventListener('click', () => {
+        if (assignmentToDelete) {
+            loadingOverlay.style.display = 'flex';
+            fetch('delete_assignment.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id: assignmentToDelete })
+            })
+                .then(() => {
+                    window.location.reload();
+                });
+        }
+        deleteModal.style.display = 'none';
+    });
+
+    // Close modal if clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === deleteModal) {
+            deleteModal.style.display = 'none';
+            assignmentToDelete = null;
+        }
+    });
+
+    // Modified assignment checkbox handler
+    const checkboxes = document.querySelectorAll('.assignment-checkbox');
+    let isProcessing = false;
+
+    function handleCheckboxChange(checkbox) {
+        if (isProcessing) return;
+        isProcessing = true;
+        
         loadingOverlay.style.display = 'flex';
-        fetch('delete_assignment.php', {
+        const assignmentId = checkbox.getAttribute('data-id');
+        const done = checkbox.checked ? 1 : 0;
+
+        fetch('update_assignment.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ id: assignmentToDelete })
+            body: JSON.stringify({ 
+                id: assignmentId, 
+                done: done 
+            })
         })
-            .then(() => {
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Store level up flag before page reload
+                if (data.levelUp) {
+                    sessionStorage.setItem('levelUp', 'true');
+                    sessionStorage.setItem('newLevel', data.newLevel);
+                }
                 window.location.reload();
-            });
+            } else {
+                console.error('Failed to update assignment');
+                checkbox.checked = !checkbox.checked;
+                loadingOverlay.style.display = 'none';
+                isProcessing = false;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            checkbox.checked = !checkbox.checked;
+            loadingOverlay.style.display = 'none';
+            isProcessing = false;
+        });
     }
-    deleteModal.style.display = 'none';
-});
 
-// Close modal if clicking outside
-window.addEventListener('click', (e) => {
-    if (e.target === deleteModal) {
-        deleteModal.style.display = 'none';
-        assignmentToDelete = null;
-    }
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            handleCheckboxChange(this);
+        });
+
+        checkbox.addEventListener('click', function(e) {
+            if (isProcessing) {
+                e.preventDefault();
+                return;
+            }
+        });
+    });
+
+    // Check for level up after page loads
+    window.addEventListener('load', function() {
+        if (sessionStorage.getItem('levelUp') === 'true') {
+            sessionStorage.removeItem('levelUp');
+            
+            // Delay to ensure DOM is fully loaded
+            setTimeout(() => {
+                if (typeof showLevelUpAnimation === 'function') {
+                    showLevelUpAnimation();
+                }
+            }, 500);
+        }
+    });
 });
