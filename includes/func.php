@@ -360,3 +360,4 @@ function getAvailablePets($level) {
     
     return ['available' => $available, 'requirements' => $unlockInfo];
 }
+
